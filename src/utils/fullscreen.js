@@ -11,19 +11,21 @@ export function isFullscreenActive() {
 
 export function enterFullscreen() {
   try {
-    const elem = document.documentElement;
-    if (!isFullscreenActive()) {
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen().catch(() => {});
-      } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-      } else if (elem.webkitEnterFullscreen) {
-        elem.webkitEnterFullscreen();
-      } else if (elem.mozRequestFullScreen) {
-        elem.mozRequestFullScreen();
-      } else if (elem.msRequestFullscreen) {
-        elem.msRequestFullscreen();
-      }
+    if (isFullscreenActive()) return;
+
+    const doc = window.document;
+    const elem = doc.documentElement || doc.body;
+
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen().catch(() => {});
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    } else if (elem.webkitRequestFullScreen) {
+      elem.webkitRequestFullScreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
     }
   } catch (err) {
     // Graceful fallback for browsers that restrict automatic fullscreen

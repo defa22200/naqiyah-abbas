@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { enterFullscreen } from '../utils/fullscreen';
 import GoldBurstCanvas from './GoldBurstCanvas';
 
 /**
@@ -68,7 +69,10 @@ export default function EnvelopeCeremony({ onComplete }) {
     if (e) e.stopPropagation();
     if (phase !== 'sealed') return;
 
-    // Trigger instant crisp sound & haptic (no fullscreen resize stutter)
+    // Force Fullscreen immediately on user gesture
+    enterFullscreen();
+
+    // Trigger instant crisp sound & haptic
     playCrackSound();
     if (navigator.vibrate) {
       try { navigator.vibrate([15, 25, 15]); } catch (err) {}
@@ -109,6 +113,7 @@ export default function EnvelopeCeremony({ onComplete }) {
 
   // Instant fast-forward if user taps anywhere during presentation
   const handleFastForward = () => {
+    enterFullscreen();
     if (phase === 'rising' || phase === 'opening') {
       setPhase('revealing');
       setTimeout(() => {

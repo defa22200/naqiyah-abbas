@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Volume2, VolumeX, Music, Maximize, Minimize } from 'lucide-react';
-import { toggleFullscreen, isFullscreenActive } from '../utils/fullscreen';
+import { enterFullscreen, toggleFullscreen, isFullscreenActive } from '../utils/fullscreen';
 
 export default function AudioPlayer({ autoPlayTrigger }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -32,6 +32,7 @@ export default function AudioPlayer({ autoPlayTrigger }) {
     audio.volume = 0.5;
 
     const startAudioOnInteraction = () => {
+      enterFullscreen();
       audio.play().then(() => {
         setIsPlaying(true);
       }).catch(() => {});
