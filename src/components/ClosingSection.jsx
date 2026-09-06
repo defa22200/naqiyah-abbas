@@ -50,7 +50,7 @@ export default function ClosingSection() {
           With Best Compliments From
         </span>
         
-        <div className="space-y-1.5 font-serif text-[14px] sm:text-base md:text-lg text-gold-pale leading-snug">
+        <div className="space-y-1.5 font-serif text-[15px] sm:text-base md:text-lg text-warm-cream font-medium leading-snug">
           <p>Mr. Aziz Shamim &amp; Mrs. Zainab Shamim</p>
           <p>Dr. Farheen &amp; Dr. Shabbir Hassan</p>
           <p>Sarrah</p>
@@ -97,12 +97,27 @@ export default function ClosingSection() {
         </button>
       </div>
 
-      {/* 4. Footer / Logistics Touchpoint */}
-      <footer className="pt-6 border-t border-[#CBB084]/40 text-xs font-sans space-y-2">
-        <p className="font-medium text-gold-bright drop-shadow-sm">18 – 19 December 2026 · Nagpur, Maharashtra</p>
-        <p className="text-[10px] min-[360px]:text-[11.5px] text-warm-cream/90 tracking-wider">
-          Two families · Two hearts · One beautiful beginning
-        </p>
+      {/* 4. Footer / Logistics Touchpoint (Enclosed in Luxury Black & Gold Card for 100% Clarity) */}
+      <footer className="pt-8 pb-4">
+        <div className="p-6 rounded-3xl bg-[#120B10]/90 border border-[#CBB084]/60 shadow-[0_15px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl space-y-2.5 text-center max-w-md mx-auto">
+          <p className="font-serif text-sm sm:text-base font-semibold text-gold-bright tracking-wide drop-shadow-sm">
+            18 – 19 December 2026 · Nagpur, Maharashtra
+          </p>
+
+          <div className="flex items-center justify-center gap-2 text-[#CBB084]/60">
+            <span className="h-px w-8 bg-[#CBB084]/40" />
+            <span className="text-[10px] text-gold-bright">✦</span>
+            <span className="h-px w-8 bg-[#CBB084]/40" />
+          </div>
+
+          <p className="font-serif italic text-xs sm:text-sm text-warm-cream/95 tracking-wide">
+            Two families · Two hearts · One beautiful beginning
+          </p>
+
+          <p className="font-sans text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-gold-pale/90 font-medium pt-0.5">
+            Hakimi Masjid &amp; Dhawan Celebrations
+          </p>
+        </div>
       </footer>
     </section>
   );
