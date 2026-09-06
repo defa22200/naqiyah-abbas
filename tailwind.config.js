@@ -58,7 +58,18 @@ export default {
           sage: '#687B60',
           olive: '#7A8C70',
           blush: '#E5BFB5',
+          blessing: '#F7E9D0',
+        },
+        blessing: {
+          DEFAULT: '#F7E9D0',
+          light: '#FBF4E8',
+          dark: '#E2C79E',
         }
+      },
+      transitionDuration: {
+        '1600': '1600ms',
+        '1800': '1800ms',
+        '2000': '2000ms',
       },
       fontFamily: {
         serif: ['Cormorant Garamond', 'Fraunces', 'serif'],
@@ -72,6 +83,16 @@ export default {
         'soft-float': '0 20px 40px -15px rgba(58, 44, 51, 0.07)',
         'card-glow': '0 10px 30px -5px rgba(201, 166, 107, 0.12)',
         'reception-glow': '0 15px 45px -10px rgba(201, 166, 107, 0.25)',
+      },
+      animation: {
+        'spin-slow': 'spin 20s linear infinite',
+        'fade-in': 'fadeIn 0.8s ease-out forwards',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        }
       }
     },
   },

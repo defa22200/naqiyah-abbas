@@ -25,9 +25,13 @@ export default function HeroSection({ onOpenKeepsake }) {
         animate={{ opacity: 1, scale: 1, rotateX: 0 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
         style={{ perspective: 1000 }}
-        className="mb-4 sm:mb-6 relative flex items-center justify-center cursor-pointer"
+        className="mb-4 sm:mb-6 relative flex items-center justify-center cursor-pointer group"
         whileHover={{ scale: 1.08, rotateY: 12, rotateX: -6 }}
         whileTap={{ scale: 0.96 }}
+        onClick={onOpenKeepsake}
+        title="Tap to view wedding countdown & keepsake"
+        role="button"
+        tabIndex={0}
       >
         <div className="relative w-28 h-24 sm:w-36 sm:h-30 flex items-center justify-center transition-transform duration-500 [transform-style:preserve-3d]">
           {/* Subtle warm halo */}
@@ -35,12 +39,12 @@ export default function HeroSection({ onOpenKeepsake }) {
           <img 
             src="/images/na_monogram_luxury.png" 
             alt="Naqiyah & Abbas Monogram"
-            className="w-full h-full object-contain filter drop-shadow-[0_8px_20px_rgba(201,166,107,0.35)] transition-transform duration-300"
+            className="w-full h-full object-contain filter drop-shadow-[0_8px_20px_rgba(201,166,107,0.35)] transition-transform duration-300 group-hover:scale-105"
           />
         </div>
       </motion.div>
 
-      {/* 2. Primary Hero Names Beat in Sweeping Calligraphy Italic Script */}
+      {/* 2. Primary Hero Names Beat in Royal Calligraphy Script with Shimmer Sweep */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -48,7 +52,7 @@ export default function HeroSection({ onOpenKeepsake }) {
         className="w-full max-w-lg mx-auto flex flex-col items-center justify-center"
       >
         {/* Bride Name: Naqiyah */}
-        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-warm-espresso font-normal select-none leading-[1.1] drop-shadow-sm">
+        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-warm-espresso font-normal select-none leading-[1.1] drop-shadow-sm transition-all duration-700 hover:text-gold-burnished">
           Naqiyah
         </h1>
 
@@ -62,7 +66,7 @@ export default function HeroSection({ onOpenKeepsake }) {
         </div>
 
         {/* Groom Name: Abbas */}
-        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-warm-espresso font-normal select-none leading-[1.1] drop-shadow-sm">
+        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-warm-espresso font-normal select-none leading-[1.1] drop-shadow-sm transition-all duration-700 hover:text-gold-burnished">
           Abbas
         </h1>
       </motion.div>

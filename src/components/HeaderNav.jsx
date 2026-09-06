@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Compass, X, MapPin, Sparkles } from 'lucide-react';
+import { scrollTo as lenisScrollTo } from '../lib/smoothScroll';
 
 export default function HeaderNav({ activeSection }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -21,11 +22,8 @@ export default function HeaderNav({ activeSection }) {
 
   if (!isVisible) return null;
 
-  const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  const handleNavClick = (id) => {
+    lenisScrollTo(`#${id}`, { offset: -30 });
   };
 
   const navItems = [
@@ -56,7 +54,7 @@ export default function HeaderNav({ activeSection }) {
             return (
               <button
                 key={item.id}
-                onClick={() => scrollTo(item.id)}
+                onClick={() => handleNavClick(item.id)}
                 className={`px-3 py-1.5 rounded-full text-xs transition-all duration-300 whitespace-nowrap flex items-center gap-1 ${
                   isActive
                     ? 'bg-gold-hairline text-ink-plum font-semibold shadow-sm'

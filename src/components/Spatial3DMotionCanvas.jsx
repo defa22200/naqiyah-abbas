@@ -12,7 +12,7 @@ import * as THREE from 'three';
  * - 3D Volumetric Floating Petals & Golden Stardust with realistic tumbling physics.
  * - Frustum-aware responsive margin positioning (100% text-safe).
  */
-export default function Spatial3DMotionCanvas() {
+export default function Spatial3DMotionCanvas({ stage = 'dawn', isReady = true }) {
   const mountRef = useRef(null);
 
   useEffect(() => {
@@ -425,7 +425,9 @@ export default function Spatial3DMotionCanvas() {
     <div 
       ref={mountRef} 
       aria-hidden="true" 
-      className="fixed inset-0 pointer-events-none z-0 select-none overflow-hidden" 
+      className={`fixed inset-0 pointer-events-none z-0 select-none overflow-hidden transition-opacity duration-1000 ${
+        isReady ? 'opacity-100' : 'opacity-0'
+      }`} 
     />
   );
 }

@@ -8,109 +8,72 @@ import VerseSection from './components/VerseSection';
 import ClosingSection from './components/ClosingSection';
 import HeaderNav from './components/HeaderNav';
 import AudioPlayer from './components/AudioPlayer';
-import RoyalEnvelopeIntro from './components/RoyalEnvelopeIntro';
-import AmbientLightCanvas from './components/AmbientLightCanvas';
-import MinimalFloralBackground from './components/MinimalFloralBackground';
+import EnvelopeCeremony from './components/EnvelopeCeremony';
+import PhaseBackgroundEngine from './components/PhaseBackgroundEngine';
 import FlowerRainfall from './components/FlowerRainfall';
 import Spatial3DMotionCanvas from './components/Spatial3DMotionCanvas';
 import KeepsakeModal from './components/KeepsakeModal';
 import QrCodeModal from './components/QrCodeModal';
-import { enterFullscreen } from './utils/fullscreen';
+import { useScrollStage } from './hooks/useScrollStage';
+import { initSmoothScroll, getLenis } from './lib/smoothScroll';
 
 export default function App() {
-  const [activeSection, setActiveSection] = useState('hero');
-  const [lightStage, setLightStage] = useState('dawn'); // 'dawn' | 'nikah' | 'midday' | 'reception' | 'verse'
+  const { stage, activeSection } = useScrollStage();
+  const [isCeremonyDone, setIsCeremonyDone] = useState(false);
   const [isKeepsakeOpen, setIsKeepsakeOpen] = useState(false);
   const [selectedQrEvent, setSelectedQrEvent] = useState(null);
   const [musicTrigger, setMusicTrigger] = useState(false);
 
-  const handleEnvelopeOpen = () => {
-    enterFullscreen();
+  // Handle ceremony completion
+  const handleCeremonyComplete = () => {
+    setIsCeremonyDone(true);
     setMusicTrigger(true);
+    initSmoothScroll();
   };
 
-  // Section Observer for buttery smooth "A Day, in Light" and active navigation
+  // Lock/resume Lenis during modal popups
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-15% 0px -35% 0px',
-      threshold: 0.15
-    };
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          setActiveSection(id);
-
-          // Map sections to the PRD "A Day, in Light" motif
-          if (id === 'invocation' || id === 'hero' || id === 'lineage') {
-            setLightStage('dawn');
-          } else if (id === 'nikah') {
-            setLightStage('nikah');
-          } else if (id === 'celebration-of-love' || id === 'celebration') {
-            setLightStage('midday');
-          } else if (id === 'reception') {
-            setLightStage('reception');
-          } else if (id === 'verse') {
-            setLightStage('verse');
-          } else if (id === 'venues' || id === 'closing') {
-            setLightStage('dawn');
-          }
-        }
-      });
-    }, observerOptions);
-
-    const sections = document.querySelectorAll('section[id], article[id]');
-    sections.forEach((sec) => sectionObserver.observe(sec));
-
-    return () => sectionObserver.disconnect();
-  }, []);
+    const lenis = getLenis();
+    if (!lenis) return;
+    if (isKeepsakeOpen || selectedQrEvent) {
+      lenis.stop();
+    } else {
+      lenis.start();
+    }
+  }, [isKeepsakeOpen, selectedQrEvent]);
 
   return (
     <div className="min-h-screen relative overflow-hidden text-warm-espresso selection:bg-rose-dust selection:text-ink-deep">
       
-      {/* 1. Ceremonial Royal Wax Seal Envelope Opener */}
-      <RoyalEnvelopeIntro onOpen={handleEnvelopeOpen} />
+      {/* 1. Act 0: 3D Royal Wax Seal Envelope Ceremony (z-[60]) */}
+      {!isCeremonyDone && (
+        <EnvelopeCeremony onComplete={handleCeremonyComplete} />
+      )}
 
-      {/* 2. Delicate Minimalist Watercolor Floral Background (from client reference) */}
-      <MinimalFloralBackground lightStage={lightStage} />
+      {/* 2. Seamless 6-Phase Multiphase Background Engine (z-[-30]) */}
+      <PhaseBackgroundEngine stage={stage} />
 
-      {/* 3. Soft, Dignified Flower Petals Rainfall Motion Graphics Effect */}
-      <FlowerRainfall />
+      {/* 3. Tactile Handmade Paper & Jali Texture Overlays (z-[-15]) */}
+      <div className="fixed inset-0 pointer-events-none paper-texture opacity-25 -z-15"></div>
+      <div className="fixed inset-0 pointer-events-none jali-watermark opacity-15 -z-15"></div>
 
-      {/* 4. motionsites.ai Style 3D Interactive Spatial Motion Graphics (3D Rings, Prisms, Parallax) */}
-      <Spatial3DMotionCanvas />
+      {/* 4. Three.js Spatial 3D Rings & Parametric Spline Ribbon (z-0, lazy fade) */}
+      <Spatial3DMotionCanvas stage={stage} isReady={isCeremonyDone} />
 
-      {/* 5. Buttery Smooth 5-Stage GPU Background & Ambient Golden Dust Motes */}
-      <AmbientLightCanvas lightStage={lightStage} />
-
-      {/* 5. Tactile Handmade Fine Paper Texture Overlay */}
-      <div className="fixed inset-0 pointer-events-none paper-texture opacity-30 -z-10"></div>
-
-      {/* 6. Subtle Islamic Jali Watermark Pattern */}
-      <div className="fixed inset-0 pointer-events-none jali-watermark opacity-20 -z-10"></div>
-
-      {/* 7. Luxury Sufiyana Oud Instrumental Music Player (Sound ON by default, toggleable) */}
-      <AudioPlayer autoPlayTrigger={musicTrigger} />
-
-      {/* 8. Persistent Floating Jump Dock Navigation */}
-      <HeaderNav activeSection={activeSection} />
-
-      {/* Main Single-Page Invitation Narrative (Authentic Card Content) */}
-      <main className="relative z-10 max-w-xl mx-auto px-4 sm:px-6">
+      {/* 5. Main Single-Page Scrollytelling Narrative (z-10) */}
+      <main className="relative z-10 max-w-xl mx-auto px-4 sm:px-6 pt-6 sm:pt-12">
         {/* 1. Opening Sacred Invocation (Bismillah & Dua Mubarak) */}
         <InvocationSection />
 
-        {/* 2. Choreographed Hero Names & Tagline */}
+        {/* 2. Choreographed Hero Names & Tagline (tap monogram -> keepsake) */}
         <HeroSection onOpenKeepsake={() => setIsKeepsakeOpen(true)} />
 
-        {/* 3. Host Announcement & Lineage (with 'weds' ligature) */}
+        {/* 3. Host Announcement & Lineage */}
         <LineageSection />
 
         {/* 4. Event Cards (Nikah, Celebration of Love, Reception) */}
         <EventsSection 
-          activeStage={lightStage}
+          activeStage={stage}
           onOpenQr={(event) => setSelectedQrEvent(event)} 
         />
 
@@ -120,17 +83,26 @@ export default function App() {
         {/* 6. Sacred Quranic Verse (Surah Ar-Rum 30:21) */}
         <VerseSection />
 
-        {/* 7. Compliments & Closing Blessing */}
+        {/* 7. Compliments, Countdown Badge & Closing Blessing */}
         <ClosingSection />
       </main>
 
-      {/* Keepsake Save-The-Date Card Modal */}
+      {/* 6. Velocity-Reactive Petal Rainfall Effect (z-20) */}
+      <FlowerRainfall stage={stage} />
+
+      {/* 7. Persistent Floating Jump Dock Navigation (z-40) */}
+      <HeaderNav activeSection={activeSection} />
+
+      {/* 8. Luxury Sufiyana Oud Instrumental Music Player (z-50) */}
+      <AudioPlayer autoPlayTrigger={musicTrigger} />
+
+      {/* 9. Keepsake Save-The-Date Card Modal (z-50) */}
       <KeepsakeModal 
         isOpen={isKeepsakeOpen} 
         onClose={() => setIsKeepsakeOpen(false)} 
       />
 
-      {/* Venue QR Code Modal */}
+      {/* 10. Venue QR Code Modal (z-50) */}
       <QrCodeModal 
         event={selectedQrEvent} 
         onClose={() => setSelectedQrEvent(null)} 

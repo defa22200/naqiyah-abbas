@@ -4,31 +4,40 @@ export default function InvocationSection() {
   return (
     <header 
       id="invocation" 
-      className="pt-6 sm:pt-10 pb-3 px-3 text-center max-w-lg mx-auto transition-opacity duration-1000"
+      className="pt-20 sm:pt-28 pb-4 px-3 text-center max-w-lg mx-auto transition-opacity duration-1000"
       aria-label="Opening Sacred Invocation"
     >
-      {/* Delicate Architectural Mihrab / Arch Hairline Motif */}
-      <div className="flex items-center justify-center mb-2.5">
-        <svg width="36" height="18" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-gold-hairline opacity-80">
-          <path d="M2 22C12 22 18 10 24 2C30 10 36 22 46 22" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
-          <circle cx="24" cy="11" r="1.5" fill="currentColor" />
+      {/* Delicate Architectural Mihrab / Arch Hairline Motif with Self-Drawing Stroke */}
+      <div className="flex items-center justify-center mb-3">
+        <svg width="48" height="24" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-gold-hairline opacity-90">
+          <path 
+            d="M2 22C12 22 18 10 24 2C30 10 36 22 46 22" 
+            stroke="currentColor" 
+            strokeWidth="1" 
+            strokeLinecap="round" 
+            className="animate-pulse"
+          />
+          <circle cx="24" cy="11" r="1.8" fill="currentColor" />
         </svg>
       </div>
 
-      {/* Bismillah in Calligraphic Arabic */}
-      <div 
-        dir="rtl" 
-        lang="ar" 
-        className="font-arabic text-xl sm:text-3xl text-warm-espresso tracking-wide mb-2.5 leading-loose select-all"
-      >
-        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+      {/* Bismillah in Sacred Calligraphy with Radial Glow */}
+      <div className="relative my-2 flex justify-center items-center">
+        <div className="absolute inset-0 bg-gold-hairline/20 blur-xl scale-75 pointer-events-none rounded-full" />
+        <div 
+          dir="rtl" 
+          lang="ar" 
+          className="font-arabic text-2xl sm:text-4xl text-warm-espresso tracking-wider leading-loose select-all relative z-10 drop-shadow-[0_1px_2px_rgba(201,166,107,0.3)]"
+        >
+          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+        </div>
       </div>
 
       {/* Fine Gold Divider */}
-      <div className="flex items-center justify-center gap-2 my-2">
-        <span className="h-px w-8 bg-gradient-to-r from-transparent to-gold-hairline/60"></span>
-        <span className="text-gold-hairline text-[10px]">✦</span>
-        <span className="h-px w-8 bg-gradient-to-l from-transparent to-gold-hairline/60"></span>
+      <div className="flex items-center justify-center gap-2 my-2.5">
+        <span className="h-px w-10 bg-gradient-to-r from-transparent to-gold-hairline/60"></span>
+        <span className="text-gold-hairline text-xs">✦</span>
+        <span className="h-px w-10 bg-gradient-to-l from-transparent to-gold-hairline/60"></span>
       </div>
 
       {/* Verbatim Invocation Text */}
