@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+content = '''import React, { useState, useEffect } from 'react';
 import { enterFullscreen } from '../utils/fullscreen';
 import GoldBurstCanvas from './GoldBurstCanvas';
 
@@ -395,3 +395,8 @@ export default function EnvelopeCeremony({ onComplete }) {
     </aside>
   );
 }
+'''
+
+with open('src/components/EnvelopeCeremony.jsx', 'w') as f:
+    f.write(content)
+print("Updated src/components/EnvelopeCeremony.jsx with exact geometry!")

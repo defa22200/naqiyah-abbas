@@ -42,12 +42,12 @@ export default function App() {
     }
   }, [isKeepsakeOpen, selectedQrEvent]);
 
-  // Update browser chrome theme-color to match monotonic lighting stage
+  // Update browser chrome theme-color to match monotonic lighting stage (Light -> Dark -> Golden)
   useEffect(() => {
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (!metaTheme) return;
     if (!isCeremonyDone) {
-      metaTheme.setAttribute('content', '#2A0E1A');
+      metaTheme.setAttribute('content', '#FAF4EA');
       return;
     }
     const colors = {
@@ -55,7 +55,7 @@ export default function App() {
       blush: '#FDF2F4',
       midday: '#F4F7F2',
       midnight: '#1B0B14',
-      verse: '#15060F',
+      verse: '#FBF4E4',
       blessing: '#F7E9D0'
     };
     metaTheme.setAttribute('content', colors[stage] || '#FBF6EF');

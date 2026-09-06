@@ -14,7 +14,7 @@ const WALLPAPERS = [
   { stage: 'blush', src: '/images/bg_phase_blush.jpg', tint: 'from-rose-200/25 via-transparent to-terracotta-soft/20' },
   { stage: 'midday', src: '/images/bg_phase_garden.jpg', tint: 'from-amber-200/20 via-transparent to-sage-light/25' },
   { stage: 'midnight', src: '/images/bg_phase_midnight.jpg', tint: 'from-[#1A1118]/60 via-transparent to-[#120B10]/80' },
-  { stage: 'verse', src: '/images/bg_phase_verse.jpg', tint: 'from-[#140C12]/80 via-transparent to-[#0B0609]/95' },
+  { stage: 'verse', src: '/images/bg_phase_verse.jpg', tint: 'from-amber-300/20 via-transparent to-amber-100/25' },
   { stage: 'blessing', src: '/images/bg_phase_blessing.jpg', tint: 'from-amber-300/20 via-transparent to-amber-100/30' }
 ];
 
@@ -97,7 +97,8 @@ export default function PhaseBackgroundEngine({ stage = 'dawn' }) {
     };
   }, []);
 
-  const isDark = stage === 'midnight' || stage === 'verse';
+  const isDark = stage === 'midnight';
+  const isGolden = stage === 'verse' || stage === 'blessing';
 
   return (
     <aside 
@@ -128,11 +129,13 @@ export default function PhaseBackgroundEngine({ stage = 'dawn' }) {
         );
       })}
 
-      {/* 2. Global Ambient Atmospheric Gradient (Smoothly shifts per stage) */}
+      {/* 2. Global Ambient Atmospheric Gradient (Smoothly shifts: Light -> Dark -> Golden) */}
       <div 
         className={`absolute inset-0 transition-colors duration-[1800ms] ease-out pointer-events-none ${
           isDark 
             ? 'bg-[#150D13]/40' 
+            : isGolden
+            ? 'bg-amber-100/20'
             : 'bg-transparent'
         }`}
       />

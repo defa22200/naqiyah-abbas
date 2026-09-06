@@ -22,15 +22,18 @@ export default function InvocationSection() {
       </div>
 
       {/* Bismillah in Sacred Calligraphy with Radial Glow */}
-      <div className="relative my-2 flex justify-center items-center">
-        <div className="absolute inset-0 bg-gold-hairline/20 blur-xl scale-75 pointer-events-none rounded-full" />
+      <div className="relative my-3 flex flex-col justify-center items-center">
+        <div className="absolute inset-0 bg-gold-hairline/25 blur-2xl scale-90 pointer-events-none rounded-full" />
         <div 
           dir="rtl" 
           lang="ar" 
-          className="font-arabic text-2xl sm:text-4xl text-warm-espresso tracking-wider leading-loose select-all relative z-10 drop-shadow-[0_1px_2px_rgba(201,166,107,0.3)]"
+          className="font-arabic text-3xl sm:text-5xl text-warm-espresso font-bold tracking-wider leading-relaxed select-all relative z-10 drop-shadow-[0_2px_4px_rgba(201,166,107,0.35)]"
         >
           بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
         </div>
+        <p className="font-serif italic text-xs sm:text-sm text-warm-bronze/90 mt-1 tracking-wider">
+          In the name of Allah, the Most Beneficent, the Most Merciful
+        </p>
       </div>
 
       {/* Fine Gold Divider */}
