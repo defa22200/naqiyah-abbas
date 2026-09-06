@@ -27,15 +27,15 @@ export default function VenuesSection() {
       className="py-16 px-4 sm:px-6 max-w-xl mx-auto space-y-12"
       aria-label="Venues and Directions"
     >
-      {/* Header */}
+      {/* Header (High-contrast for midnight stage) */}
       <div className="text-center space-y-2">
-        <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-terracotta-dark font-semibold">
+        <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-gold-bright font-semibold">
           Navigation &amp; Directions
         </span>
-        <h2 className="font-serif text-4xl sm:text-5xl text-ink-plum tracking-tight font-light">
+        <h2 className="font-serif text-4xl sm:text-5xl text-warm-cream tracking-tight font-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
           Venue Locations
         </h2>
-        <p className="font-sans text-xs sm:text-sm text-ink-plum/70 max-w-md mx-auto">
+        <p className="font-sans text-xs sm:text-sm text-gold-pale/90 max-w-md mx-auto">
           Geocoded directions and navigation guides for both celebration destinations.
         </p>
       </div>

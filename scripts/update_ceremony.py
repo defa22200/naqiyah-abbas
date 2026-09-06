@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+code = '''import React, { useState, useEffect } from 'react';
 import GoldBurstCanvas from './GoldBurstCanvas';
 
 /**
@@ -444,3 +444,8 @@ export default function EnvelopeCeremony({ onComplete }) {
     </aside>
   );
 }
+'''
+
+with open('src/components/EnvelopeCeremony.jsx', 'w') as f:
+    f.write(code)
+print("Updated EnvelopeCeremony.jsx successfully")

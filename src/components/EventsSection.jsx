@@ -139,25 +139,25 @@ export default function EventsSection({ activeStage, onOpenQr }) {
         />
       </motion.div>
 
-      {/* Complete Weekend Calendar Action */}
+      {/* Complete Weekend Calendar Action (Dark luxury palette matching Reception) */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 0.6 }}
-        className="p-7 sm:p-8 rounded-3xl bg-white/90 border border-gold-hairline/40 text-center shadow-xl backdrop-blur-md space-y-3.5"
+        className="p-7 sm:p-8 rounded-3xl bg-[#140C12]/85 border border-[#CBB084]/50 text-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl space-y-3.5 text-warm-cream"
       >
-        <p className="font-serif text-xl sm:text-2xl text-warm-espresso font-normal">
+        <p className="font-serif text-xl sm:text-2xl text-gold-bright font-normal drop-shadow-sm">
           Keep the celebrations in your calendar
         </p>
-        <p className="font-sans text-xs text-warm-bronze/80 max-w-sm mx-auto">
+        <p className="font-sans text-xs sm:text-sm text-gold-pale/90 max-w-sm mx-auto">
           Add all three celebrations with alerts and navigation details directly to your phone.
         </p>
         <button
           onClick={() => downloadCalendarEvent(EVENTS_DATA)}
-          className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-warm-espresso text-gold-bright text-xs sm:text-sm font-medium shadow-lg hover:bg-warm-dark active:scale-95 transition-all cursor-pointer border border-gold-hairline/30"
+          className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#2A1822] via-[#3B1F2F] to-[#2A1822] text-gold-bright text-xs sm:text-sm font-medium shadow-lg hover:from-[#351F2C] hover:to-[#462539] active:scale-95 transition-all cursor-pointer border border-[#CBB084]/60"
         >
-          <Calendar className="w-4 h-4 text-gold-hairline" />
+          <Calendar className="w-4 h-4 text-gold-bright" />
           <span>Add All Celebrations to Calendar</span>
         </button>
       </motion.div>

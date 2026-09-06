@@ -98,9 +98,9 @@ export default function ClosingSection() {
       </div>
 
       {/* 4. Footer / Logistics Touchpoint */}
-      <footer className="pt-6 border-t border-[#CBB084]/30 text-xs font-sans text-gold-pale/80 space-y-2">
-        <p className="font-medium text-gold-bright">18 – 19 December 2026 · Nagpur, Maharashtra</p>
-        <p className="text-[9.5px] min-[360px]:text-[11px] text-gold-pale/60 whitespace-nowrap">
+      <footer className="pt-6 border-t border-[#CBB084]/40 text-xs font-sans space-y-2">
+        <p className="font-medium text-gold-bright drop-shadow-sm">18 – 19 December 2026 · Nagpur, Maharashtra</p>
+        <p className="text-[10px] min-[360px]:text-[11.5px] text-warm-cream/90 tracking-wider">
           Two families · Two hearts · One beautiful beginning
         </p>
       </footer>
