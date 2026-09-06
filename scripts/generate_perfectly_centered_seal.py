@@ -99,10 +99,12 @@ mono_scaled = mono.resize((target_w, target_h), Image.Resampling.LANCZOS)
 letter_core_x = 352.0 * scale
 letter_core_y = 260.0 * scale
 
-paste_x = int(cx - letter_core_x)
+# Shift 16px to the left to counterbalance the optical weight and shape of N & A
+shift_left_px = 16
+paste_x = int(cx - letter_core_x) - shift_left_px
 paste_y = int(cy - letter_core_y)
 
-print(f"Pasting monogram at ({paste_x}, {paste_y}) with core at ({cx}, {cy})")
+print(f"Pasting monogram at ({paste_x}, {paste_y}) with shift_left_px={shift_left_px}")
 
 # Contact shadow
 mono_a = mono_scaled.split()[3]
@@ -124,3 +126,65 @@ print("Saved public/images/seal_wax.png")
 fav = combined.resize((192, 192), Image.Resampling.LANCZOS)
 fav.save('public/favicon.png', 'PNG')
 print("Updated public/favicon.png")
+
+# Also update favicon.svg with base64 embedded seal + vector fallback shifted left
+import base64
+import io
+buffer = io.BytesIO()
+fav.save(buffer, format='PNG')
+b64_fav = base64.b64encode(buffer.getvalue()).decode('utf-8')
+
+svg_content = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="waxGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#C45A4C"/>
+      <stop offset="55%" stop-color="#9E3B2E"/>
+      <stop offset="100%" stop-color="#6B1D13"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5DFAB"/>
+      <stop offset="50%" stop-color="#C9A66B"/>
+      <stop offset="100%" stop-color="#8C6627"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Vector Fallback Base -->
+  <circle cx="32" cy="32" r="30" fill="url(#waxGrad)"/>
+  <circle cx="32" cy="32" r="28" fill="none" stroke="url(#goldGrad)" stroke-width="1.2"/>
+  <circle cx="32" cy="32" r="24" fill="none" stroke="url(#goldGrad)" stroke-width="0.9" stroke-dasharray="1.6 1.4"/>
+  <circle cx="32" cy="32" r="21.5" fill="none" stroke="url(#goldGrad)" stroke-width="0.4" stroke-opacity="0.6"/>
+
+  <!-- NA Monogram shifted left (x="30.5" instead of 32) for optical balance -->
+  <text 
+    x="30.5" 
+    y="33.5" 
+    text-anchor="middle" 
+    dominant-baseline="central" 
+    fill="#FCFAF5" 
+    font-family="'Cormorant Garamond', 'Georgia', serif" 
+    font-size="17" 
+    font-weight="600" 
+    letter-spacing="0.5"
+  >
+    NA
+  </text>
+  <text 
+    x="30.5" 
+    y="44.5" 
+    text-anchor="middle" 
+    dominant-baseline="central" 
+    fill="#DFC085" 
+    font-family="sans-serif" 
+    font-size="6" 
+    opacity="0.9"
+  >
+    ✦
+  </text>
+
+  <!-- Photorealistic Rendered Seal Overlay -->
+  <image href="data:image/png;base64,{b64_fav}" x="0" y="0" width="64" height="64" />
+</svg>
+'''
+with open('public/favicon.svg', 'w') as f:
+    f.write(svg_content)
+print("Updated public/favicon.svg")
