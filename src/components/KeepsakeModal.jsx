@@ -142,7 +142,7 @@ export default function KeepsakeModal({ isOpen, onClose }) {
             onClick={handleShare}
             className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-ink-plum text-ivory text-xs font-medium tracking-wide shadow hover:bg-ink-light active:scale-95 transition-all"
           >
-            {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Share2 className="w-4 h-4 text-gold-hairline" />}
+            {copied ? <Check className="w-4 h-4 text-gold-bright" /> : <Share2 className="w-4 h-4 text-gold-hairline" />}
             <span>{copied ? 'Link Copied to Clipboard!' : 'Share or Save Link'}</span>
           </button>
           

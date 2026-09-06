@@ -1,9 +1,28 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Volume2, VolumeX, Music } from 'lucide-react';
+import { Volume2, VolumeX, Music, Maximize, Minimize } from 'lucide-react';
+import { enterFullscreen, toggleFullscreen, isFullscreenActive } from '../utils/fullscreen';
 
 export default function AudioPlayer({ autoPlayTrigger }) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const audioRef = useRef(null);
+
+  // Monitor fullscreen change events
+  useEffect(() => {
+    const handleFsChange = () => {
+      setIsFullscreen(isFullscreenActive());
+    };
+    document.addEventListener('fullscreenchange', handleFsChange);
+    document.addEventListener('webkitfullscreenchange', handleFsChange);
+    document.addEventListener('mozfullscreenchange', handleFsChange);
+    document.addEventListener('MSFullscreenChange', handleFsChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFsChange);
+      document.removeEventListener('webkitfullscreenchange', handleFsChange);
+      document.removeEventListener('mozfullscreenchange', handleFsChange);
+      document.removeEventListener('MSFullscreenChange', handleFsChange);
+    };
+  }, []);
 
   // Attempt autoplay immediately, and fallback to first document interaction
   useEffect(() => {
@@ -12,27 +31,27 @@ export default function AudioPlayer({ autoPlayTrigger }) {
 
     audio.volume = 0.5;
 
-    const startAudio = () => {
+    const startAudioAndFullscreen = () => {
+      enterFullscreen();
       audio.play().then(() => {
         setIsPlaying(true);
-        // Remove listener once played
-        window.removeEventListener('click', startAudio);
-        window.removeEventListener('touchstart', startAudio);
-      }).catch(() => {
-        // Will wait for next user touch/click
-      });
+      }).catch(() => {});
+      window.removeEventListener('click', startAudioAndFullscreen);
+      window.removeEventListener('touchstart', startAudioAndFullscreen);
     };
 
-    // Try playing immediately
-    startAudio();
+    // Try playing immediately on mount
+    audio.play().then(() => {
+      setIsPlaying(true);
+    }).catch(() => {});
 
-    // Fallback: unlock on first touch or click
-    window.addEventListener('click', startAudio, { once: true });
-    window.addEventListener('touchstart', startAudio, { once: true });
+    // First touch or click enters fullscreen and starts music
+    window.addEventListener('click', startAudioAndFullscreen, { once: true });
+    window.addEventListener('touchstart', startAudioAndFullscreen, { once: true });
 
     return () => {
-      window.removeEventListener('click', startAudio);
-      window.removeEventListener('touchstart', startAudio);
+      window.removeEventListener('click', startAudioAndFullscreen);
+      window.removeEventListener('touchstart', startAudioAndFullscreen);
     };
   }, []);
 
@@ -61,8 +80,8 @@ export default function AudioPlayer({ autoPlayTrigger }) {
 
   return (
     <aside 
-      aria-label="Wedding Music Player"
-      className="fixed top-5 right-4 z-50 select-none"
+      aria-label="Audio and Fullscreen Controls"
+      className="fixed top-4 right-3 sm:top-5 sm:right-4 z-50 select-none flex items-center gap-1.5 sm:gap-2"
     >
       <audio 
         ref={audioRef} 
@@ -74,6 +93,30 @@ export default function AudioPlayer({ autoPlayTrigger }) {
         <source src="/audio/wedding_strings.m4a" type="audio/mp4" />
         <source src="/audio/wedding_strings.mp3" type="audio/mpeg" />
       </audio>
+
+      {/* Fullscreen Button */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleFullscreen();
+        }}
+        className={`flex items-center gap-1.5 py-2 px-2.5 sm:px-3 rounded-full border transition-all duration-300 backdrop-blur-md shadow-md active:scale-95 cursor-pointer ${
+          isFullscreen 
+            ? 'bg-ink-plum/95 text-gold-bright border-gold-hairline shadow-gold-hairline/20' 
+            : 'bg-ivory/90 text-ink-plum border-gold-hairline/50 hover:border-gold-hairline hover:bg-ivory'
+        }`}
+        aria-label={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+        title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+      >
+        {isFullscreen ? (
+          <Minimize className="w-3.5 h-3.5 text-gold-bright" />
+        ) : (
+          <Maximize className="w-3.5 h-3.5 text-gold-hairline" />
+        )}
+        <span className="hidden sm:inline text-[10px] font-sans tracking-wider uppercase font-medium">
+          {isFullscreen ? 'Exit' : 'Full Screen'}
+        </span>
+      </button>
 
       {/* Luxury Music Control Button */}
       <button

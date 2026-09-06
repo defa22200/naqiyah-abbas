@@ -12,6 +12,7 @@ import RoyalEnvelopeIntro from './components/RoyalEnvelopeIntro';
 import AmbientLightCanvas from './components/AmbientLightCanvas';
 import KeepsakeModal from './components/KeepsakeModal';
 import QrCodeModal from './components/QrCodeModal';
+import { enterFullscreen } from './utils/fullscreen';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -21,6 +22,7 @@ export default function App() {
   const [musicTrigger, setMusicTrigger] = useState(false);
 
   const handleEnvelopeOpen = () => {
+    enterFullscreen();
     setMusicTrigger(true);
   };
 

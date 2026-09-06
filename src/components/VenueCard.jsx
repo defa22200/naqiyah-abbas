@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { MapPin, Navigation, Share2, Check, QrCode, ExternalLink } from 'lucide-react';
+import { MapPin, Navigation, Share2, Check, QrCode } from 'lucide-react';
 import { generateStyledQrSvg } from '../utils/qrGenerator';
 
-export default function VenueCard({ venue, onCopyToast }) {
+export default function VenueCard({ venue }) {
   const [copied, setCopied] = useState(false);
   const isIOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
   const mapUrl = isIOS ? venue.appleMapsUrl : venue.mapsUrl;
@@ -10,7 +10,6 @@ export default function VenueCard({ venue, onCopyToast }) {
   const handleCopy = () => {
     navigator.clipboard.writeText(`${venue.name}, ${venue.address}`);
     setCopied(true);
-    if (onCopyToast) onCopyToast(`Copied: ${venue.name}`);
     setTimeout(() => setCopied(false), 2200);
   };
 
@@ -32,12 +31,11 @@ export default function VenueCard({ venue, onCopyToast }) {
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill={`url(#grid-${venue.id})`} />
-          {/* Ring Road / Main Arterial Curves */}
+          {/* Main Arterial Curves */}
           <path d="M-20 60 Q120 180 260 90 T420 140" fill="none" stroke="#D7C5B0" strokeWidth="12" strokeLinecap="round" />
           <path d="M60 -20 Q160 110 320 220" fill="none" stroke="#DFCFBC" strokeWidth="8" strokeLinecap="round" />
           <path d="M220 0 L240 200" fill="none" stroke="#EFE5D5" strokeWidth="5" />
           
-          {/* Shanti Nagar or Gorewada Road labels */}
           <text x="50" y="160" fill="#998375" fontSize="10" fontFamily="sans-serif" letterSpacing="1">
             {venue.id === 'hakimi' ? 'SHANTI NAGAR ROAD' : 'GOREWADA RING ROAD'}
           </text>
@@ -80,7 +78,7 @@ export default function VenueCard({ venue, onCopyToast }) {
           {/* Quick QR Thumbnail */}
           <div 
             className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 p-1.5 rounded-xl border border-gold-hairline/40 bg-white/70 shadow-sm"
-            title="Scan for Instant Navigation"
+            title="Scan for Navigation"
           >
             <div 
               className="w-full h-full"
@@ -89,19 +87,13 @@ export default function VenueCard({ venue, onCopyToast }) {
           </div>
         </div>
 
-        {/* Practical Venue Guidance */}
-        <div className="mb-6 p-3.5 rounded-xl bg-ivory/70 border border-gold-hairline/20 text-xs font-sans text-ink-plum/75 space-y-1">
-          <p className="font-medium text-ink-plum">Venue Notes:</p>
-          <p>{venue.guidance}</p>
-        </div>
-
-        {/* Primary Action Buttons */}
-        <div className="flex flex-wrap gap-2.5">
+        {/* Action Buttons - Symmetrically Aligned */}
+        <div className="grid grid-cols-2 gap-2.5 mt-6">
           <a
             href={mapUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 min-w-[150px] flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-ink-plum text-ivory text-xs sm:text-sm font-medium tracking-wide shadow-md hover:bg-ink-light active:scale-95 transition-all"
+            className="h-11 flex items-center justify-center gap-2 px-3 rounded-xl bg-ink-plum text-ivory text-xs sm:text-sm font-medium tracking-wide shadow-md hover:bg-ink-light active:scale-95 transition-all"
           >
             <Navigation className="w-4 h-4 text-gold-hairline" />
             <span>Open in Maps</span>
@@ -109,15 +101,15 @@ export default function VenueCard({ venue, onCopyToast }) {
 
           <button
             onClick={handleCopy}
-            className={`py-3 px-4 rounded-xl border text-xs sm:text-sm font-medium flex items-center gap-1.5 transition-colors active:scale-95 ${
+            className={`h-11 px-3 rounded-xl border text-xs sm:text-sm font-medium flex items-center justify-center gap-1.5 transition-colors active:scale-95 cursor-pointer ${
               copied
-                ? 'border-emerald-600 bg-emerald-50 text-emerald-700'
+                ? 'border-gold-hairline/60 bg-gold-hairline/15 text-ink-plum font-semibold'
                 : 'border-gold-hairline/40 text-ink-plum hover:bg-gold-hairline/10'
             }`}
           >
             {copied ? (
               <>
-                <Check className="w-4 h-4 text-emerald-600" />
+                <Check className="w-4 h-4 text-gold-hairline" />
                 <span>Copied</span>
               </>
             ) : (

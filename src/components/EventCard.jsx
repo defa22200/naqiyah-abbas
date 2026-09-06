@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { Calendar, Clock, MapPin, Navigation, Share2, Check, Download, ExternalLink, QrCode } from 'lucide-react';
-import { getGoogleCalendarUrl, downloadIcsFile } from '../utils/calendar';
+import { getGoogleCalendarUrl, downloadCalendarEvent } from '../utils/calendar';
 
-export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
-  const [showHijri, setShowHijri] = useState(true);
+export default function EventCard({ event, theme, onOpenQr }) {
   const [copied, setCopied] = useState(false);
   const [calendarMenuOpen, setCalendarMenuOpen] = useState(false);
   const [sheenPos, setSheenPos] = useState({ x: 50, y: 50 });
@@ -17,9 +16,8 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setSheenPos({ x, y });
 
-    // Subtle 3D tilt
-    const tiltX = (y - 50) * -0.05;
-    const tiltY = (x - 50) * 0.05;
+    const tiltX = (y - 50) * -0.04;
+    const tiltY = (x - 50) * 0.04;
     setTilt({ x: tiltX, y: tiltY });
   };
 
@@ -30,10 +28,10 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
 
   const handleCopyAddress = (e) => {
     e.stopPropagation();
-    const fullText = `${event.venueName}, ${event.venueAddress}`;
+    const venueFull = event.venueSub ? `${event.venueName} ${event.venueSub}` : event.venueName;
+    const fullText = `${venueFull}, ${event.venueAddress}`;
     navigator.clipboard.writeText(fullText);
     setCopied(true);
-    if (onCopyToast) onCopyToast(`Address copied: ${event.venueName}`);
     setTimeout(() => setCopied(false), 2400);
   };
 
@@ -48,7 +46,7 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
       onMouseLeave={handleMouseLeave}
       style={{
         transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-        transition: 'transform 0.2s ease-out, box-shadow 0.4s ease'
+        transition: 'transform 0.3s ease-out, box-shadow 0.4s ease'
       }}
       className={`relative rounded-3xl p-7 sm:p-9 backdrop-blur-sm border shadow-xl overflow-hidden ${
         theme === 'reception'
@@ -60,15 +58,15 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
     >
       {/* Specular Gold Foil Sheen Overlay */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-40 mix-blend-overlay transition-opacity duration-300"
+        className="absolute inset-0 pointer-events-none opacity-35 mix-blend-overlay transition-opacity duration-300"
         style={{
-          background: `radial-gradient(circle at ${sheenPos.x}% ${sheenPos.y}%, rgba(201,166,107,0.35) 0%, transparent 60%)`
+          background: `radial-gradient(circle at ${sheenPos.x}% ${sheenPos.y}%, rgba(201,166,107,0.3) 0%, transparent 60%)`
         }}
       />
 
-      {/* Ribbon and Calendar Selector */}
+      {/* Ribbon Header */}
       <div className="flex items-center justify-between gap-4 mb-5 relative z-10">
-        <span className={`text-[10px] sm:text-xs font-sans uppercase tracking-[0.25em] font-semibold px-3.5 py-1 rounded-full border ${
+        <span className={`text-[10px] sm:text-xs font-sans uppercase tracking-[0.2em] font-semibold px-3 py-1 rounded-full border ${
           theme === 'reception'
             ? 'border-gold-hairline/40 text-gold-bright bg-gold-hairline/10'
             : theme === 'celebration'
@@ -76,27 +74,13 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
             : 'border-terracotta-muted text-terracotta-dark bg-rose-dust-light/60'
         }`}>
           {theme === 'nikah' && 'Event 01 · Nikah'}
-          {theme === 'celebration' && 'Event 02 · Celebration of Love'}
+          {theme === 'celebration' && 'Event 02 · Celebration'}
           {theme === 'reception' && 'Event 03 · Reception'}
         </span>
-
-        {/* Hijri Calendar Toggle */}
-        <button
-          onClick={() => setShowHijri(!showHijri)}
-          className={`text-[11px] font-sans px-2.5 py-1 rounded-full border transition-all active:scale-95 flex items-center gap-1 cursor-pointer ${
-            theme === 'reception'
-              ? 'border-gold-hairline/30 text-gold-pale hover:bg-gold-hairline/10'
-              : 'border-gold-hairline/40 text-ink-plum/70 hover:bg-gold-hairline/10 hover:text-ink-plum'
-          }`}
-          title="Toggle Hijri date"
-        >
-          <Calendar className="w-3 h-3 text-gold-hairline" />
-          <span>{showHijri ? 'Hijri visible' : 'Show Hijri'}</span>
-        </button>
       </div>
 
       {/* Event Title */}
-      <h3 className={`font-serif text-3xl sm:text-4xl tracking-tight mb-4 relative z-10 ${
+      <h3 className={`font-serif text-3xl sm:text-4xl tracking-tight mb-3 relative z-10 font-normal ${
         theme === 'reception' ? 'text-ivory' : 'text-ink-plum'
       }`}>
         {event.id === 'nikah' && 'The Nikah Ceremony'}
@@ -112,13 +96,11 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
           {event.gregorian}
         </p>
 
-        {showHijri && (
-          <p className={`text-xs sm:text-sm font-sans tracking-wider ${
-            theme === 'reception' ? 'text-ivory/70' : 'text-ink-plum/70'
-          }`}>
-            ✦ {event.hijri}
-          </p>
-        )}
+        <p className={`text-xs sm:text-sm font-sans tracking-wider ${
+          theme === 'reception' ? 'text-ivory/70' : 'text-ink-plum/70'
+        }`}>
+          ✦ {event.hijri}
+        </p>
       </div>
 
       {/* Time & Program */}
@@ -127,16 +109,16 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
           theme === 'reception' ? 'text-gold-bright' : 'text-terracotta'
         }`} />
         <div>
-          <p className="font-serif text-lg font-medium">
+          <p className="font-serif text-lg sm:text-xl font-medium leading-snug">
             {event.timeLabel}
           </p>
-          <p className={`text-xs font-sans mt-0.5 ${
-            theme === 'reception' ? 'text-ivory/60' : 'text-ink-plum/60'
-          }`}>
-            {event.id === 'nikah' && 'Auspicious Nikah rituals followed by dinner'}
-            {event.id === 'celebration-of-love' && '12:00 PM onwards, followed by lunch at Poolside Area'}
-            {event.id === 'reception' && '8:00 PM onwards with dinner and joyous greetings'}
-          </p>
+          {event.program && (
+            <p className={`font-serif italic text-sm sm:text-base mt-0.5 ${
+              theme === 'reception' ? 'text-gold-pale/90' : 'text-terracotta-dark'
+            }`}>
+              {event.program}
+            </p>
+          )}
         </div>
       </div>
 
@@ -146,8 +128,15 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
           theme === 'reception' ? 'text-gold-bright' : 'text-terracotta'
         }`} />
         <div className="flex-1">
-          <p className="font-serif text-lg font-medium leading-snug">
+          <p className="font-serif text-lg sm:text-xl font-medium leading-snug">
             {event.venueName}
+            {event.venueSub && (
+              <span className={`block text-sm sm:text-base font-serif italic font-normal mt-0.5 ${
+                theme === 'reception' ? 'text-gold-pale/85' : 'text-ink-plum/80'
+              }`}>
+                {event.venueSub}
+              </span>
+            )}
           </p>
           <p className={`text-sm font-sans ${
             theme === 'reception' ? 'text-ivory/75' : 'text-ink-plum/75'
@@ -155,38 +144,39 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
             {event.venueAddress}
           </p>
 
+          {/* Copy Address */}
           <button
             onClick={handleCopyAddress}
             className={`mt-2 text-xs font-sans flex items-center gap-1.5 transition-colors cursor-pointer ${
               copied
-                ? 'text-emerald-400 font-medium'
+                ? theme === 'reception' ? 'text-gold-bright font-medium' : 'text-terracotta-dark font-medium'
                 : theme === 'reception'
-                ? 'text-gold-bright/90 hover:text-gold-bright'
+                ? 'text-gold-bright/80 hover:text-gold-bright'
                 : 'text-terracotta-dark hover:text-terracotta'
             }`}
           >
             {copied ? (
               <>
-                <Check className="w-3.5 h-3.5" />
-                <span>Copied to clipboard</span>
+                <Check className="w-3.5 h-3.5 text-gold-hairline" />
+                <span>Address copied</span>
               </>
             ) : (
               <>
                 <Share2 className="w-3.5 h-3.5" />
-                <span>Copy full address</span>
+                <span>Copy address</span>
               </>
             )}
           </button>
         </div>
       </div>
 
-      {/* Actions: Directions + Calendar + QR */}
-      <div className="pt-4 border-t border-gold-hairline/20 flex flex-wrap gap-3 items-center relative z-10">
+      {/* Actions: Directions + Calendar + QR (Symmetrically Aligned) */}
+      <div className="pt-4 border-t border-gold-hairline/20 flex flex-col sm:flex-row gap-2.5 relative z-10">
         <a
           href={mapDirectionsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className={`flex-1 min-w-[140px] flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm active:scale-95 cursor-pointer ${
+          className={`h-11 px-4 rounded-xl text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-2 transition-all shadow-sm active:scale-95 cursor-pointer sm:flex-1 ${
             theme === 'reception'
               ? 'bg-gold-hairline text-ink-deep hover:bg-gold-bright'
               : 'bg-ink-plum text-ivory hover:bg-ink-light'
@@ -196,70 +186,79 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
           <span>Get Directions</span>
         </a>
 
-        {/* Add to Calendar Menu */}
-        <div className="relative">
+        <div className="flex gap-2 sm:flex-1">
+          {/* Add to Calendar Menu */}
+          <div className="relative flex-1">
+            <button
+              onClick={() => setCalendarMenuOpen(!calendarMenuOpen)}
+              className={`w-full h-11 px-3 rounded-xl border text-xs sm:text-sm font-medium flex items-center justify-center gap-2 transition-colors active:scale-95 cursor-pointer ${
+                theme === 'reception'
+                  ? 'border-gold-hairline/40 text-ivory hover:bg-white/10'
+                  : 'border-ink-plum/25 text-ink-plum hover:bg-ink-plum/5'
+              }`}
+              aria-label="Add to Calendar options"
+            >
+              <Calendar className="w-4 h-4 text-gold-hairline" />
+              <span>Add to Calendar</span>
+            </button>
+
+            {calendarMenuOpen && (
+              <>
+                {/* Backdrop to dismiss when clicking outside */}
+                <div 
+                  className="fixed inset-0 z-20 cursor-default" 
+                  onClick={() => setCalendarMenuOpen(false)} 
+                />
+                <div 
+                  className="absolute bottom-full mb-2 left-0 sm:left-auto sm:right-0 w-56 rounded-2xl bg-[#FCFAF7] text-ink-plum p-2 shadow-2xl border border-gold-hairline/40 z-30 animate-fade-in"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="p-2 border-b border-gold-hairline/20 mb-1">
+                    <span className="text-[10px] font-sans uppercase tracking-widest text-ink-plum/60 font-semibold block">
+                      Choose Calendar
+                    </span>
+                  </div>
+                  
+                  <a
+                    href={getGoogleCalendarUrl(event)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setCalendarMenuOpen(false)}
+                    className="flex items-center gap-2.5 p-2 rounded-xl text-xs hover:bg-gold-hairline/15 transition-colors font-medium text-ink-plum"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5 text-terracotta" />
+                    <span>Google Calendar</span>
+                  </a>
+
+                  <button
+                    onClick={() => {
+                      downloadCalendarEvent(event);
+                      setCalendarMenuOpen(false);
+                    }}
+                    className="w-full flex items-center gap-2.5 p-2 rounded-xl text-xs hover:bg-gold-hairline/15 transition-colors text-left font-medium text-ink-plum cursor-pointer"
+                  >
+                    <Download className="w-3.5 h-3.5 text-gold-hairline" />
+                    <span>Apple Calendar / Outlook</span>
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* QR Trigger */}
           <button
-            onClick={() => setCalendarMenuOpen(!calendarMenuOpen)}
-            className={`py-3 px-3.5 rounded-xl border text-xs sm:text-sm font-medium flex items-center gap-1.5 transition-colors active:scale-95 cursor-pointer ${
+            onClick={() => onOpenQr(event)}
+            className={`w-11 h-11 shrink-0 rounded-xl border transition-colors flex items-center justify-center active:scale-95 cursor-pointer ${
               theme === 'reception'
-                ? 'border-gold-hairline/40 text-ivory hover:bg-white/10'
+                ? 'border-gold-hairline/40 text-gold-pale hover:bg-white/10'
                 : 'border-ink-plum/25 text-ink-plum hover:bg-ink-plum/5'
             }`}
-            aria-label="Add to Calendar options"
+            title="Show QR Code for Venue"
+            aria-label="Show QR Code for Venue"
           >
-            <Calendar className="w-4 h-4 text-gold-hairline" />
-            <span>Add to Calendar</span>
+            <QrCode className="w-4 h-4" />
           </button>
-
-          {calendarMenuOpen && (
-            <div 
-              className="absolute bottom-full mb-2 right-0 w-52 rounded-2xl bg-ivory text-ink-plum p-2 shadow-2xl border border-gold-hairline/40 z-30 animate-fade-in"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="p-2 border-b border-gold-hairline/20 mb-1">
-                <span className="text-[10px] font-sans uppercase tracking-widest text-ink-plum/60 font-semibold block">
-                  Select Calendar
-                </span>
-              </div>
-              
-              <a
-                href={getGoogleCalendarUrl(event)}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setCalendarMenuOpen(false)}
-                className="flex items-center gap-2.5 p-2 rounded-xl text-xs hover:bg-gold-hairline/15 transition-colors"
-              >
-                <ExternalLink className="w-3.5 h-3.5 text-terracotta" />
-                <span>Google Calendar</span>
-              </a>
-
-              <button
-                onClick={() => {
-                  downloadIcsFile(event);
-                  setCalendarMenuOpen(false);
-                }}
-                className="w-full flex items-center gap-2.5 p-2 rounded-xl text-xs hover:bg-gold-hairline/15 transition-colors text-left cursor-pointer"
-              >
-                <Download className="w-3.5 h-3.5 text-gold-hairline" />
-                <span>Apple / Outlook (.ics)</span>
-              </button>
-            </div>
-          )}
         </div>
-
-        {/* QR Trigger */}
-        <button
-          onClick={() => onOpenQr(event)}
-          className={`p-3 rounded-xl border transition-colors flex items-center justify-center active:scale-95 cursor-pointer ${
-            theme === 'reception'
-              ? 'border-gold-hairline/40 text-gold-pale hover:bg-white/10'
-              : 'border-ink-plum/25 text-ink-plum hover:bg-ink-plum/5'
-          }`}
-          title="Show QR Code for Venue"
-          aria-label="Show QR Code for Venue"
-        >
-          <QrCode className="w-4 h-4" />
-        </button>
       </div>
     </article>
   );

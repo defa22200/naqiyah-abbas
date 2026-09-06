@@ -9,22 +9,22 @@ export default function ClosingSection() {
       aria-label="Family Compliments and Closing Blessing"
     >
       {/* With Best Compliments From Card */}
-      <div className="p-7 sm:p-9 rounded-3xl bg-ivory-soft/95 border border-gold-hairline/40 shadow-soft-float space-y-4 text-ink-plum">
-        <span className="text-[11px] font-sans tracking-[0.25em] uppercase text-terracotta-dark font-medium block">
+      <div className="p-6 sm:p-8 rounded-3xl bg-ivory-soft/95 border border-gold-hairline/40 shadow-soft-float text-ink-plum space-y-3">
+        <span className="text-[10px] sm:text-xs font-sans tracking-[0.25em] uppercase text-terracotta-dark font-semibold block mb-2">
           With Best Compliments From
         </span>
         
-        <p className="font-serif text-lg sm:text-xl leading-relaxed max-w-lg mx-auto text-ink-plum">
-          Mr. Aziz Shamim &amp; Mrs. Zainab Shamim <br className="hidden sm:inline" />
-          <span className="text-gold-hairline mx-1">·</span> <br className="sm:hidden" />
-          Dr. Farheen &amp; Dr. Shabbir Hassan <br className="hidden sm:inline" />
-          <span className="text-gold-hairline mx-1">·</span> <br className="sm:hidden" />
-          Sarrah
-        </p>
+        <div className="space-y-1.5 font-serif text-[14px] sm:text-base md:text-lg text-ink-plum leading-snug">
+          <p>Mr. Aziz Shamim &amp; Mrs. Zainab Shamim</p>
+          <p>Dr. Farheen &amp; Dr. Shabbir Hassan</p>
+          <p>Sarrah</p>
+        </div>
 
-        <p className="font-sans text-xs sm:text-sm tracking-wider text-ink-plum/70 uppercase">
-          Together with all relatives &amp; friends
-        </p>
+        <div className="pt-3 mt-3 border-t border-gold-hairline/25">
+          <p className="font-sans text-[11px] sm:text-xs tracking-widest text-ink-plum/70 uppercase font-medium">
+            Together with all relatives &amp; friends
+          </p>
+        </div>
       </div>
 
       {/* Verbatim Closing Blessing */}
@@ -42,7 +42,7 @@ export default function ClosingSection() {
       {/* Footer / Logistics touchpoint */}
       <footer className="pt-6 border-t border-gold-hairline/25 text-xs font-sans text-ink-plum/70 space-y-2">
         <p className="font-medium">18 – 19 December 2026 · Nagpur, Maharashtra</p>
-        <p className="text-[11px] text-ink-plum/50">
+        <p className="text-[9.5px] min-[360px]:text-[11px] text-ink-plum/50 whitespace-nowrap">
           Two families · Two hearts · One beautiful beginning
         </p>
       </footer>

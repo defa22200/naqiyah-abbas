@@ -42,8 +42,8 @@ export default function HeroSection({ onOpenKeepsake }) {
       </div>
 
       {/* Verbatim Tagline & Dates from Card */}
-      <div className="mt-7 flex flex-col items-center gap-1.5 text-center px-4 max-w-md mx-auto">
-        <p className="text-[10px] sm:text-xs font-sans tracking-[0.22em] uppercase text-terracotta-dark font-medium leading-relaxed">
+      <div className="mt-7 flex flex-col items-center gap-1.5 text-center px-1 sm:px-4 max-w-lg mx-auto w-full">
+        <p className="text-[8.5px] min-[360px]:text-[9px] min-[390px]:text-[10px] sm:text-xs font-sans tracking-[0.08em] min-[360px]:tracking-[0.11em] sm:tracking-[0.2em] uppercase text-terracotta-dark font-medium whitespace-nowrap">
           Two families · Two hearts · One beautiful beginning
         </p>
 
