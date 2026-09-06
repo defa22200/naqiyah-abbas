@@ -88,16 +88,16 @@ export default function EnvelopeCeremony({ onComplete }) {
       setPhase('rising');
     }, 780);
 
-    // Step 4: Radiant light-flood dissolves to main invitation (2400ms)
+    // Step 4: Seamless luminous transition begins (2100ms)
     const timerReveal = setTimeout(() => {
       setPhase('revealing');
-    }, 2400);
+    }, 2100);
 
-    // Step 5: Complete (3200ms)
+    // Step 5: Complete and smoothly hand off to main invitation (2950ms)
     const timerDone = setTimeout(() => {
       setPhase('done');
       if (onComplete) onComplete();
-    }, 3200);
+    }, 2950);
 
     return () => {
       clearTimeout(timerFlap);
@@ -118,12 +118,6 @@ export default function EnvelopeCeremony({ onComplete }) {
     }
   };
 
-  // Instant Skip
-  const handleSkip = (e) => {
-    if (e) e.stopPropagation();
-    setPhase('done');
-    if (onComplete) onComplete();
-  };
 
   if (phase === 'done') return null;
 
@@ -142,13 +136,7 @@ export default function EnvelopeCeremony({ onComplete }) {
       <div className="absolute w-[500px] sm:w-[750px] h-[500px] sm:h-[750px] bg-gradient-to-tr from-amber-200/35 via-rose-100/25 to-amber-100/40 rounded-full blur-[110px] pointer-events-none" />
       <div className="absolute inset-0 paper-texture opacity-30 pointer-events-none" />
 
-      {/* Top Right Skip Button */}
-      <button
-        onClick={handleSkip}
-        className="absolute top-5 right-5 z-50 text-[10px] font-sans tracking-[0.2em] uppercase text-warm-espresso/70 hover:text-warm-espresso px-3.5 py-1.5 rounded-full border border-[#CBB084]/40 bg-white/60 backdrop-blur-md transition-all active:scale-95 cursor-pointer shadow-sm"
-      >
-        Skip to Invite →
-      </button>
+
 
       {/* 2. Light Flood Flash during 'revealing' phase */}
       <div
@@ -179,7 +167,7 @@ export default function EnvelopeCeremony({ onComplete }) {
                 : 'translate3d(0, 0px, 0px) scale(0.95)',
               opacity: phase === 'sealed' || phase === 'cracking' ? 0 : 1,
               transition: 'transform 0.95s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease',
-              filter: phase === 'revealing' ? 'blur(3px)' : 'none',
+              
               boxShadow: '0 25px 60px rgba(120, 85, 45, 0.28)',
               zIndex: 35
             }}
@@ -238,13 +226,7 @@ export default function EnvelopeCeremony({ onComplete }) {
                 18 – 19 December 2026 · Nagpur
               </p>
 
-              {phase === 'rising' && (
-                <div className="pt-1.5 animate-pulse">
-                  <span className="text-[9.5px] font-sans tracking-widest uppercase text-gold-bright bg-[#422216]/90 px-3.5 py-1 rounded-full shadow-sm border border-[#CBB084]/40">
-                    Tap to Enter Invitation ✦
-                  </span>
-                </div>
-              )}
+
             </div>
           </div>
 
