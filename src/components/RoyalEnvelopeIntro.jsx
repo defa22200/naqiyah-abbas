@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Sparkles, Music, ArrowDown } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowDown } from 'lucide-react';
 
 export default function RoyalEnvelopeIntro({ onOpen }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +10,7 @@ export default function RoyalEnvelopeIntro({ onOpen }) {
     setTimeout(() => {
       setIsOpen(true);
       if (onOpen) onOpen();
-    }, 1100);
+    }, 1000);
   };
 
   if (isOpen) return null;
@@ -23,24 +23,24 @@ export default function RoyalEnvelopeIntro({ onOpen }) {
       }`}
     >
       {/* Background ambient lighting */}
-      <div className="absolute w-96 h-96 bg-gold-hairline/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute w-96 h-96 bg-gold-hairline/10 rounded-full blur-3xl pointer-events-none"></div>
 
       {/* Royal Physical Card Envelope Canvas */}
       <div 
-        className={`relative w-full max-w-sm sm:max-w-md rounded-3xl p-8 sm:p-10 text-center shadow-2xl border border-gold-hairline/60 bg-[#F8F3EA] text-ink-plum overflow-hidden transition-transform duration-1000 ${
-          isOpening ? 'scale-105 -translate-y-6' : 'scale-100'
+        className={`relative w-full max-w-sm sm:max-w-md rounded-3xl p-8 sm:p-10 text-center shadow-2xl border border-gold-hairline/50 bg-[#FAF6F0] text-ink-plum overflow-hidden transition-transform duration-1000 ${
+          isOpening ? 'scale-105 -translate-y-4' : 'scale-100'
         }`}
       >
         {/* Fine gold corner borders */}
-        <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-gold-hairline/70"></div>
-        <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-gold-hairline/70"></div>
-        <div className="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-gold-hairline/70"></div>
-        <div className="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-gold-hairline/70"></div>
+        <div className="absolute top-3 left-3 w-7 h-7 border-t border-l border-gold-hairline/80"></div>
+        <div className="absolute top-3 right-3 w-7 h-7 border-t border-r border-gold-hairline/80"></div>
+        <div className="absolute bottom-3 left-3 w-7 h-7 border-b border-l border-gold-hairline/80"></div>
+        <div className="absolute bottom-3 right-3 w-7 h-7 border-b border-r border-gold-hairline/80"></div>
 
         {/* Envelope Top Flap Triangle Lines */}
-        <div className="absolute top-0 left-0 right-0 h-16 pointer-events-none opacity-20">
+        <div className="absolute top-0 left-0 right-0 h-16 pointer-events-none opacity-15">
           <svg viewBox="0 0 400 80" className="w-full h-full" preserveAspectRatio="none">
-            <path d="M0 0 L200 80 L400 0 Z" fill="none" stroke="#C9A66B" strokeWidth="1.5" />
+            <path d="M0 0 L200 80 L400 0 Z" fill="none" stroke="#C9A66B" strokeWidth="1" />
           </svg>
         </div>
 
@@ -48,7 +48,7 @@ export default function RoyalEnvelopeIntro({ onOpen }) {
         <div 
           dir="rtl" 
           lang="ar" 
-          className="font-arabic text-xl sm:text-2xl text-ink-plum/90 mb-4"
+          className="font-arabic text-xl sm:text-2xl text-ink-plum/90 mb-3"
         >
           بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
         </div>
@@ -57,33 +57,34 @@ export default function RoyalEnvelopeIntro({ onOpen }) {
           Wedding Invitation
         </p>
 
-        <h1 className="font-serif text-4xl sm:text-5xl text-ink-plum mb-3 tracking-tight font-normal">
+        <h1 className="font-serif text-4xl sm:text-5xl text-ink-plum mb-2 tracking-tight font-light">
           Naqiyah &amp; Abbas
         </h1>
 
-        <p className="font-serif italic text-sm sm:text-base text-ink-plum/75 max-w-xs mx-auto mb-8">
+        <p className="font-serif italic text-sm text-ink-plum/70 max-w-xs mx-auto mb-7">
           Two families · Two hearts · One beautiful beginning
         </p>
 
-        {/* Wax Seal Medallion Trigger */}
-        <div className="my-6 relative flex justify-center">
+        {/* Traditional Royal Wax Seal Stamp with N & A Calligraphy */}
+        <div className="my-5 relative flex justify-center">
           <button
             onClick={handleOpen}
-            className={`group relative p-4 rounded-full bg-gradient-to-br from-[#D4AF37] via-[#C9A66B] to-[#997A3B] text-ink-deep shadow-2xl transition-transform duration-500 hover:scale-110 active:scale-95 cursor-pointer border-2 border-[#FBF6EF] ${
-              isOpening ? 'rotate-180 scale-125 opacity-0' : 'animate-gentle-pulse'
+            className={`group relative w-18 h-18 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#B35446] via-[#943F33] to-[#6E2A20] text-ivory shadow-2xl transition-transform duration-500 hover:scale-105 active:scale-95 cursor-pointer border-2 border-gold-hairline/60 flex items-center justify-center ${
+              isOpening ? 'scale-125 opacity-0' : 'animate-gentle-pulse'
             }`}
             aria-label="Open Invitation"
           >
-            {/* Custom Monogram Seal Graphic */}
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="30" cy="30" r="28" stroke="#3A2C33" strokeWidth="1" strokeDasharray="3 2" opacity="0.6" />
-              <circle cx="30" cy="30" r="24" stroke="#3A2C33" strokeWidth="0.8" opacity="0.4" />
-              {/* Interlocking geometric N & A emblem */}
-              <path d="M30 8L40 30L30 52L20 30Z" stroke="#3A2C33" strokeWidth="1.2" />
-              <path d="M8 30L30 20L52 30L30 40Z" stroke="#3A2C33" strokeWidth="1.2" />
-              <circle cx="30" cy="30" r="4.5" fill="#3A2C33" />
-            </svg>
-            <span className="absolute inset-0 rounded-full border border-white/50 pointer-events-none"></span>
+            {/* Elegant Serif Monogram Stamp */}
+            <div className="flex flex-col items-center justify-center select-none pointer-events-none">
+              <span className="font-serif text-lg sm:text-xl text-gold-pale tracking-widest font-normal">
+                N &amp; A
+              </span>
+              <span className="text-[8px] font-sans text-gold-hairline/80 tracking-widest uppercase">
+                18·12·26
+              </span>
+            </div>
+            {/* Subtle outer gold ring */}
+            <span className="absolute inset-1 rounded-full border border-gold-hairline/30 pointer-events-none"></span>
           </button>
         </div>
 
@@ -91,10 +92,9 @@ export default function RoyalEnvelopeIntro({ onOpen }) {
         <div className="space-y-3 pt-2">
           <button
             onClick={handleOpen}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-ink-plum text-gold-bright text-xs font-medium tracking-widest uppercase shadow-lg hover:bg-ink-light transition-all active:scale-95 cursor-pointer"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-ink-plum text-gold-bright text-xs font-medium tracking-widest uppercase shadow-md hover:bg-ink-light transition-all active:scale-95 cursor-pointer"
           >
-            <span>Tap to Open Invitation</span>
-            <Sparkles className="w-3.5 h-3.5" />
+            <span>Open Invitation</span>
           </button>
 
           <p className="text-[10px] font-sans text-ink-plum/50 tracking-wider">

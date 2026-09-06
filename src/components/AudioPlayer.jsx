@@ -1,46 +1,68 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Volume2, VolumeX, Music, Play, Pause } from 'lucide-react';
+import { Volume2, VolumeX, Music } from 'lucide-react';
 
 export default function AudioPlayer({ autoPlayTrigger }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [volume, setVolume] = useState(0.45);
   const audioRef = useRef(null);
 
+  // Attempt autoplay immediately, and fallback to first document interaction
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = volume;
-    }
-  }, [volume]);
+    const audio = audioRef.current;
+    if (!audio) return;
 
+    audio.volume = 0.5;
+
+    const startAudio = () => {
+      audio.play().then(() => {
+        setIsPlaying(true);
+        // Remove listener once played
+        window.removeEventListener('click', startAudio);
+        window.removeEventListener('touchstart', startAudio);
+      }).catch(() => {
+        // Will wait for next user touch/click
+      });
+    };
+
+    // Try playing immediately
+    startAudio();
+
+    // Fallback: unlock on first touch or click
+    window.addEventListener('click', startAudio, { once: true });
+    window.addEventListener('touchstart', startAudio, { once: true });
+
+    return () => {
+      window.removeEventListener('click', startAudio);
+      window.removeEventListener('touchstart', startAudio);
+    };
+  }, []);
+
+  // When external trigger (e.g. envelope opened) fires
   useEffect(() => {
-    if (autoPlayTrigger && !isPlaying && audioRef.current) {
+    if (autoPlayTrigger && audioRef.current && !isPlaying) {
       audioRef.current.play().then(() => {
         setIsPlaying(true);
-      }).catch(() => {
-        // Autoplay policy prevented immediate playback until user interaction
-      });
+      }).catch(() => {});
     }
   }, [autoPlayTrigger]);
 
-  const togglePlay = () => {
+  const toggleSound = (e) => {
+    e.stopPropagation();
     if (!audioRef.current) return;
+
     if (isPlaying) {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
       audioRef.current.play().then(() => {
         setIsPlaying(true);
-      }).catch((e) => {
-        console.log('Playback error:', e);
-      });
+      }).catch(() => {});
     }
   };
 
   return (
     <aside 
       aria-label="Wedding Music Player"
-      className="fixed top-5 right-4 z-50 flex items-center gap-2 select-none"
+      className="fixed top-5 right-4 z-50 select-none"
     >
       <audio 
         ref={audioRef} 
@@ -53,77 +75,36 @@ export default function AudioPlayer({ autoPlayTrigger }) {
         <source src="/audio/wedding_strings.mp3" type="audio/mpeg" />
       </audio>
 
-      {/* Expanded Track Information Card */}
-      {isExpanded && (
-        <div 
-          className="hidden sm:flex flex-col p-2.5 px-3 rounded-2xl bg-ink-plum/90 text-ivory border border-gold-hairline/40 shadow-xl backdrop-blur-md animate-fade-in text-left text-xs space-y-1.5"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="font-serif italic text-gold-bright text-sm leading-tight">
-                Air on the G String
-              </p>
-              <p className="text-[10px] text-ivory/60 font-sans">
-                Acoustic Strings Quartet
-              </p>
-            </div>
-            <button
-              onClick={togglePlay}
-              className="p-1.5 rounded-full bg-gold-hairline text-ink-deep hover:bg-gold-bright transition-colors"
-              aria-label={isPlaying ? "Pause music" : "Play music"}
-            >
-              {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-            </button>
-          </div>
-
-          <div className="flex items-center gap-2 pt-1 border-t border-white/10">
-            <Volume2 className="w-3 h-3 text-gold-hairline shrink-0" />
-            <input 
-              type="range" 
-              min="0" 
-              max="1" 
-              step="0.05" 
-              value={volume} 
-              onChange={(e) => setVolume(parseFloat(e.target.value))} 
-              className="w-20 h-1 accent-gold-hairline bg-white/20 rounded-lg cursor-pointer"
-              aria-label="Volume slider"
-            />
-          </div>
-        </div>
-      )}
-
-      {/* Floating Main Music Pill Button */}
+      {/* Luxury Music Control Button */}
       <button
-        onClick={togglePlay}
-        onMouseEnter={() => setIsExpanded(true)}
-        className={`group relative flex items-center gap-2 py-2 px-3 sm:px-3.5 rounded-full border transition-all duration-300 backdrop-blur-md shadow-lg active:scale-95 cursor-pointer ${
+        onClick={toggleSound}
+        className={`group relative flex items-center gap-2 py-2 px-3 sm:px-3.5 rounded-full border transition-all duration-300 backdrop-blur-md shadow-md active:scale-95 cursor-pointer ${
           isPlaying 
-            ? 'bg-ink-plum/95 text-gold-bright border-gold-hairline shadow-gold-hairline/25 ring-1 ring-gold-hairline/40' 
-            : 'bg-ivory/90 text-ink-plum border-gold-hairline/40 hover:border-gold-hairline hover:bg-ivory'
+            ? 'bg-ink-plum/95 text-gold-bright border-gold-hairline shadow-gold-hairline/20 ring-1 ring-gold-hairline/40' 
+            : 'bg-ivory/90 text-ink-plum border-gold-hairline/50 hover:border-gold-hairline hover:bg-ivory'
         }`}
-        aria-label={isPlaying ? "Pause wedding music" : "Play wedding music"}
-        title={isPlaying ? "Pause wedding strings" : "Play wedding strings"}
+        aria-label={isPlaying ? "Mute wedding music" : "Play wedding music"}
+        title={isPlaying ? "Mute music" : "Play music"}
       >
         {isPlaying ? (
           <>
-            <Music className="w-3.5 h-3.5 text-gold-bright animate-bounce" />
-            {/* Visualizer Wave Bars */}
+            <Music className="w-3.5 h-3.5 text-gold-bright" />
+            {/* Live equalizer wave bars */}
             <div className="flex items-end gap-0.5 h-3">
               <span className="w-0.5 bg-gold-bright rounded-full animate-[pulse_0.9s_ease-in-out_infinite] h-2"></span>
               <span className="w-0.5 bg-gold-bright rounded-full animate-[pulse_0.6s_ease-in-out_infinite] h-3.5"></span>
               <span className="w-0.5 bg-gold-bright rounded-full animate-[pulse_1.1s_ease-in-out_infinite] h-1.5"></span>
               <span className="w-0.5 bg-gold-bright rounded-full animate-[pulse_0.8s_ease-in-out_infinite] h-2.5"></span>
             </div>
-            <span className="hidden sm:inline text-[11px] font-sans tracking-wide text-ivory/90 pl-0.5">
-              Playing
+            <span className="text-[10px] font-sans tracking-wider uppercase pl-0.5 text-gold-pale font-medium">
+              Mute
             </span>
           </>
         ) : (
           <>
-            <VolumeX className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
-            <span className="text-[11px] font-sans tracking-wide opacity-80">
-              Music
+            <VolumeX className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 transition-opacity text-terracotta" />
+            <span className="text-[10px] font-sans tracking-wider uppercase font-medium">
+              Music Off
             </span>
           </>
         )}

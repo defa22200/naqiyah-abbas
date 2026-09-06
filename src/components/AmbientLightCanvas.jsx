@@ -1,10 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 
-/**
- * AmbientLightCanvas:
- * 1. 5 layered full-screen GPU-composited gradients that crossfade with buttery smoothness
- * 2. An ultra-subtle HTML5 canvas rendering floating warm golden dust / light motes (25 particles, 60fps)
- */
 export default function AmbientLightCanvas({ lightStage }) {
   const canvasRef = useRef(null);
 
@@ -23,30 +18,29 @@ export default function AmbientLightCanvas({ lightStage }) {
     };
     window.addEventListener('resize', handleResize, { passive: true });
 
-    // Subtle golden light particles
-    const particleCount = window.innerWidth < 768 ? 20 : 35;
+    // Subtle, gentle floating golden dust motes
+    const particleCount = window.innerWidth < 768 ? 18 : 28;
     const particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      radius: Math.random() * 2 + 0.8,
-      vx: (Math.random() - 0.5) * 0.25,
-      vy: -Math.random() * 0.35 - 0.1, // Drifting softly upward
-      alpha: Math.random() * 0.4 + 0.1,
-      baseAlpha: Math.random() * 0.4 + 0.1,
+      radius: Math.random() * 1.5 + 0.6,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: -Math.random() * 0.2 - 0.08,
+      alpha: Math.random() * 0.35 + 0.1,
+      baseAlpha: Math.random() * 0.35 + 0.1,
       phase: Math.random() * Math.PI * 2,
     }));
 
     let t = 0;
     const render = () => {
-      t += 0.015;
+      t += 0.01;
       ctx.clearRect(0, 0, width, height);
 
       particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
-        p.alpha = p.baseAlpha + Math.sin(t + p.phase) * 0.15;
+        p.alpha = p.baseAlpha + Math.sin(t + p.phase) * 0.12;
 
-        // Wrap around smoothly
         if (p.y < -10) {
           p.y = height + 10;
           p.x = Math.random() * width;
@@ -54,12 +48,9 @@ export default function AmbientLightCanvas({ lightStage }) {
         if (p.x < -10) p.x = width + 10;
         if (p.x > width + 10) p.x = -10;
 
-        // Draw soft glowing gold mote
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(201, 166, 107, ${Math.max(0, p.alpha)})`;
-        ctx.shadowColor = 'rgba(212, 175, 55, 0.4)';
-        ctx.shadowBlur = 6;
         ctx.fill();
       });
 
@@ -76,53 +67,53 @@ export default function AmbientLightCanvas({ lightStage }) {
 
   return (
     <div className="fixed inset-0 pointer-events-none -z-20 overflow-hidden">
-      {/* Stage 1: Dawn / Warm Ivory & Rose Dust */}
+      {/* 1. Dawn Ivory & Soft Blush */}
       <div 
-        className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+        className="absolute inset-0 transition-opacity duration-1800 ease-out"
         style={{
           opacity: lightStage === 'dawn' ? 1 : 0,
-          background: 'radial-gradient(circle at 50% 15%, #FFFDF8 0%, #FBF6EF 55%, #F4EDE1 100%)'
+          background: 'radial-gradient(circle at 50% 15%, #FFFDF9 0%, #FBF6EF 55%, #F5ECE0 100%)'
         }}
       />
 
-      {/* Stage 2: Nikah Twilight Dusk */}
+      {/* 2. Nikah Twilight Dusk */}
       <div 
-        className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+        className="absolute inset-0 transition-opacity duration-1800 ease-out"
         style={{
           opacity: lightStage === 'nikah' ? 1 : 0,
-          background: 'radial-gradient(circle at 50% 35%, #FFF3EE 0%, #F7E4DE 45%, #EBD2CA 100%)'
+          background: 'radial-gradient(circle at 50% 35%, #FFF5F0 0%, #F8E7E0 50%, #ECD6CD 100%)'
         }}
       />
 
-      {/* Stage 3: Celebration of Love Midday Poolside */}
+      {/* 3. Celebration of Love Midday Poolside */}
       <div 
-        className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+        className="absolute inset-0 transition-opacity duration-1800 ease-out"
         style={{
           opacity: lightStage === 'midday' ? 1 : 0,
-          background: 'radial-gradient(circle at 50% 30%, #FFFFFF 0%, #F3F8F2 50%, #E2EDE9 100%)'
+          background: 'radial-gradient(circle at 50% 30%, #FFFFFF 0%, #F5F8F4 50%, #E5ECE8 100%)'
         }}
       />
 
-      {/* Stage 4: Reception Night / Royal Ink-Plum & Starlight */}
+      {/* 4. Reception Nightfall / Royal Ink-Plum */}
       <div 
-        className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+        className="absolute inset-0 transition-opacity duration-1800 ease-out"
         style={{
           opacity: lightStage === 'reception' ? 1 : 0,
-          background: 'radial-gradient(circle at 50% 30%, #46343E 0%, #34262E 55%, #241A20 100%)'
+          background: 'radial-gradient(circle at 50% 30%, #3D2E37 0%, #2D2027 60%, #1F151B 100%)'
         }}
       />
 
-      {/* Stage 5: Sacred Verse / Quiet Stillness */}
+      {/* 5. Sacred Verse / Quiet Stillness */}
       <div 
-        className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+        className="absolute inset-0 transition-opacity duration-1800 ease-out"
         style={{
           opacity: lightStage === 'verse' ? 1 : 0,
-          background: 'radial-gradient(circle at 50% 50%, #3B2D35 0%, #2A1F25 70%, #1D1519 100%)'
+          background: 'radial-gradient(circle at 50% 50%, #2E2228 0%, #21171C 70%, #150E12 100%)'
         }}
       />
 
-      {/* Subtle Floating Golden Dust Canvas */}
-      <canvas ref={canvasRef} className="absolute inset-0 opacity-70" />
+      {/* Subtle Floating Dust Motes */}
+      <canvas ref={canvasRef} className="absolute inset-0 opacity-60" />
     </div>
   );
 }
