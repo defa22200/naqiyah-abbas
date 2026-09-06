@@ -14,6 +14,12 @@ export function initSmoothScroll() {
   if (typeof window === 'undefined') return null;
   if (lenisInstance) return lenisInstance;
 
+  // On touch devices (phones/tablets), preserve 100% native momentum scrolling and pinch-zoom
+  const isTouch = 'ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
+  if (isTouch) {
+    return null;
+  }
+
   lenisInstance = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -21,7 +27,6 @@ export function initSmoothScroll() {
     gestureOrientation: 'vertical',
     smoothWheel: true,
     wheelMultiplier: 1.0,
-    touchMultiplier: 1.5,
     infinite: false,
   });
 

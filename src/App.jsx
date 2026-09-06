@@ -62,7 +62,7 @@ export default function App() {
   }, [stage, isCeremonyDone]);
 
   return (
-    <div className="min-h-screen relative overflow-hidden text-warm-espresso selection:bg-rose-dust selection:text-ink-deep">
+    <div className="min-h-screen relative overflow-x-clip text-warm-espresso selection:bg-rose-dust selection:text-ink-deep">
       
       {/* 1. Act 0: 3D Royal Wax Seal Envelope Ceremony (z-[60]) */}
       {!isCeremonyDone && (
