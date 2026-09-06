@@ -42,6 +42,25 @@ export default function App() {
     }
   }, [isKeepsakeOpen, selectedQrEvent]);
 
+  // Update browser chrome theme-color to match monotonic lighting stage
+  useEffect(() => {
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (!metaTheme) return;
+    if (!isCeremonyDone) {
+      metaTheme.setAttribute('content', '#2A0E1A');
+      return;
+    }
+    const colors = {
+      dawn: '#FBF6EF',
+      blush: '#FDF2F4',
+      midday: '#F4F7F2',
+      midnight: '#1B0B14',
+      verse: '#15060F',
+      blessing: '#F7E9D0'
+    };
+    metaTheme.setAttribute('content', colors[stage] || '#FBF6EF');
+  }, [stage, isCeremonyDone]);
+
   return (
     <div className="min-h-screen relative overflow-hidden text-warm-espresso selection:bg-rose-dust selection:text-ink-deep">
       
