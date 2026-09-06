@@ -36,7 +36,7 @@ export default {
         },
         ink: {
           plum: '#3A2C33',
-          deep: '#271D22',
+          deep: '#160B12',
           light: '#53424B',
           soft: '#745E6A',
         },

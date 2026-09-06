@@ -35,7 +35,7 @@ export default function InteractiveTimeline({ activeStage, onSelectEvent }) {
   return (
     <div className="my-8 px-1 sm:px-2">
       <div className="text-center mb-4">
-        <span className="text-[10px] font-sans tracking-[0.2em] uppercase text-terracotta-dark font-medium">
+        <span className="text-[10px] font-sans tracking-[0.2em] uppercase text-ink-deep font-bold">
           ✦ Celebration Schedule ✦
         </span>
       </div>
@@ -51,21 +51,21 @@ export default function InteractiveTimeline({ activeStage, onSelectEvent }) {
               className={`p-2 sm:p-3 rounded-2xl border text-center transition-all duration-300 active:scale-95 cursor-pointer flex flex-col items-center justify-between min-h-[106px] sm:min-h-[114px] overflow-hidden ${
                 isActive
                   ? 'border-gold-hairline shadow-md scale-102 ' + s.bg
-                  : 'bg-white/80 border-gold-hairline/35 hover:border-gold-hairline/60 hover:bg-white'
+                  : 'bg-white/90 border-gold-hairline/35 hover:border-gold-hairline/60 hover:bg-white'
               }`}
             >
               <Icon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 mb-0.5 shrink-0 ${s.color}`} />
               
               <div className="w-full flex-1 flex flex-col items-center justify-center my-0.5">
-                <p className="font-serif font-medium text-xs sm:text-sm text-warm-espresso leading-tight text-center">
+                <p className="font-serif font-bold text-xs sm:text-sm text-ink-deep leading-tight text-center">
                   {s.title}
                 </p>
-                <p className="text-[8.5px] sm:text-[10px] font-sans text-warm-bronze/85 mt-1 leading-tight text-center">
+                <p className="text-[8.5px] sm:text-[10px] font-sans text-ink-deep font-medium mt-1 leading-tight text-center">
                   {s.time}
                 </p>
               </div>
 
-              <span className="text-[7.5px] sm:text-[8.5px] font-sans text-terracotta-muted uppercase tracking-wide font-medium leading-tight text-center max-w-full px-0.5">
+              <span className="text-[7.5px] sm:text-[8.5px] font-sans text-ink-deep uppercase tracking-wide font-bold leading-tight text-center max-w-full px-0.5">
                 {s.venue}
               </span>
             </button>

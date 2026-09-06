@@ -38,13 +38,13 @@ export default function EventsSection({ activeStage, onOpenQr }) {
         transition={{ duration: 0.7 }}
         className="text-center space-y-2.5"
       >
-        <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-terracotta-dark font-semibold">
+        <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-ink-deep font-bold">
           The Wedding Itinerary
         </span>
-        <h2 className="font-serif text-4xl sm:text-5xl text-warm-espresso tracking-tight font-light">
+        <h2 className="font-serif text-4xl sm:text-5xl text-ink-deep tracking-tight font-normal">
           Celebration Timeline
         </h2>
-        <p className="font-sans text-xs sm:text-sm text-warm-bronze/80 max-w-sm mx-auto">
+        <p className="font-sans text-xs sm:text-sm text-ink-deep/90 font-medium max-w-sm mx-auto">
           Three sacred celebrations of love and togetherness over two memorable days in Nagpur.
         </p>
       </motion.div>
@@ -63,12 +63,12 @@ export default function EventsSection({ activeStage, onOpenQr }) {
         viewport={{ once: false, amount: 0.25 }}
         className="relative pt-2"
       >
-        <div className="flex items-center justify-between mb-3 text-terracotta-dark text-xs font-sans font-medium px-1">
+        <div className="flex items-center justify-between mb-3 text-ink-deep text-xs font-sans font-bold px-1">
           <div className="flex items-center gap-2">
-            <Moon className="w-3.5 h-3.5" />
+            <Moon className="w-3.5 h-3.5 text-ink-deep" />
             <span>Phase I · Twilight Gathering · Friday Evening</span>
           </div>
-          <span className="text-[11px] font-serif italic text-warm-bronze/70">18 Dec</span>
+          <span className="text-xs font-serif italic text-ink-deep font-bold">18 Dec</span>
         </div>
         <EventCard 
           event={EVENTS_DATA[0]} 
@@ -80,7 +80,7 @@ export default function EventsSection({ activeStage, onOpenQr }) {
       {/* Transitional Dynamic Light Beam 1 */}
       <div className="flex flex-col items-center justify-center py-4 text-gold-hairline/70 space-y-2">
         <span className="h-12 w-0.5 bg-gradient-to-b from-rose-dust via-gold-bright/60 to-sage animate-pulse"></span>
-        <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-warm-bronze/70 font-semibold">
+        <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-ink-deep font-bold">
           ✦ Daybreak ✦
         </span>
         <span className="h-12 w-0.5 bg-gradient-to-b from-sage via-gold-bright/60 to-transparent"></span>
@@ -94,12 +94,12 @@ export default function EventsSection({ activeStage, onOpenQr }) {
         viewport={{ once: false, amount: 0.25 }}
         className="relative"
       >
-        <div className="flex items-center justify-between mb-3 text-sage-deep text-xs font-sans font-medium px-1">
+        <div className="flex items-center justify-between mb-3 text-ink-deep text-xs font-sans font-bold px-1">
           <div className="flex items-center gap-2">
-            <Sun className="w-3.5 h-3.5" />
+            <Sun className="w-3.5 h-3.5 text-ink-deep" />
             <span>Phase II · Sunlit Poolside · Saturday Afternoon</span>
           </div>
-          <span className="text-[11px] font-serif italic text-warm-bronze/70">19 Dec</span>
+          <span className="text-xs font-serif italic text-ink-deep font-bold">19 Dec</span>
         </div>
         <EventCard 
           event={EVENTS_DATA[1]} 

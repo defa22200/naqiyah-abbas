@@ -71,7 +71,7 @@ export default function KeepsakeModal({ isOpen, onClose }) {
           transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
           transition: 'transform 0.15s ease-out'
         }}
-        className="relative w-full max-w-sm rounded-3xl bg-white text-warm-espresso p-7 sm:p-8 shadow-2xl border-2 border-gold-hairline/60 overflow-hidden text-center [transform-style:preserve-3d]"
+        className="relative w-full max-w-sm rounded-3xl bg-white text-ink-deep p-7 sm:p-8 shadow-2xl border-2 border-gold-hairline/60 overflow-hidden text-center [transform-style:preserve-3d]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Fine gold corner filigree accents */}
@@ -83,7 +83,7 @@ export default function KeepsakeModal({ isOpen, onClose }) {
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 rounded-full text-warm-bronze hover:text-warm-espresso hover:bg-gold-hairline/15 transition-colors cursor-pointer"
+          className="absolute top-4 right-4 p-1.5 rounded-full text-ink-deep/70 hover:text-ink-deep hover:bg-gold-hairline/15 transition-colors cursor-pointer"
           aria-label="Close keepsake card"
         >
           <X className="w-5 h-5" />
@@ -91,7 +91,7 @@ export default function KeepsakeModal({ isOpen, onClose }) {
 
         {/* Card Header Tag */}
         <div className="mb-2">
-          <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-terracotta-dark font-semibold">
+          <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-ink-deep font-bold">
             ✦ Save The Date · Keepsake ✦
           </span>
         </div>
@@ -107,63 +107,63 @@ export default function KeepsakeModal({ isOpen, onClose }) {
 
         {/* Couple Names in Calligraphy Italic Script */}
         <div className="space-y-0.5 my-2">
-          <h2 className="font-calligraphy not-italic text-5xl sm:text-6xl text-warm-espresso font-normal leading-tight">
+          <h2 className="font-calligraphy not-italic text-5xl sm:text-6xl text-ink-deep font-normal leading-tight">
             Naqiyah &amp; Abbas
           </h2>
-          <p className="text-[10px] sm:text-xs font-sans tracking-widest uppercase text-warm-bronze font-medium">
+          <p className="text-[10px] sm:text-xs font-sans tracking-widest uppercase text-ink-deep/90 font-semibold">
             Two families · Two hearts · One beautiful beginning
           </p>
         </div>
 
         {/* Gold Hairline Divider */}
         <div className="flex items-center justify-center gap-3 my-4">
-          <span className="h-px w-10 bg-gold-hairline/50"></span>
-          <span className="text-gold-hairline text-xs">✦</span>
-          <span className="h-px w-10 bg-gold-hairline/50"></span>
+          <span className="h-px w-10 bg-[#CBB084]/60"></span>
+          <span className="text-[#9A7228] text-xs">✦</span>
+          <span className="h-px w-10 bg-[#CBB084]/60"></span>
         </div>
 
         {/* Date & Location Highlight */}
         <div className="py-1 space-y-1">
-          <p className="font-serif text-xl text-warm-espresso font-normal">
+          <p className="font-serif text-xl text-ink-deep font-bold">
             18 &amp; 19 December 2026
           </p>
-          <p className="font-sans text-[10px] sm:text-xs tracking-widest text-warm-bronze uppercase">
+          <p className="font-sans text-[10px] sm:text-xs tracking-widest text-ink-deep/90 uppercase font-semibold">
             10 &amp; 11 Shehre Rajabul Asab 1448H
           </p>
-          <p className="font-sans text-xs font-semibold text-terracotta-dark">
+          <p className="font-sans text-xs font-bold text-ink-deep">
             Nagpur, Maharashtra
           </p>
         </div>
 
         {/* Live Countdown */}
         <div className="mt-4 mb-5 p-3 rounded-2xl bg-[#FDFBF7] border border-gold-hairline/30">
-          <p className="text-[9px] font-sans uppercase tracking-widest text-warm-bronze mb-2 font-semibold">
+          <p className="text-[9px] font-sans uppercase tracking-widest text-ink-deep mb-2 font-bold">
             Counting Down with Joy
           </p>
           <div className="grid grid-cols-4 gap-1 text-center">
             <div className="p-1.5 rounded-lg bg-white shadow-xs">
-              <span className="font-serif text-base sm:text-lg font-bold text-warm-espresso block">
+              <span className="font-serif text-base sm:text-lg font-bold text-ink-deep block">
                 {timeLeft.days}
               </span>
-              <span className="text-[8px] font-sans text-warm-bronze uppercase">Days</span>
+              <span className="text-[8px] font-sans text-ink-deep font-semibold uppercase">Days</span>
             </div>
             <div className="p-1.5 rounded-lg bg-white shadow-xs">
-              <span className="font-serif text-base sm:text-lg font-bold text-warm-espresso block">
+              <span className="font-serif text-base sm:text-lg font-bold text-ink-deep block">
                 {timeLeft.hours}
               </span>
-              <span className="text-[8px] font-sans text-warm-bronze uppercase">Hours</span>
+              <span className="text-[8px] font-sans text-ink-deep font-semibold uppercase">Hours</span>
             </div>
             <div className="p-1.5 rounded-lg bg-white shadow-xs">
-              <span className="font-serif text-base sm:text-lg font-bold text-warm-espresso block">
+              <span className="font-serif text-base sm:text-lg font-bold text-ink-deep block">
                 {timeLeft.minutes}
               </span>
-              <span className="text-[8px] font-sans text-warm-bronze uppercase">Mins</span>
+              <span className="text-[8px] font-sans text-ink-deep font-semibold uppercase">Mins</span>
             </div>
             <div className="p-1.5 rounded-lg bg-white shadow-xs">
-              <span className="font-serif text-base sm:text-lg font-bold text-warm-espresso block">
+              <span className="font-serif text-base sm:text-lg font-bold text-ink-deep block">
                 {timeLeft.seconds}
               </span>
-              <span className="text-[8px] font-sans text-warm-bronze uppercase">Secs</span>
+              <span className="text-[8px] font-sans text-ink-deep font-semibold uppercase">Secs</span>
             </div>
           </div>
         </div>
@@ -172,13 +172,13 @@ export default function KeepsakeModal({ isOpen, onClose }) {
         <div className="space-y-2">
           <button
             onClick={handleShare}
-            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-warm-espresso text-gold-bright text-xs font-medium tracking-wide shadow-md hover:bg-warm-dark active:scale-95 transition-all cursor-pointer border border-gold-hairline/30"
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-ink-deep text-gold-bright text-xs font-medium tracking-wide shadow-md hover:bg-black active:scale-95 transition-all cursor-pointer border border-gold-hairline/30"
           >
             {copied ? <Check className="w-4 h-4 text-gold-bright" /> : <Share2 className="w-4 h-4 text-gold-hairline" />}
             <span>{copied ? 'Link Copied to Clipboard!' : 'Share Invitation Link'}</span>
           </button>
           
-          <p className="text-[9px] font-sans text-warm-bronze/60">
+          <p className="text-[9px] font-sans text-ink-deep/75 font-medium">
             Tip: Screenshot this digital card to keep in your photos.
           </p>
         </div>

@@ -52,21 +52,21 @@ export default function HeroSection({ onOpenKeepsake }) {
         className="w-full max-w-lg mx-auto flex flex-col items-center justify-center"
       >
         {/* Bride Name: Naqiyah */}
-        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-warm-espresso font-normal select-none leading-[1.1] drop-shadow-sm transition-all duration-700 hover:text-gold-burnished">
+        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-ink-deep font-normal select-none leading-[1.1] drop-shadow-sm transition-all duration-700 hover:text-gold-burnished">
           Naqiyah
         </h1>
 
         {/* Minimalist, exquisite calligraphic gold ampersand */}
         <div className="my-1 sm:my-2 flex items-center justify-center gap-3">
-          <span className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent via-gold-hairline/60 to-gold-hairline"></span>
-          <span className="font-calligraphy not-italic text-4xl sm:text-5xl text-gold-burnished font-normal px-2">
+          <span className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent via-[#CBB084] to-[#CBB084]"></span>
+          <span className="font-calligraphy not-italic text-4xl sm:text-5xl text-[#9A7228] font-normal px-2">
             &amp;
           </span>
-          <span className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent via-gold-hairline/60 to-gold-hairline"></span>
+          <span className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent via-[#CBB084] to-[#CBB084]"></span>
         </div>
 
         {/* Groom Name: Abbas */}
-        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-warm-espresso font-normal select-none leading-[1.1] drop-shadow-sm transition-all duration-700 hover:text-gold-burnished">
+        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-ink-deep font-normal select-none leading-[1.1] drop-shadow-sm transition-all duration-700 hover:text-gold-burnished">
           Abbas
         </h1>
       </motion.div>
@@ -78,25 +78,25 @@ export default function HeroSection({ onOpenKeepsake }) {
         transition={{ duration: 1.0, delay: 0.4, ease: 'easeOut' }}
         className="mt-6 sm:mt-7 flex flex-col items-center gap-1.5 text-center px-1 sm:px-4 max-w-lg mx-auto w-full"
       >
-        <p className="text-[8.5px] min-[360px]:text-[9px] min-[390px]:text-[10px] sm:text-xs font-sans tracking-[0.08em] min-[360px]:tracking-[0.11em] sm:tracking-[0.2em] uppercase text-terracotta-dark font-medium whitespace-nowrap">
+        <p className="text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs font-sans tracking-[0.12em] min-[360px]:tracking-[0.16em] sm:tracking-[0.22em] uppercase text-ink-deep font-bold whitespace-nowrap">
           Two families · Two hearts · One beautiful beginning
         </p>
 
         <div className="flex items-center justify-center gap-2 my-1">
-          <span className="h-px w-8 bg-gold-hairline/50"></span>
-          <span className="text-gold-hairline text-[9px]">✦</span>
-          <span className="h-px w-8 bg-gold-hairline/50"></span>
+          <span className="h-px w-8 bg-[#CBB084]"></span>
+          <span className="text-[#9A7228] text-xs">✦</span>
+          <span className="h-px w-8 bg-[#CBB084]"></span>
         </div>
 
-        <p className="text-[11px] sm:text-xs font-sans tracking-[0.25em] uppercase text-warm-espresso font-semibold">
+        <p className="text-xs sm:text-sm font-sans tracking-[0.25em] uppercase text-ink-deep font-bold">
           Wedding Celebrations
         </p>
 
-        <p className="font-serif text-2xl sm:text-3xl text-warm-bronze font-normal tracking-wide">
+        <p className="font-serif text-2xl sm:text-3xl text-ink-deep font-semibold tracking-wide">
           18 – 19 December 2026
         </p>
 
-        <p className="font-sans text-[10px] sm:text-xs tracking-[0.16em] uppercase text-warm-umber font-medium">
+        <p className="font-sans text-[10.5px] sm:text-xs tracking-[0.18em] uppercase text-ink-deep font-medium">
           10 – 11 Shehre Rajabul Asab 1448 · Nagpur
         </p>
       </motion.div>
@@ -105,11 +105,11 @@ export default function HeroSection({ onOpenKeepsake }) {
       <div className="mt-8 sm:mt-11 flex flex-col items-center animate-soft-float">
         <button
           onClick={scrollToLineage}
-          className="flex flex-col items-center gap-1 text-warm-bronze/60 hover:text-warm-espresso transition-colors p-2 cursor-pointer"
+          className="flex flex-col items-center gap-1 text-ink-deep/90 hover:text-ink-deep font-semibold transition-colors p-2 cursor-pointer"
           aria-label="Scroll to wedding invitation details"
         >
-          <span className="text-[9px] font-sans tracking-[0.2em] uppercase">The Celebrations</span>
-          <ChevronDown className="w-3.5 h-3.5" />
+          <span className="text-[10px] font-sans tracking-[0.22em] uppercase">The Celebrations</span>
+          <ChevronDown className="w-4 h-4 text-ink-deep" />
         </button>
       </div>
     </section>

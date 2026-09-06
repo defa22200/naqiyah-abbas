@@ -21,33 +21,33 @@ export default function InvocationSection() {
         </svg>
       </div>
 
-      {/* Bismillah in Sacred Calligraphy with Radial Glow */}
+      {/* Bismillah in Sacred Calligraphy with Radiant Glow */}
       <div className="relative my-3 flex flex-col justify-center items-center">
-        <div className="absolute inset-0 bg-gold-hairline/25 blur-2xl scale-90 pointer-events-none rounded-full" />
+        <div className="absolute inset-0 bg-gold-hairline/20 blur-2xl scale-90 pointer-events-none rounded-full" />
         <div 
           dir="rtl" 
           lang="ar" 
-          className="font-arabic text-3xl sm:text-5xl text-warm-espresso font-bold tracking-wider leading-relaxed select-all relative z-10 drop-shadow-[0_2px_4px_rgba(201,166,107,0.35)]"
+          className="font-arabic text-3xl sm:text-5xl text-ink-deep font-bold tracking-wider leading-relaxed select-all relative z-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
         >
           بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
         </div>
-        <p className="font-serif italic text-xs sm:text-sm text-warm-bronze/90 mt-1 tracking-wider">
+        <p className="font-serif italic text-sm sm:text-base text-ink-deep font-bold mt-1.5 tracking-wider">
           In the name of Allah, the Most Beneficent, the Most Merciful
         </p>
       </div>
 
       {/* Fine Gold Divider */}
       <div className="flex items-center justify-center gap-2 my-2.5">
-        <span className="h-px w-10 bg-gradient-to-r from-transparent to-gold-hairline/60"></span>
-        <span className="text-gold-hairline text-xs">✦</span>
-        <span className="h-px w-10 bg-gradient-to-l from-transparent to-gold-hairline/60"></span>
+        <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#CBB084]"></span>
+        <span className="text-gold-burnished text-xs">✦</span>
+        <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#CBB084]"></span>
       </div>
 
       {/* Verbatim Invocation Text */}
-      <p className="font-serif italic text-xs sm:text-sm text-warm-bronze/90 leading-relaxed px-2 tracking-wide">
-        By the Grace of Allah and Vasila-e-Panjatan-e-paak <span className="text-[10px] font-sans not-italic text-gold-burnished font-medium">(A.S.)</span> and dua mubarak of <br />
-        <span className="font-medium text-warm-espresso">Dr. Syedna Mohammed Burhanuddin <span className="text-[9px] font-sans not-italic text-gold-burnished">(R.A.)</span></span> &amp; <br />
-        <span className="font-medium text-warm-espresso">Dr. Syedna Aali Qadr Mufaddal Saifuddin <span className="text-[9px] font-sans not-italic text-gold-burnished">(T.U.S.)</span></span>
+      <p className="font-serif italic text-sm sm:text-base text-ink-deep leading-relaxed px-2 tracking-wide font-semibold">
+        By the Grace of Allah and Vasila-e-Panjatan-e-paak <span className="text-xs font-sans not-italic text-ink-deep font-bold">(A.S.)</span> and dua mubarak of <br />
+        <span className="font-bold text-ink-deep">Dr. Syedna Mohammed Burhanuddin <span className="text-[10px] font-sans not-italic text-ink-deep font-bold">(R.A.)</span></span> &amp; <br />
+        <span className="font-bold text-ink-deep">Dr. Syedna Aali Qadr Mufaddal Saifuddin <span className="text-[10px] font-sans not-italic text-ink-deep font-bold">(T.U.S.)</span></span>
       </p>
     </header>
   );

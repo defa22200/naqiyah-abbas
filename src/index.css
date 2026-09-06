@@ -4,7 +4,7 @@
 
 :root {
   --canvas-bg: #FBF6EF;
-  --text-primary: #3A2C33;
+  --text-primary: #160B12;
   --accent-rose: #E8C4C0;
   --accent-terracotta: #C98A73;
   --accent-sage: #A8B79A;
@@ -26,17 +26,17 @@
 /* Smooth Dynamic Light Transition on the Body Canvas */
 .light-canvas-dawn {
   background: radial-gradient(circle at 50% 15%, #FFFDF8 0%, #FBF6EF 55%, #F4EDE1 100%);
-  color: #3A2C33;
+  color: #160B12;
 }
 
 .light-canvas-nikah {
   background: radial-gradient(circle at 50% 40%, #FFF3EE 0%, #F7E4DE 45%, #EBD2CA 100%);
-  color: #38272E;
+  color: #160B12;
 }
 
 .light-canvas-midday {
   background: radial-gradient(circle at 50% 35%, #FFFFFF 0%, #F4F8F3 50%, #E3EDE9 100%);
-  color: #2F382E;
+  color: #160B12;
 }
 
 .light-canvas-reception {

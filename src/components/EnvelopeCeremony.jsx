@@ -192,30 +192,30 @@ export default function EnvelopeCeremony({ onComplete }) {
               <div 
                 dir="rtl" 
                 lang="ar" 
-                className="font-arabic text-2xl sm:text-3xl text-warm-espresso font-bold tracking-wide leading-relaxed drop-shadow-[0_1px_3px_rgba(201,166,107,0.4)]"
+                className="font-arabic text-2xl sm:text-3xl text-ink-deep font-bold tracking-wide leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
               >
                 بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
               </div>
-              <p className="font-serif italic text-[10px] sm:text-xs text-warm-bronze/90 tracking-wider">
+              <p className="font-serif italic text-xs sm:text-sm text-ink-deep font-bold tracking-wider">
                 In the name of Allah, the Most Beneficent, the Most Merciful
               </p>
             </div>
 
             {/* Middle: Couple Names in Royal Calligraphy (100% Unclipped & Pristine!) */}
-            <div className="my-4 py-1 relative z-10 space-y-1">
+            <div className="my-4 py-1 relative z-10 space-y-1.5">
               <div className="flex items-center justify-center gap-2 mb-1">
                 <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#CBB084]" />
-                <span className="text-[9px] sm:text-[10px] font-sans tracking-[0.28em] uppercase text-terracotta-dark font-semibold">
+                <span className="text-[9.5px] sm:text-[11px] font-sans tracking-[0.28em] uppercase text-ink-deep font-bold">
                   Wedding Invitation
                 </span>
                 <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#CBB084]" />
               </div>
 
-              <h1 className="font-calligraphy not-italic text-4xl sm:text-5xl md:text-6xl text-warm-espresso tracking-normal font-normal drop-shadow-sm leading-tight px-2">
+              <h1 className="font-calligraphy not-italic text-4xl sm:text-5xl md:text-6xl text-ink-deep tracking-normal font-normal drop-shadow-sm leading-tight px-2">
                 Naqiyah &amp; Abbas
               </h1>
 
-              <p className="font-serif italic text-[11px] sm:text-xs text-warm-bronze/90 mt-1">
+              <p className="font-serif italic text-xs sm:text-sm text-ink-deep font-bold mt-1">
                 Two families · Two hearts · One beautiful beginning
               </p>
             </div>
@@ -224,14 +224,12 @@ export default function EnvelopeCeremony({ onComplete }) {
             <div className="pb-1 space-y-2 relative z-10">
               <div className="flex items-center justify-center gap-2">
                 <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#CBB084]" />
-                <span className="text-[#B88E3E] text-xs">✦</span>
+                <span className="text-[#9A7228] text-xs">✦</span>
                 <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#CBB084]" />
               </div>
-              <p className="font-sans text-[10px] sm:text-xs tracking-[0.2em] uppercase text-warm-espresso font-semibold">
+              <p className="font-sans text-xs sm:text-sm tracking-[0.22em] uppercase text-ink-deep font-bold">
                 18 – 19 December 2026 · Nagpur
               </p>
-
-
             </div>
           </div>
 
@@ -422,7 +420,7 @@ export default function EnvelopeCeremony({ onComplete }) {
               <span className="text-gold-bright text-xs">✦</span>
             </button>
 
-            <span className="text-[10px] font-sans tracking-[0.22em] uppercase text-warm-espresso/80 font-semibold mt-3">
+            <span className="text-xs font-sans tracking-[0.22em] uppercase text-ink-deep font-bold mt-3">
               18 – 19 December 2026 · Nagpur
             </span>
           </div>

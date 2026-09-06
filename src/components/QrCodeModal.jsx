@@ -20,26 +20,26 @@ export default function QrCodeModal({ event, onClose }) {
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-sm rounded-3xl bg-ivory text-ink-plum p-7 sm:p-8 shadow-2xl border border-gold-hairline/60 overflow-hidden text-center"
+        className="relative w-full max-w-sm rounded-3xl bg-ivory text-ink-deep p-7 sm:p-8 shadow-2xl border border-gold-hairline/60 overflow-hidden text-center"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 rounded-full text-ink-plum/60 hover:text-ink-plum hover:bg-gold-hairline/15 transition-colors"
+          className="absolute top-4 right-4 p-1.5 rounded-full text-ink-deep/70 hover:text-ink-deep hover:bg-gold-hairline/15 transition-colors"
           aria-label="Close QR modal"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Header */}
-        <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-terracotta-muted font-semibold block mb-2">
+        <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-ink-deep font-bold block mb-2">
           Venue QR Navigation
         </span>
-        <h3 className="font-serif text-2xl text-ink-plum mb-1">
+        <h3 className="font-serif text-2xl text-ink-deep font-bold mb-1">
           {event.venueName}
         </h3>
-        <p className="font-sans text-xs text-ink-plum/70 mb-5">
+        <p className="font-sans text-xs text-ink-deep/90 font-medium mb-5">
           {event.venueAddress}
         </p>
 
@@ -51,7 +51,7 @@ export default function QrCodeModal({ event, onClose }) {
           />
         </div>
 
-        <p className="font-sans text-xs text-ink-plum/70 mb-5 leading-relaxed">
+        <p className="font-sans text-xs text-ink-deep/90 font-medium mb-5 leading-relaxed">
           Scan using any smartphone camera or QR reader to launch direct navigation on Google Maps or Apple Maps.
         </p>
 

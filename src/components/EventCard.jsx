@@ -52,8 +52,8 @@ export default function EventCard({ event, theme, onOpenQr }) {
         theme === 'reception'
           ? 'bg-[#221A15]/95 text-warm-cream border-gold-hairline/50 shadow-reception-glow'
           : theme === 'celebration'
-          ? 'bg-white/85 text-warm-espresso border-sage/60 shadow-soft-float hover:border-sage'
-          : 'bg-white/85 text-warm-espresso border-rose-dust/70 shadow-soft-float hover:border-rose-dust'
+          ? 'bg-white/95 text-ink-deep border-sage/60 shadow-soft-float hover:border-sage'
+          : 'bg-white/95 text-ink-deep border-rose-dust/70 shadow-soft-float hover:border-rose-dust'
       }`}
     >
       {/* Specular Gold Foil Sheen Overlay */}
@@ -66,12 +66,12 @@ export default function EventCard({ event, theme, onOpenQr }) {
 
       {/* Ribbon Header */}
       <div className="flex items-center justify-between gap-4 mb-5 relative z-10">
-        <span className={`text-[10px] sm:text-xs font-sans uppercase tracking-[0.2em] font-semibold px-3 py-1 rounded-full border ${
+        <span className={`text-[10px] sm:text-xs font-sans uppercase tracking-[0.2em] font-bold px-3 py-1 rounded-full border ${
           theme === 'reception'
             ? 'border-gold-hairline/40 text-gold-bright bg-gold-hairline/10'
             : theme === 'celebration'
-            ? 'border-sage text-sage-deep bg-sage-mist/60'
-            : 'border-terracotta-muted text-terracotta-dark bg-rose-dust-light/60'
+            ? 'border-emerald-800/40 text-ink-deep bg-emerald-50'
+            : 'border-rose-900/30 text-ink-deep bg-rose-50'
         }`}>
           {theme === 'nikah' && 'Event 01 · Nikah'}
           {theme === 'celebration' && 'Event 02 · Celebration'}
@@ -81,7 +81,7 @@ export default function EventCard({ event, theme, onOpenQr }) {
 
       {/* Event Title */}
       <h3 className={`font-serif text-3xl sm:text-4xl tracking-tight mb-3 relative z-10 font-normal ${
-        theme === 'reception' ? 'text-warm-cream' : 'text-warm-espresso'
+        theme === 'reception' ? 'text-warm-cream' : 'text-ink-deep'
       }`}>
         {event.id === 'nikah' && 'The Nikah Ceremony'}
         {event.id === 'celebration-of-love' && 'Celebration of Love'}
@@ -90,14 +90,14 @@ export default function EventCard({ event, theme, onOpenQr }) {
 
       {/* Dates Block */}
       <div className="mb-6 space-y-1 relative z-10">
-        <p className={`font-serif text-xl sm:text-2xl font-medium ${
-          theme === 'reception' ? 'text-gold-pale' : 'text-terracotta-dark'
+        <p className={`font-serif text-xl sm:text-2xl font-bold ${
+          theme === 'reception' ? 'text-gold-pale' : 'text-ink-deep'
         }`}>
           {event.gregorian}
         </p>
 
-        <p className={`text-xs sm:text-sm font-sans tracking-wider ${
-          theme === 'reception' ? 'text-warm-cream/70' : 'text-warm-bronze/80'
+        <p className={`text-xs sm:text-sm font-sans tracking-wider font-semibold ${
+          theme === 'reception' ? 'text-warm-cream/70' : 'text-ink-deep/90'
         }`}>
           ✦ {event.hijri}
         </p>
@@ -106,15 +106,17 @@ export default function EventCard({ event, theme, onOpenQr }) {
       {/* Time & Program */}
       <div className="flex items-start gap-3 mb-6 relative z-10">
         <Clock className={`w-5 h-5 shrink-0 mt-0.5 ${
-          theme === 'reception' ? 'text-gold-bright' : 'text-terracotta'
+          theme === 'reception' ? 'text-gold-bright' : 'text-ink-deep'
         }`} />
         <div>
-          <p className="font-serif text-lg sm:text-xl font-medium leading-snug">
+          <p className={`font-serif text-lg sm:text-xl font-bold leading-snug ${
+            theme === 'reception' ? 'text-warm-cream' : 'text-ink-deep'
+          }`}>
             {event.timeLabel}
           </p>
           {event.program && (
-            <p className={`font-serif italic text-sm sm:text-base mt-0.5 ${
-              theme === 'reception' ? 'text-gold-pale/90' : 'text-terracotta-dark'
+            <p className={`font-serif italic text-sm sm:text-base mt-0.5 font-semibold ${
+              theme === 'reception' ? 'text-gold-pale/90' : 'text-ink-deep'
             }`}>
               {event.program}
             </p>
@@ -125,21 +127,23 @@ export default function EventCard({ event, theme, onOpenQr }) {
       {/* Venue Information */}
       <div className="flex items-start gap-3 mb-8 relative z-10">
         <MapPin className={`w-5 h-5 shrink-0 mt-0.5 ${
-          theme === 'reception' ? 'text-gold-bright' : 'text-terracotta'
+          theme === 'reception' ? 'text-gold-bright' : 'text-ink-deep'
         }`} />
         <div className="flex-1">
-          <p className="font-serif text-lg sm:text-xl font-medium leading-snug">
+          <p className={`font-serif text-lg sm:text-xl font-bold leading-snug ${
+            theme === 'reception' ? 'text-warm-cream' : 'text-ink-deep'
+          }`}>
             {event.venueName}
             {event.venueSub && (
-              <span className={`block text-sm sm:text-base font-serif italic font-normal mt-0.5 ${
-                theme === 'reception' ? 'text-gold-pale/85' : 'text-warm-bronze/90'
+              <span className={`block text-sm sm:text-base font-serif italic font-medium mt-0.5 ${
+                theme === 'reception' ? 'text-gold-pale/85' : 'text-ink-deep/90'
               }`}>
                 {event.venueSub}
               </span>
             )}
           </p>
-          <p className={`text-sm font-sans ${
-            theme === 'reception' ? 'text-warm-cream/75' : 'text-warm-espresso/80'
+          <p className={`text-sm font-sans font-medium mt-0.5 ${
+            theme === 'reception' ? 'text-warm-cream/75' : 'text-ink-deep/90'
           }`}>
             {event.venueAddress}
           </p>
@@ -147,12 +151,12 @@ export default function EventCard({ event, theme, onOpenQr }) {
           {/* Copy Address */}
           <button
             onClick={handleCopyAddress}
-            className={`mt-2 text-xs font-sans flex items-center gap-1.5 transition-colors cursor-pointer ${
+            className={`mt-2 text-xs font-sans flex items-center gap-1.5 transition-colors cursor-pointer font-bold ${
               copied
-                ? theme === 'reception' ? 'text-gold-bright font-medium' : 'text-terracotta-dark font-medium'
+                ? theme === 'reception' ? 'text-gold-bright font-bold' : 'text-ink-deep font-bold'
                 : theme === 'reception'
                 ? 'text-gold-bright/80 hover:text-gold-bright'
-                : 'text-terracotta-dark hover:text-terracotta'
+                : 'text-ink-deep/80 hover:text-ink-deep'
             }`}
           >
             {copied ? (
@@ -179,7 +183,7 @@ export default function EventCard({ event, theme, onOpenQr }) {
           className={`h-11 px-4 rounded-xl text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-2 transition-all shadow-sm active:scale-95 cursor-pointer sm:flex-1 ${
             theme === 'reception'
               ? 'bg-gold-hairline text-ink-deep hover:bg-gold-bright'
-              : 'bg-warm-espresso text-warm-cream hover:bg-warm-dark'
+              : 'bg-ink-deep text-warm-cream hover:bg-black'
           }`}
         >
           <Navigation className="w-4 h-4" />
@@ -191,10 +195,10 @@ export default function EventCard({ event, theme, onOpenQr }) {
           <div className="relative flex-1">
             <button
               onClick={() => setCalendarMenuOpen(!calendarMenuOpen)}
-              className={`w-full h-11 px-3 rounded-xl border text-xs sm:text-sm font-medium flex items-center justify-center gap-2 transition-colors active:scale-95 cursor-pointer ${
+              className={`w-full h-11 px-3 rounded-xl border text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-colors active:scale-95 cursor-pointer ${
                 theme === 'reception'
                   ? 'border-gold-hairline/40 text-warm-cream hover:bg-white/10'
-                  : 'border-warm-espresso/25 text-warm-espresso hover:bg-warm-espresso/5'
+                  : 'border-ink-deep/30 text-ink-deep hover:bg-ink-deep/5'
               }`}
               aria-label="Add to Calendar options"
             >
@@ -210,11 +214,11 @@ export default function EventCard({ event, theme, onOpenQr }) {
                   onClick={() => setCalendarMenuOpen(false)} 
                 />
                 <div 
-                  className="absolute bottom-full mb-2 left-0 sm:left-auto sm:right-0 w-56 rounded-2xl bg-[#FCFAF7] text-warm-espresso p-2 shadow-2xl border border-gold-hairline/40 z-30 animate-fade-in"
+                  className="absolute bottom-full mb-2 left-0 sm:left-auto sm:right-0 w-56 rounded-2xl bg-[#FCFAF7] text-ink-deep p-2 shadow-2xl border border-gold-hairline/40 z-30 animate-fade-in"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="p-2 border-b border-gold-hairline/20 mb-1">
-                    <span className="text-[10px] font-sans uppercase tracking-widest text-warm-bronze font-semibold block">
+                    <span className="text-[10px] font-sans uppercase tracking-widest text-ink-deep font-bold block">
                       Choose Calendar
                     </span>
                   </div>
@@ -224,9 +228,9 @@ export default function EventCard({ event, theme, onOpenQr }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setCalendarMenuOpen(false)}
-                    className="flex items-center gap-2.5 p-2 rounded-xl text-xs hover:bg-gold-hairline/15 transition-colors font-medium text-warm-espresso"
+                    className="flex items-center gap-2.5 p-2 rounded-xl text-xs hover:bg-gold-hairline/15 transition-colors font-bold text-ink-deep"
                   >
-                    <ExternalLink className="w-3.5 h-3.5 text-terracotta" />
+                    <ExternalLink className="w-3.5 h-3.5 text-[#9A7228]" />
                     <span>Google Calendar</span>
                   </a>
 
@@ -235,9 +239,9 @@ export default function EventCard({ event, theme, onOpenQr }) {
                       downloadCalendarEvent(event);
                       setCalendarMenuOpen(false);
                     }}
-                    className="w-full flex items-center gap-2.5 p-2 rounded-xl text-xs hover:bg-gold-hairline/15 transition-colors text-left font-medium text-warm-espresso cursor-pointer"
+                    className="w-full flex items-center gap-2.5 p-2 rounded-xl text-xs hover:bg-gold-hairline/15 transition-colors text-left font-bold text-ink-deep cursor-pointer"
                   >
-                    <Download className="w-3.5 h-3.5 text-gold-hairline" />
+                    <Download className="w-3.5 h-3.5 text-[#9A7228]" />
                     <span>Apple Calendar / Outlook</span>
                   </button>
                 </div>
@@ -251,7 +255,7 @@ export default function EventCard({ event, theme, onOpenQr }) {
             className={`w-11 h-11 shrink-0 rounded-xl border transition-colors flex items-center justify-center active:scale-95 cursor-pointer ${
               theme === 'reception'
                 ? 'border-gold-hairline/40 text-gold-pale hover:bg-white/10'
-                : 'border-warm-espresso/25 text-warm-espresso hover:bg-warm-espresso/5'
+                : 'border-ink-deep/30 text-ink-deep font-semibold hover:bg-ink-deep/5'
             }`}
             title="Show QR Code for Venue"
             aria-label="Show QR Code for Venue"
