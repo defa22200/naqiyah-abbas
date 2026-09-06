@@ -113,10 +113,6 @@ export default function ClosingSection() {
           <p className="font-serif italic text-xs sm:text-sm text-warm-cream/95 tracking-wide">
             Two families · Two hearts · One beautiful beginning
           </p>
-
-          <p className="font-sans text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-gold-pale/90 font-medium pt-0.5">
-            Hakimi Masjid &amp; Dhawan Celebrations
-          </p>
         </div>
       </footer>
     </section>
