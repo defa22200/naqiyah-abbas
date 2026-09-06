@@ -19,7 +19,7 @@ export default function InvocationSection() {
       <div 
         dir="rtl" 
         lang="ar" 
-        className="font-arabic text-xl sm:text-3xl text-ink-plum tracking-wide mb-2.5 leading-loose select-all"
+        className="font-arabic text-xl sm:text-3xl text-warm-espresso tracking-wide mb-2.5 leading-loose select-all"
       >
         بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
       </div>
@@ -32,10 +32,10 @@ export default function InvocationSection() {
       </div>
 
       {/* Verbatim Invocation Text */}
-      <p className="font-serif italic text-xs sm:text-sm text-ink-plum/80 leading-relaxed px-2 tracking-wide">
-        By the Grace of Allah and Vasila-e-Panjatan-e-paak <span className="text-[10px] font-sans not-italic text-terracotta-muted font-medium">(A.S.)</span> and dua mubarak of <br />
-        <span className="font-medium text-ink-plum">Dr. Syedna Mohammed Burhanuddin <span className="text-[9px] font-sans not-italic text-terracotta-muted">(R.A.)</span></span> &amp; <br />
-        <span className="font-medium text-ink-plum">Dr. Syedna Aali Qadr Mufaddal Saifuddin <span className="text-[9px] font-sans not-italic text-terracotta-muted">(T.U.S.)</span></span>
+      <p className="font-serif italic text-xs sm:text-sm text-warm-bronze/90 leading-relaxed px-2 tracking-wide">
+        By the Grace of Allah and Vasila-e-Panjatan-e-paak <span className="text-[10px] font-sans not-italic text-gold-burnished font-medium">(A.S.)</span> and dua mubarak of <br />
+        <span className="font-medium text-warm-espresso">Dr. Syedna Mohammed Burhanuddin <span className="text-[9px] font-sans not-italic text-gold-burnished">(R.A.)</span></span> &amp; <br />
+        <span className="font-medium text-warm-espresso">Dr. Syedna Aali Qadr Mufaddal Saifuddin <span className="text-[9px] font-sans not-italic text-gold-burnished">(T.U.S.)</span></span>
       </p>
     </header>
   );

@@ -28,7 +28,7 @@ export default function InteractiveTimeline({ activeStage, onSelectEvent }) {
       venue: 'Dhawan Celebrations',
       icon: Sparkles,
       color: 'text-gold-bright',
-      bg: 'bg-ink-deep text-gold-bright'
+      bg: 'bg-[#221A15] text-gold-bright'
     }
   ];
 
@@ -51,16 +51,16 @@ export default function InteractiveTimeline({ activeStage, onSelectEvent }) {
               className={`p-2 sm:p-3 rounded-2xl border text-center transition-all duration-300 active:scale-95 cursor-pointer flex flex-col items-center justify-between min-h-[106px] sm:min-h-[114px] overflow-hidden ${
                 isActive
                   ? 'border-gold-hairline shadow-md scale-102 ' + s.bg
-                  : 'bg-ivory-soft/70 border-gold-hairline/30 hover:border-gold-hairline/60 hover:bg-ivory'
+                  : 'bg-white/80 border-gold-hairline/35 hover:border-gold-hairline/60 hover:bg-white'
               }`}
             >
               <Icon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 mb-0.5 shrink-0 ${s.color}`} />
               
               <div className="w-full flex-1 flex flex-col items-center justify-center my-0.5">
-                <p className="font-serif font-medium text-xs sm:text-sm text-ink-plum leading-tight text-center">
+                <p className="font-serif font-medium text-xs sm:text-sm text-warm-espresso leading-tight text-center">
                   {s.title}
                 </p>
-                <p className="text-[8.5px] sm:text-[10px] font-sans text-ink-plum/70 mt-1 leading-tight text-center">
+                <p className="text-[8.5px] sm:text-[10px] font-sans text-warm-bronze/85 mt-1 leading-tight text-center">
                   {s.time}
                 </p>
               </div>

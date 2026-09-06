@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { X, Calendar, Share2, Check, Sparkles, Heart } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { X, Share2, Check } from 'lucide-react';
 
 export default function KeepsakeModal({ isOpen, onClose }) {
   const [copied, setCopied] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const cardRef = useRef(null);
 
   useEffect(() => {
     const targetDate = new Date('2026-12-18T18:00:00+05:30').getTime();
@@ -26,6 +28,20 @@ export default function KeepsakeModal({ isOpen, onClose }) {
     return () => clearInterval(interval);
   }, []);
 
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    const tiltX = (y - 50) * -0.15;
+    const tiltY = (x - 50) * 0.15;
+    setTilt({ x: tiltX, y: tiltY });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+  };
+
   if (!isOpen) return null;
 
   const handleShare = () => {
@@ -44,94 +60,110 @@ export default function KeepsakeModal({ isOpen, onClose }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink-plum/70 backdrop-blur-md animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-warm-dark/75 backdrop-blur-md animate-fade-in"
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-sm rounded-3xl bg-ivory text-ink-plum p-7 sm:p-8 shadow-2xl border-2 border-gold-hairline/60 overflow-hidden text-center"
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+          transition: 'transform 0.15s ease-out'
+        }}
+        className="relative w-full max-w-sm rounded-3xl bg-white text-warm-espresso p-7 sm:p-8 shadow-2xl border-2 border-gold-hairline/60 overflow-hidden text-center [transform-style:preserve-3d]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Fine gold corner filigree accents */}
-        <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-gold-hairline/70"></div>
-        <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-gold-hairline/70"></div>
-        <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-gold-hairline/70"></div>
-        <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-gold-hairline/70"></div>
+        <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-gold-hairline/70 pointer-events-none"></div>
+        <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-gold-hairline/70 pointer-events-none"></div>
+        <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-gold-hairline/70 pointer-events-none"></div>
+        <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-gold-hairline/70 pointer-events-none"></div>
 
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 rounded-full text-ink-plum/60 hover:text-ink-plum hover:bg-gold-hairline/15 transition-colors"
+          className="absolute top-4 right-4 p-1.5 rounded-full text-warm-bronze hover:text-warm-espresso hover:bg-gold-hairline/15 transition-colors cursor-pointer"
           aria-label="Close keepsake card"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Card Header Tag */}
-        <div className="mb-4">
+        <div className="mb-2">
           <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-terracotta-dark font-semibold">
             ✦ Save The Date · Keepsake ✦
           </span>
         </div>
 
-        {/* Couple Names */}
-        <div className="space-y-1 my-3">
-          <h2 className="font-serif text-3xl sm:text-4xl text-ink-plum tracking-tight">
+        {/* Monogram */}
+        <div className="my-2 flex justify-center">
+          <img 
+            src="/images/na_monogram.png" 
+            alt="Naqiyah & Abbas Monogram" 
+            className="w-16 h-14 object-contain filter drop-shadow-sm"
+          />
+        </div>
+
+        {/* Couple Names in Calligraphy Italic Script */}
+        <div className="space-y-0.5 my-2">
+          <h2 className="font-calligraphy italic text-4xl sm:text-5xl text-warm-espresso font-normal leading-tight">
             Naqiyah &amp; Abbas
           </h2>
-          <p className="font-serif italic text-sm text-terracotta">
+          <p className="text-[10px] sm:text-xs font-sans tracking-widest uppercase text-warm-bronze font-medium">
             Two families · Two hearts · One beautiful beginning
           </p>
         </div>
 
         {/* Gold Hairline Divider */}
-        <div className="flex items-center justify-center gap-3 my-5">
+        <div className="flex items-center justify-center gap-3 my-4">
           <span className="h-px w-10 bg-gold-hairline/50"></span>
-          <span className="text-gold-hairline text-xs">❦</span>
+          <span className="text-gold-hairline text-xs">✦</span>
           <span className="h-px w-10 bg-gold-hairline/50"></span>
         </div>
 
         {/* Date & Location Highlight */}
-        <div className="py-2 space-y-1">
-          <p className="font-serif text-xl text-ink-plum font-semibold">
+        <div className="py-1 space-y-1">
+          <p className="font-serif text-xl text-warm-espresso font-normal">
             18 &amp; 19 December 2026
           </p>
-          <p className="font-sans text-xs tracking-widest text-ink-plum/70 uppercase">
+          <p className="font-sans text-[10px] sm:text-xs tracking-widest text-warm-bronze uppercase">
             10 &amp; 11 Shehre Rajabul Asab 1448H
           </p>
-          <p className="font-sans text-xs font-medium text-terracotta-dark">
+          <p className="font-sans text-xs font-semibold text-terracotta-dark">
             Nagpur, Maharashtra
           </p>
         </div>
 
         {/* Live Countdown */}
-        <div className="mt-5 mb-6 p-3 rounded-2xl bg-ivory-soft/80 border border-gold-hairline/30">
-          <p className="text-[10px] font-sans uppercase tracking-widest text-ink-plum/60 mb-2 font-medium">
+        <div className="mt-4 mb-5 p-3 rounded-2xl bg-[#FDFBF7] border border-gold-hairline/30">
+          <p className="text-[9px] font-sans uppercase tracking-widest text-warm-bronze mb-2 font-semibold">
             Counting Down with Joy
           </p>
           <div className="grid grid-cols-4 gap-1 text-center">
-            <div className="p-1.5 rounded-lg bg-white/60">
-              <span className="font-serif text-lg sm:text-xl font-bold text-ink-plum block">
+            <div className="p-1.5 rounded-lg bg-white shadow-xs">
+              <span className="font-serif text-base sm:text-lg font-bold text-warm-espresso block">
                 {timeLeft.days}
               </span>
-              <span className="text-[9px] font-sans text-ink-plum/60 uppercase">Days</span>
+              <span className="text-[8px] font-sans text-warm-bronze uppercase">Days</span>
             </div>
-            <div className="p-1.5 rounded-lg bg-white/60">
-              <span className="font-serif text-lg sm:text-xl font-bold text-ink-plum block">
+            <div className="p-1.5 rounded-lg bg-white shadow-xs">
+              <span className="font-serif text-base sm:text-lg font-bold text-warm-espresso block">
                 {timeLeft.hours}
               </span>
-              <span className="text-[9px] font-sans text-ink-plum/60 uppercase">Hours</span>
+              <span className="text-[8px] font-sans text-warm-bronze uppercase">Hours</span>
             </div>
-            <div className="p-1.5 rounded-lg bg-white/60">
-              <span className="font-serif text-lg sm:text-xl font-bold text-ink-plum block">
+            <div className="p-1.5 rounded-lg bg-white shadow-xs">
+              <span className="font-serif text-base sm:text-lg font-bold text-warm-espresso block">
                 {timeLeft.minutes}
               </span>
-              <span className="text-[9px] font-sans text-ink-plum/60 uppercase">Mins</span>
+              <span className="text-[8px] font-sans text-warm-bronze uppercase">Mins</span>
             </div>
-            <div className="p-1.5 rounded-lg bg-white/60">
-              <span className="font-serif text-lg sm:text-xl font-bold text-ink-plum block">
+            <div className="p-1.5 rounded-lg bg-white shadow-xs">
+              <span className="font-serif text-base sm:text-lg font-bold text-warm-espresso block">
                 {timeLeft.seconds}
               </span>
-              <span className="text-[9px] font-sans text-ink-plum/60 uppercase">Secs</span>
+              <span className="text-[8px] font-sans text-warm-bronze uppercase">Secs</span>
             </div>
           </div>
         </div>
@@ -140,13 +172,13 @@ export default function KeepsakeModal({ isOpen, onClose }) {
         <div className="space-y-2">
           <button
             onClick={handleShare}
-            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-ink-plum text-ivory text-xs font-medium tracking-wide shadow hover:bg-ink-light active:scale-95 transition-all"
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-warm-espresso text-gold-bright text-xs font-medium tracking-wide shadow-md hover:bg-warm-dark active:scale-95 transition-all cursor-pointer border border-gold-hairline/30"
           >
             {copied ? <Check className="w-4 h-4 text-gold-bright" /> : <Share2 className="w-4 h-4 text-gold-hairline" />}
-            <span>{copied ? 'Link Copied to Clipboard!' : 'Share or Save Link'}</span>
+            <span>{copied ? 'Link Copied to Clipboard!' : 'Share Invitation Link'}</span>
           </button>
           
-          <p className="text-[10px] font-sans text-ink-plum/50">
+          <p className="text-[9px] font-sans text-warm-bronze/60">
             Tip: Screenshot this digital card to keep in your photos.
           </p>
         </div>

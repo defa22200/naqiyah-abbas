@@ -90,8 +90,8 @@ export default function AudioPlayer({ autoPlayTrigger }) {
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
       >
-        <source src="/audio/wedding_strings.m4a" type="audio/mp4" />
-        <source src="/audio/wedding_strings.mp3" type="audio/mpeg" />
+        <source src="/audio/sufi_oud_long.m4a" type="audio/mp4" />
+        <source src="/audio/sufi_oud_long.mp3" type="audio/mpeg" />
       </audio>
 
       {/* Fullscreen Button */}
@@ -102,8 +102,8 @@ export default function AudioPlayer({ autoPlayTrigger }) {
         }}
         className={`flex items-center gap-1.5 py-2 px-2.5 sm:px-3 rounded-full border transition-all duration-300 backdrop-blur-md shadow-md active:scale-95 cursor-pointer ${
           isFullscreen 
-            ? 'bg-ink-plum/95 text-gold-bright border-gold-hairline shadow-gold-hairline/20' 
-            : 'bg-ivory/90 text-ink-plum border-gold-hairline/50 hover:border-gold-hairline hover:bg-ivory'
+            ? 'bg-warm-espresso/95 text-gold-bright border-gold-hairline shadow-gold-hairline/20' 
+            : 'bg-warm-cream/95 text-warm-espresso border-gold-hairline/50 hover:border-gold-hairline hover:bg-white'
         }`}
         aria-label={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
         title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
@@ -111,23 +111,23 @@ export default function AudioPlayer({ autoPlayTrigger }) {
         {isFullscreen ? (
           <Minimize className="w-3.5 h-3.5 text-gold-bright" />
         ) : (
-          <Maximize className="w-3.5 h-3.5 text-gold-hairline" />
+          <Maximize className="w-3.5 h-3.5 text-gold-burnished" />
         )}
         <span className="hidden sm:inline text-[10px] font-sans tracking-wider uppercase font-medium">
           {isFullscreen ? 'Exit' : 'Full Screen'}
         </span>
       </button>
 
-      {/* Luxury Music Control Button */}
+      {/* Luxury Music Control Button (Sufiyana Oud) */}
       <button
         onClick={toggleSound}
         className={`group relative flex items-center gap-2 py-2 px-3 sm:px-3.5 rounded-full border transition-all duration-300 backdrop-blur-md shadow-md active:scale-95 cursor-pointer ${
           isPlaying 
-            ? 'bg-ink-plum/95 text-gold-bright border-gold-hairline shadow-gold-hairline/20 ring-1 ring-gold-hairline/40' 
-            : 'bg-ivory/90 text-ink-plum border-gold-hairline/50 hover:border-gold-hairline hover:bg-ivory'
+            ? 'bg-warm-espresso/95 text-gold-bright border-gold-hairline shadow-gold-hairline/20 ring-1 ring-gold-hairline/40' 
+            : 'bg-warm-cream/95 text-warm-espresso border-gold-hairline/50 hover:border-gold-hairline hover:bg-white'
         }`}
-        aria-label={isPlaying ? "Mute wedding music" : "Play wedding music"}
-        title={isPlaying ? "Mute music" : "Play music"}
+        aria-label={isPlaying ? "Mute Sufiyana music" : "Play Sufiyana music"}
+        title={isPlaying ? "Mute Sufiyana music" : "Play Sufiyana music"}
       >
         {isPlaying ? (
           <>

@@ -14,13 +14,13 @@ export default function VenueCard({ venue }) {
   };
 
   const qrSvg = generateStyledQrSvg(venue.mapsUrl, {
-    fgColor: '#3A2C33',
+    fgColor: '#433226',
     goldColor: '#C9A66B',
     bgColor: '#FAF5EE'
   });
 
   return (
-    <div className="rounded-3xl bg-ivory-soft/90 border border-gold-hairline/35 shadow-soft-float overflow-hidden">
+    <div className="rounded-3xl bg-white/85 border border-gold-hairline/35 shadow-soft-float overflow-hidden backdrop-blur-sm">
       {/* Minimal Architectural Map Canvas Preview */}
       <div className="relative h-44 sm:h-52 bg-[#F2EDE4] overflow-hidden border-b border-gold-hairline/25 flex items-center justify-center">
         {/* Stylized Minimal Vector Road Pattern */}
@@ -45,17 +45,17 @@ export default function VenueCard({ venue }) {
         <div className="absolute z-10 flex flex-col items-center">
           <div className="relative flex items-center justify-center">
             <span className="absolute w-12 h-12 rounded-full bg-gold-hairline/20 animate-ping"></span>
-            <div className="relative z-10 p-3 rounded-full bg-ink-plum text-gold-bright shadow-lg border border-gold-hairline">
+            <div className="relative z-10 p-3 rounded-full bg-warm-espresso text-gold-bright shadow-lg border border-gold-hairline">
               <MapPin className="w-5 h-5" />
             </div>
           </div>
-          <span className="mt-1 px-3 py-0.5 rounded-full bg-ink-plum/90 text-ivory text-[10px] font-sans font-medium tracking-wide shadow-md backdrop-blur-xs">
+          <span className="mt-1 px-3 py-0.5 rounded-full bg-warm-espresso/90 text-warm-cream text-[10px] font-sans font-medium tracking-wide shadow-md backdrop-blur-xs">
             {venue.name}
           </span>
         </div>
 
         {/* Static Map Badge */}
-        <div className="absolute bottom-2.5 right-3 px-2 py-0.5 rounded bg-ivory/80 text-[10px] font-sans text-ink-plum/60 border border-gold-hairline/20 backdrop-blur-xs">
+        <div className="absolute bottom-2.5 right-3 px-2 py-0.5 rounded bg-ivory/80 text-[10px] font-sans text-warm-bronze/70 border border-gold-hairline/20 backdrop-blur-xs">
           Nagpur, Maharashtra
         </div>
       </div>
@@ -67,10 +67,10 @@ export default function VenueCard({ venue }) {
             <span className="text-[10px] font-sans tracking-[0.2em] uppercase text-terracotta-muted font-semibold block mb-1">
               {venue.eventLabel}
             </span>
-            <h4 className="font-serif text-2xl sm:text-3xl text-ink-plum">
+            <h4 className="font-serif text-2xl sm:text-3xl text-warm-espresso">
               {venue.name}
             </h4>
-            <p className="font-sans text-xs sm:text-sm text-ink-plum/70 mt-1 select-all">
+            <p className="font-sans text-xs sm:text-sm text-warm-bronze/80 mt-1 select-all">
               {venue.address}
             </p>
           </div>
@@ -93,7 +93,7 @@ export default function VenueCard({ venue }) {
             href={mapUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="h-11 flex items-center justify-center gap-2 px-3 rounded-xl bg-ink-plum text-ivory text-xs sm:text-sm font-medium tracking-wide shadow-md hover:bg-ink-light active:scale-95 transition-all"
+            className="h-11 flex items-center justify-center gap-2 px-3 rounded-xl bg-warm-espresso text-warm-cream text-xs sm:text-sm font-medium tracking-wide shadow-md hover:bg-warm-dark active:scale-95 transition-all"
           >
             <Navigation className="w-4 h-4 text-gold-hairline" />
             <span>Open in Maps</span>
@@ -103,8 +103,8 @@ export default function VenueCard({ venue }) {
             onClick={handleCopy}
             className={`h-11 px-3 rounded-xl border text-xs sm:text-sm font-medium flex items-center justify-center gap-1.5 transition-colors active:scale-95 cursor-pointer ${
               copied
-                ? 'border-gold-hairline/60 bg-gold-hairline/15 text-ink-plum font-semibold'
-                : 'border-gold-hairline/40 text-ink-plum hover:bg-gold-hairline/10'
+                ? 'border-gold-hairline/60 bg-gold-hairline/15 text-warm-espresso font-semibold'
+                : 'border-gold-hairline/40 text-warm-espresso hover:bg-gold-hairline/10'
             }`}
           >
             {copied ? (
@@ -114,7 +114,7 @@ export default function VenueCard({ venue }) {
               </>
             ) : (
               <>
-                <Share2 className="w-4 h-4 text-terracotta" />
+                <Share2 className="w-4 h-4 text-warm-bronze" />
                 <span>Copy Address</span>
               </>
             )}

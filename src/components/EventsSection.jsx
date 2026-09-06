@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import EventCard from './EventCard';
 import InteractiveTimeline from './InteractiveTimeline';
 import { EVENTS_DATA, downloadCalendarEvent } from '../utils/calendar';
@@ -12,24 +13,41 @@ export default function EventsSection({ activeStage, onOpenQr }) {
     }
   };
 
+  const cardVariants = {
+    hidden: { opacity: 0.45, y: 40, scale: 0.96, rotateX: 4 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1, 
+      rotateX: 0,
+      transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } 
+    }
+  };
+
   return (
     <section 
       id="events" 
-      className="py-14 px-4 sm:px-6 max-w-xl mx-auto space-y-12"
+      className="py-16 px-4 sm:px-6 max-w-xl mx-auto space-y-14"
       aria-label="Wedding Celebrations Schedule"
     >
-      {/* Section Header */}
-      <div className="text-center space-y-2">
+      {/* Section Header with 3D Depth Shimmer */}
+      <motion.div 
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 0.7 }}
+        className="text-center space-y-2.5"
+      >
         <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-terracotta-dark font-semibold">
           The Wedding Itinerary
         </span>
-        <h2 className="font-serif text-4xl sm:text-5xl text-ink-plum tracking-tight font-light">
+        <h2 className="font-serif text-4xl sm:text-5xl text-warm-espresso tracking-tight font-light">
           Celebration Timeline
         </h2>
-        <p className="font-sans text-xs sm:text-sm text-ink-plum/70 max-w-sm mx-auto">
-          Three celebrations of love and togetherness over two memorable days in Nagpur.
+        <p className="font-sans text-xs sm:text-sm text-warm-bronze/80 max-w-sm mx-auto">
+          Three sacred celebrations of love and togetherness over two memorable days in Nagpur.
         </p>
-      </div>
+      </motion.div>
 
       {/* Interactive Quick Time Scrubber */}
       <InteractiveTimeline 
@@ -37,79 +55,112 @@ export default function EventsSection({ activeStage, onOpenQr }) {
         onSelectEvent={scrollToEvent} 
       />
 
-      {/* EVENT 1: NIKAH */}
-      <div className="relative pt-2">
-        <div className="flex items-center gap-2 mb-3 text-terracotta-dark text-xs font-sans font-medium">
-          <Moon className="w-3.5 h-3.5" />
-          <span>Twilight Gathering · Friday Evening</span>
+      {/* 3D PHASE 1: NIKAH */}
+      <motion.div 
+        variants={cardVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.25 }}
+        className="relative pt-2"
+      >
+        <div className="flex items-center justify-between mb-3 text-terracotta-dark text-xs font-sans font-medium px-1">
+          <div className="flex items-center gap-2">
+            <Moon className="w-3.5 h-3.5" />
+            <span>Phase I · Twilight Gathering · Friday Evening</span>
+          </div>
+          <span className="text-[11px] font-serif italic text-warm-bronze/70">18 Dec</span>
         </div>
         <EventCard 
           event={EVENTS_DATA[0]} 
           theme="nikah" 
           onOpenQr={onOpenQr} 
         />
-      </div>
+      </motion.div>
 
-      {/* Transitional Light Beam: Friday Evening to Saturday Midday */}
-      <div className="flex flex-col items-center justify-center py-2 text-gold-hairline/70 space-y-2">
-        <span className="h-10 w-px bg-gradient-to-b from-rose-dust to-sage"></span>
-        <span className="text-xs font-sans tracking-[0.2em] uppercase text-sage-deep/80 font-medium">
-          Next Day
+      {/* Transitional Dynamic Light Beam 1 */}
+      <div className="flex flex-col items-center justify-center py-4 text-gold-hairline/70 space-y-2">
+        <span className="h-12 w-0.5 bg-gradient-to-b from-rose-dust via-gold-bright/60 to-sage animate-pulse"></span>
+        <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-warm-bronze/70 font-semibold">
+          ✦ Daybreak ✦
         </span>
-        <span className="h-10 w-px bg-gradient-to-b from-sage to-transparent"></span>
+        <span className="h-12 w-0.5 bg-gradient-to-b from-sage via-gold-bright/60 to-transparent"></span>
       </div>
 
-      {/* EVENT 2: CELEBRATION OF LOVE */}
-      <div className="relative">
-        <div className="flex items-center gap-2 mb-3 text-sage-deep text-xs font-sans font-medium">
-          <Sun className="w-3.5 h-3.5" />
-          <span>Midday Sunlit Poolside · Saturday Afternoon</span>
+      {/* 3D PHASE 2: CELEBRATION OF LOVE */}
+      <motion.div 
+        variants={cardVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.25 }}
+        className="relative"
+      >
+        <div className="flex items-center justify-between mb-3 text-sage-deep text-xs font-sans font-medium px-1">
+          <div className="flex items-center gap-2">
+            <Sun className="w-3.5 h-3.5" />
+            <span>Phase II · Sunlit Poolside · Saturday Afternoon</span>
+          </div>
+          <span className="text-[11px] font-serif italic text-warm-bronze/70">19 Dec</span>
         </div>
         <EventCard 
           event={EVENTS_DATA[1]} 
           theme="celebration" 
           onOpenQr={onOpenQr} 
         />
-      </div>
+      </motion.div>
 
-      {/* Transitional Light Beam: Midday into Grand Evening */}
-      <div className="flex flex-col items-center justify-center py-2 text-gold-hairline/70 space-y-2">
-        <span className="h-10 w-px bg-gradient-to-b from-sage to-gold-hairline"></span>
-        <span className="text-xs font-sans tracking-[0.2em] uppercase text-gold-bright/80 font-medium">
-          Nightfall
+      {/* Transitional Dynamic Light Beam 2 */}
+      <div className="flex flex-col items-center justify-center py-4 text-gold-hairline/70 space-y-2">
+        <span className="h-12 w-0.5 bg-gradient-to-b from-sage via-gold-bright/70 to-gold-hairline animate-pulse"></span>
+        <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-gold-bright/90 font-semibold">
+          ✦ Sunset to Starlight ✦
         </span>
-        <span className="h-10 w-px bg-gradient-to-b from-gold-hairline to-ink-plum"></span>
+        <span className="h-12 w-0.5 bg-gradient-to-b from-gold-hairline via-gold-bright/60 to-[#221A15]"></span>
       </div>
 
-      {/* EVENT 3: RECEPTION */}
-      <div className="relative">
-        <div className="flex items-center gap-2 mb-3 text-gold-bright text-xs font-sans font-medium">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Evening Grandeur · Saturday Night</span>
+      {/* 3D PHASE 3: RECEPTION */}
+      <motion.div 
+        variants={cardVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.25 }}
+        className="relative"
+      >
+        <div className="flex items-center justify-between mb-3 text-gold-bright text-xs font-sans font-medium px-1">
+          <div className="flex items-center gap-2">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Phase III · Starlit Grandeur · Saturday Night</span>
+          </div>
+          <span className="text-[11px] font-serif italic text-gold-pale/80">19 Dec</span>
         </div>
         <EventCard 
           event={EVENTS_DATA[2]} 
           theme="reception" 
           onOpenQr={onOpenQr} 
         />
-      </div>
+      </motion.div>
 
-      {/* Complete Weekend Calendar Action - No .ics mention */}
-      <div className="p-6 sm:p-7 rounded-3xl bg-ivory-soft/85 border border-gold-hairline/35 text-center shadow-soft-float space-y-3">
-        <p className="font-serif text-lg sm:text-xl text-ink-plum font-semibold">
+      {/* Complete Weekend Calendar Action */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+        className="p-7 sm:p-8 rounded-3xl bg-white/90 border border-gold-hairline/40 text-center shadow-xl backdrop-blur-md space-y-3.5"
+      >
+        <p className="font-serif text-xl sm:text-2xl text-warm-espresso font-normal">
           Keep the celebrations in your calendar
         </p>
-        <p className="font-sans text-xs text-ink-plum/70 max-w-sm mx-auto">
-          Add all three celebrations with reminders directly to your phone calendar.
+        <p className="font-sans text-xs text-warm-bronze/80 max-w-sm mx-auto">
+          Add all three celebrations with alerts and navigation details directly to your phone.
         </p>
         <button
           onClick={() => downloadCalendarEvent(EVENTS_DATA)}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink-plum text-ivory text-xs sm:text-sm font-medium shadow-md hover:bg-ink-light active:scale-95 transition-all cursor-pointer"
+          className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-warm-espresso text-gold-bright text-xs sm:text-sm font-medium shadow-lg hover:bg-warm-dark active:scale-95 transition-all cursor-pointer border border-gold-hairline/30"
         >
           <Calendar className="w-4 h-4 text-gold-hairline" />
           <span>Add All Celebrations to Calendar</span>
         </button>
-      </div>
+      </motion.div>
 
     </section>
   );

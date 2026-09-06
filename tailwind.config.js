@@ -44,11 +44,27 @@ export default {
           hairline: '#C9A66B',
           bright: '#DFC085',
           pale: '#F0E4CE',
+          burnished: '#B88B4A',
+          rich: '#A07432',
+        },
+        warm: {
+          espresso: '#433226',
+          bronze: '#7A583A',
+          umber: '#5C4331',
+          cream: '#FBF7F0',
+          dark: '#2E2219',
+        },
+        floral: {
+          sage: '#687B60',
+          olive: '#7A8C70',
+          blush: '#E5BFB5',
         }
       },
       fontFamily: {
         serif: ['Cormorant Garamond', 'Fraunces', 'serif'],
         display: ['Cormorant Garamond', 'serif'],
+        calligraphy: ['"Pinyon Script"', '"Alex Brush"', '"Great Vibes"', 'cursive'],
+        script: ['"Alex Brush"', '"Pinyon Script"', 'cursive'],
         body: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
         arabic: ['Amiri', 'Noto Naskh Arabic', 'serif'],
       },

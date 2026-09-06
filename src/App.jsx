@@ -10,6 +10,9 @@ import HeaderNav from './components/HeaderNav';
 import AudioPlayer from './components/AudioPlayer';
 import RoyalEnvelopeIntro from './components/RoyalEnvelopeIntro';
 import AmbientLightCanvas from './components/AmbientLightCanvas';
+import MinimalFloralBackground from './components/MinimalFloralBackground';
+import FlowerRainfall from './components/FlowerRainfall';
+import Spatial3DMotionCanvas from './components/Spatial3DMotionCanvas';
 import KeepsakeModal from './components/KeepsakeModal';
 import QrCodeModal from './components/QrCodeModal';
 import { enterFullscreen } from './utils/fullscreen';
@@ -65,24 +68,33 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen relative overflow-hidden text-ink-plum selection:bg-rose-dust selection:text-ink-deep">
+    <div className="min-h-screen relative overflow-hidden text-warm-espresso selection:bg-rose-dust selection:text-ink-deep">
       
       {/* 1. Ceremonial Royal Wax Seal Envelope Opener */}
       <RoyalEnvelopeIntro onOpen={handleEnvelopeOpen} />
 
-      {/* 2. Buttery Smooth 5-Stage GPU Background & Ambient Golden Dust Motes */}
+      {/* 2. Delicate Minimalist Watercolor Floral Background (from client reference) */}
+      <MinimalFloralBackground lightStage={lightStage} />
+
+      {/* 3. Soft, Dignified Flower Petals Rainfall Motion Graphics Effect */}
+      <FlowerRainfall />
+
+      {/* 4. motionsites.ai Style 3D Interactive Spatial Motion Graphics (3D Rings, Prisms, Parallax) */}
+      <Spatial3DMotionCanvas />
+
+      {/* 5. Buttery Smooth 5-Stage GPU Background & Ambient Golden Dust Motes */}
       <AmbientLightCanvas lightStage={lightStage} />
 
-      {/* 3. Tactile Handmade Fine Paper Texture Overlay */}
-      <div className="fixed inset-0 pointer-events-none paper-texture opacity-35 -z-10"></div>
+      {/* 5. Tactile Handmade Fine Paper Texture Overlay */}
+      <div className="fixed inset-0 pointer-events-none paper-texture opacity-30 -z-10"></div>
 
-      {/* 4. Subtle Islamic Jali Watermark Pattern */}
-      <div className="fixed inset-0 pointer-events-none jali-watermark opacity-25 -z-10"></div>
+      {/* 6. Subtle Islamic Jali Watermark Pattern */}
+      <div className="fixed inset-0 pointer-events-none jali-watermark opacity-20 -z-10"></div>
 
-      {/* 5. Luxury Real Acoustic Strings Music Player (Sound ON by default, toggleable) */}
+      {/* 7. Luxury Sufiyana Oud Instrumental Music Player (Sound ON by default, toggleable) */}
       <AudioPlayer autoPlayTrigger={musicTrigger} />
 
-      {/* 6. Persistent Floating Jump Dock Navigation */}
+      {/* 8. Persistent Floating Jump Dock Navigation */}
       <HeaderNav activeSection={activeSection} />
 
       {/* Main Single-Page Invitation Narrative (Authentic Card Content) */}
