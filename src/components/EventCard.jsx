@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Calendar, Clock, MapPin, Navigation, Share2, Check, Download, ExternalLink, QrCode } from 'lucide-react';
 import { getGoogleCalendarUrl, downloadIcsFile } from '../utils/calendar';
 
@@ -6,6 +6,27 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
   const [showHijri, setShowHijri] = useState(true);
   const [copied, setCopied] = useState(false);
   const [calendarMenuOpen, setCalendarMenuOpen] = useState(false);
+  const [sheenPos, setSheenPos] = useState({ x: 50, y: 50 });
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const cardRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setSheenPos({ x, y });
+
+    // Subtle 3D tilt
+    const tiltX = (y - 50) * -0.05;
+    const tiltY = (x - 50) * 0.05;
+    setTilt({ x: tiltX, y: tiltY });
+  };
+
+  const handleMouseLeave = () => {
+    setSheenPos({ x: 50, y: 50 });
+    setTilt({ x: 0, y: 0 });
+  };
 
   const handleCopyAddress = (e) => {
     e.stopPropagation();
@@ -16,28 +37,42 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
     setTimeout(() => setCopied(false), 2400);
   };
 
-  // Smart Universal Link for Map Directions
   const isIOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
   const mapDirectionsUrl = isIOS ? event.appleMapsUrl : event.mapsUrl;
 
   return (
     <article 
       id={event.id}
-      className={`relative rounded-3xl p-7 sm:p-9 transition-all duration-700 backdrop-blur-sm border shadow-xl ${
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+        transition: 'transform 0.2s ease-out, box-shadow 0.4s ease'
+      }}
+      className={`relative rounded-3xl p-7 sm:p-9 backdrop-blur-sm border shadow-xl overflow-hidden ${
         theme === 'reception'
-          ? 'bg-ink-deep/95 text-ivory border-gold-hairline/40 shadow-reception-glow'
+          ? 'bg-ink-deep/95 text-ivory border-gold-hairline/50 shadow-reception-glow'
           : theme === 'celebration'
-          ? 'bg-ivory-soft/85 text-ink-plum border-sage/40 shadow-soft-float hover:border-sage'
-          : 'bg-ivory-soft/85 text-ink-plum border-rose-dust/50 shadow-soft-float hover:border-rose-dust'
+          ? 'bg-ivory-soft/90 text-ink-plum border-sage/50 shadow-soft-float hover:border-sage'
+          : 'bg-ivory-soft/90 text-ink-plum border-rose-dust/60 shadow-soft-float hover:border-rose-dust'
       }`}
     >
-      {/* Decorative Event Ordinal / Ribbon */}
-      <div className="flex items-center justify-between gap-4 mb-5">
+      {/* Specular Gold Foil Sheen Overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-40 mix-blend-overlay transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(circle at ${sheenPos.x}% ${sheenPos.y}%, rgba(201,166,107,0.35) 0%, transparent 60%)`
+        }}
+      />
+
+      {/* Ribbon and Calendar Selector */}
+      <div className="flex items-center justify-between gap-4 mb-5 relative z-10">
         <span className={`text-[10px] sm:text-xs font-sans uppercase tracking-[0.25em] font-semibold px-3.5 py-1 rounded-full border ${
           theme === 'reception'
             ? 'border-gold-hairline/40 text-gold-bright bg-gold-hairline/10'
             : theme === 'celebration'
-            ? 'border-sage text-sage-deep bg-sage-mist/50'
+            ? 'border-sage text-sage-deep bg-sage-mist/60'
             : 'border-terracotta-muted text-terracotta-dark bg-rose-dust-light/60'
         }`}>
           {theme === 'nikah' && 'Event 01 · Nikah'}
@@ -45,15 +80,15 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
           {theme === 'reception' && 'Event 03 · Reception'}
         </span>
 
-        {/* Hijri / Gregorian Calendar Toggle Pill */}
+        {/* Hijri Calendar Toggle */}
         <button
           onClick={() => setShowHijri(!showHijri)}
-          className={`text-[11px] font-sans px-2.5 py-1 rounded-full border transition-all active:scale-95 flex items-center gap-1 ${
+          className={`text-[11px] font-sans px-2.5 py-1 rounded-full border transition-all active:scale-95 flex items-center gap-1 cursor-pointer ${
             theme === 'reception'
               ? 'border-gold-hairline/30 text-gold-pale hover:bg-gold-hairline/10'
               : 'border-gold-hairline/40 text-ink-plum/70 hover:bg-gold-hairline/10 hover:text-ink-plum'
           }`}
-          title="Toggle Hijri / Gregorian Calendar view"
+          title="Toggle Hijri date"
         >
           <Calendar className="w-3 h-3 text-gold-hairline" />
           <span>{showHijri ? 'Hijri visible' : 'Show Hijri'}</span>
@@ -61,7 +96,7 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
       </div>
 
       {/* Event Title */}
-      <h3 className={`font-serif text-3xl sm:text-4xl tracking-tight mb-4 ${
+      <h3 className={`font-serif text-3xl sm:text-4xl tracking-tight mb-4 relative z-10 ${
         theme === 'reception' ? 'text-ivory' : 'text-ink-plum'
       }`}>
         {event.id === 'nikah' && 'The Nikah Ceremony'}
@@ -70,7 +105,7 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
       </h3>
 
       {/* Dates Block */}
-      <div className="mb-6 space-y-1">
+      <div className="mb-6 space-y-1 relative z-10">
         <p className={`font-serif text-xl sm:text-2xl font-medium ${
           theme === 'reception' ? 'text-gold-pale' : 'text-terracotta-dark'
         }`}>
@@ -87,7 +122,7 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
       </div>
 
       {/* Time & Program */}
-      <div className="flex items-start gap-3 mb-6">
+      <div className="flex items-start gap-3 mb-6 relative z-10">
         <Clock className={`w-5 h-5 shrink-0 mt-0.5 ${
           theme === 'reception' ? 'text-gold-bright' : 'text-terracotta'
         }`} />
@@ -98,15 +133,15 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
           <p className={`text-xs font-sans mt-0.5 ${
             theme === 'reception' ? 'text-ivory/60' : 'text-ink-plum/60'
           }`}>
-            {event.id === 'nikah' && 'Auspicious Nikah rituals followed by formal dinner'}
-            {event.id === 'celebration-of-love' && 'An afternoon of joyous togetherness & luncheon'}
-            {event.id === 'reception' && 'An evening of celebration, greetings & dinner'}
+            {event.id === 'nikah' && 'Auspicious Nikah rituals followed by dinner'}
+            {event.id === 'celebration-of-love' && '12:00 PM onwards, followed by lunch at Poolside Area'}
+            {event.id === 'reception' && '8:00 PM onwards with dinner and joyous greetings'}
           </p>
         </div>
       </div>
 
       {/* Venue Information */}
-      <div className="flex items-start gap-3 mb-8">
+      <div className="flex items-start gap-3 mb-8 relative z-10">
         <MapPin className={`w-5 h-5 shrink-0 mt-0.5 ${
           theme === 'reception' ? 'text-gold-bright' : 'text-terracotta'
         }`} />
@@ -120,12 +155,11 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
             {event.venueAddress}
           </p>
 
-          {/* Inline Copy Button */}
           <button
             onClick={handleCopyAddress}
             className={`mt-2 text-xs font-sans flex items-center gap-1.5 transition-colors cursor-pointer ${
               copied
-                ? 'text-emerald-500 font-medium'
+                ? 'text-emerald-400 font-medium'
                 : theme === 'reception'
                 ? 'text-gold-bright/90 hover:text-gold-bright'
                 : 'text-terracotta-dark hover:text-terracotta'
@@ -146,15 +180,13 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
         </div>
       </div>
 
-      {/* Action Buttons: Get Directions + Add to Calendar + Show QR */}
-      <div className="pt-4 border-t border-gold-hairline/20 flex flex-wrap gap-3 items-center">
-        
-        {/* Get Directions (Deep-link) */}
+      {/* Actions: Directions + Calendar + QR */}
+      <div className="pt-4 border-t border-gold-hairline/20 flex flex-wrap gap-3 items-center relative z-10">
         <a
           href={mapDirectionsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className={`flex-1 min-w-[140px] flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm active:scale-95 ${
+          className={`flex-1 min-w-[140px] flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm active:scale-95 cursor-pointer ${
             theme === 'reception'
               ? 'bg-gold-hairline text-ink-deep hover:bg-gold-bright'
               : 'bg-ink-plum text-ivory hover:bg-ink-light'
@@ -164,7 +196,7 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
           <span>Get Directions</span>
         </a>
 
-        {/* Add to Calendar Dropdown / Trigger */}
+        {/* Add to Calendar Menu */}
         <div className="relative">
           <button
             onClick={() => setCalendarMenuOpen(!calendarMenuOpen)}
@@ -179,7 +211,6 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
             <span>Add to Calendar</span>
           </button>
 
-          {/* Calendar popup options */}
           {calendarMenuOpen && (
             <div 
               className="absolute bottom-full mb-2 right-0 w-52 rounded-2xl bg-ivory text-ink-plum p-2 shadow-2xl border border-gold-hairline/40 z-30 animate-fade-in"
@@ -216,7 +247,7 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
           )}
         </div>
 
-        {/* QR Code trigger */}
+        {/* QR Trigger */}
         <button
           onClick={() => onOpenQr(event)}
           className={`p-3 rounded-xl border transition-colors flex items-center justify-center active:scale-95 cursor-pointer ${
@@ -229,7 +260,6 @@ export default function EventCard({ event, theme, onOpenQr, onCopyToast }) {
         >
           <QrCode className="w-4 h-4" />
         </button>
-
       </div>
     </article>
   );

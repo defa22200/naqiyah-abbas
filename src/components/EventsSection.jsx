@@ -1,18 +1,26 @@
 import React from 'react';
 import EventCard from './EventCard';
+import InteractiveTimeline from './InteractiveTimeline';
 import { EVENTS_DATA, downloadIcsFile } from '../utils/calendar';
 import { Calendar, Sun, Moon, Sparkles } from 'lucide-react';
 
-export default function EventsSection({ onOpenQr, onCopyToast }) {
+export default function EventsSection({ activeStage, onOpenQr, onCopyToast }) {
+  const scrollToEvent = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
   return (
     <section 
       id="events" 
-      className="py-16 px-4 sm:px-6 max-w-xl mx-auto space-y-16"
+      className="py-14 px-4 sm:px-6 max-w-xl mx-auto space-y-12"
       aria-label="Wedding Celebrations Schedule"
     >
       {/* Section Header */}
-      <div className="text-center space-y-3">
-        <span className="text-[11px] font-sans tracking-[0.25em] uppercase text-terracotta-muted font-medium">
+      <div className="text-center space-y-2">
+        <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-terracotta-dark font-semibold">
           The Wedding Itinerary
         </span>
         <h2 className="font-serif text-4xl sm:text-5xl text-ink-plum tracking-tight">
@@ -23,8 +31,14 @@ export default function EventsSection({ onOpenQr, onCopyToast }) {
         </p>
       </div>
 
+      {/* Interactive Quick Time Scrubber */}
+      <InteractiveTimeline 
+        activeStage={activeStage} 
+        onSelectEvent={scrollToEvent} 
+      />
+
       {/* EVENT 1: NIKAH */}
-      <div className="relative">
+      <div className="relative pt-2">
         <div className="flex items-center gap-2 mb-3 text-terracotta-dark text-xs font-sans font-medium">
           <Moon className="w-3.5 h-3.5" />
           <span>Twilight Gathering · Friday Evening</span>
@@ -84,16 +98,16 @@ export default function EventsSection({ onOpenQr, onCopyToast }) {
       </div>
 
       {/* Complete Weekend Calendar Action */}
-      <div className="p-6 rounded-2xl bg-ivory-soft/80 border border-gold-hairline/30 text-center shadow-soft-float">
-        <p className="font-serif text-lg text-ink-plum mb-2">
-          Keep the celebration in your calendar
+      <div className="p-6 sm:p-7 rounded-3xl bg-ivory-soft/85 border border-gold-hairline/35 text-center shadow-soft-float space-y-3">
+        <p className="font-serif text-lg sm:text-xl text-ink-plum font-semibold">
+          Keep the celebrations in your calendar
         </p>
-        <p className="font-sans text-xs text-ink-plum/65 mb-4 max-w-sm mx-auto">
+        <p className="font-sans text-xs text-ink-plum/70 max-w-sm mx-auto">
           Add all three events (Nikah, Poolside Luncheon &amp; Reception) directly to your mobile calendar with exact timings and venue locations.
         </p>
         <button
           onClick={() => downloadIcsFile(EVENTS_DATA)}
-          className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-ink-plum text-ivory text-xs sm:text-sm font-medium shadow-md hover:bg-ink-light active:scale-95 transition-all"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink-plum text-ivory text-xs sm:text-sm font-medium shadow-md hover:bg-ink-light active:scale-95 transition-all cursor-pointer"
         >
           <Calendar className="w-4 h-4 text-gold-hairline" />
           <span>Add Complete Weekend Itinerary (.ics)</span>

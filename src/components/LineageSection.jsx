@@ -4,57 +4,62 @@ export default function LineageSection() {
   return (
     <section 
       id="lineage" 
-      className="py-16 px-6 max-w-xl mx-auto text-center"
+      className="py-14 px-4 sm:px-6 max-w-xl mx-auto text-center"
       aria-label="Host and Family Lineage"
     >
       {/* Host Invitation Beat */}
-      <div className="mb-14 relative">
-        <span className="text-[11px] font-sans tracking-[0.25em] uppercase text-terracotta-muted block mb-4">
+      <div className="mb-12 relative p-6 sm:p-8 rounded-3xl bg-ivory-soft/80 border border-gold-hairline/35 shadow-soft-float">
+        <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-terracotta-dark font-semibold block mb-3">
           Cordial Invitation
         </span>
         
         <p className="font-serif text-lg sm:text-xl text-ink-plum/90 leading-relaxed max-w-md mx-auto">
-          <strong className="font-semibold text-ink-plum text-xl sm:text-2xl block mb-2">Mrs. Zainub</strong>
-          <span className="text-sm font-sans tracking-wide text-ink-plum/70 block mb-3">w/o Late Asgar Ali Shamim</span>
+          <strong className="font-semibold text-ink-plum text-2xl sm:text-3xl block mb-1">
+            Mrs. Zainub
+          </strong>
+          <span className="text-xs sm:text-sm font-sans tracking-wide text-ink-plum/70 block mb-3">
+            w/o Late Asgar Ali Shamim
+          </span>
           requests the pleasure of your gracious presence at the wedding celebrations of her beloved granddaughter
         </p>
       </div>
 
       {/* Decorative filigree knot */}
-      <div className="flex items-center justify-center gap-3 my-10">
-        <span className="h-px w-16 bg-gradient-to-r from-transparent to-gold-hairline/40"></span>
+      <div className="flex items-center justify-center gap-3 my-8">
+        <span className="h-px w-16 bg-gradient-to-r from-transparent to-gold-hairline/50"></span>
         <span className="text-gold-hairline text-sm">✦</span>
-        <span className="h-px w-16 bg-gradient-to-l from-transparent to-gold-hairline/40"></span>
+        <span className="h-px w-16 bg-gradient-to-l from-transparent to-gold-hairline/50"></span>
       </div>
 
-      {/* Couple Parentage / Lineage Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center pt-2">
+      {/* Couple Parentage / Lineage Cards with 'weds' in between */}
+      <div className="flex flex-col items-center gap-4 text-center">
         
         {/* Bride Lineage */}
-        <div className="p-6 rounded-2xl bg-ivory-soft/60 border border-gold-hairline/25 shadow-soft-float transition-all hover:border-gold-hairline/50">
-          <h3 className="font-serif text-2xl sm:text-3xl text-ink-plum mb-2">
+        <div className="w-full p-6 rounded-2xl bg-ivory-soft/75 border border-gold-hairline/30 shadow-soft-float">
+          <h3 className="font-serif text-3xl sm:text-4xl text-ink-plum mb-1">
             Naqiyah
           </h3>
-          <p className="text-xs font-sans uppercase tracking-widest text-terracotta-muted mb-2 font-medium">
-            Daughter of
-          </p>
-          <p className="font-serif text-base sm:text-lg text-ink-plum/85">
-            Mrs. Ashrafunnisa <br />
-            &amp; Mr. Moiz Shamim
+          <p className="font-serif italic text-sm sm:text-base text-ink-plum/80">
+            (D/o Mrs. Ashrafunnisa &amp; Mr. Moiz Shamim)
           </p>
         </div>
 
+        {/* The 'weds' ligature verbatim from card */}
+        <div className="my-1 flex items-center justify-center gap-3">
+          <span className="h-px w-12 bg-gold-hairline/40"></span>
+          <span className="font-serif italic text-2xl text-terracotta-dark font-normal px-2">
+            weds
+          </span>
+          <span className="h-px w-12 bg-gold-hairline/40"></span>
+        </div>
+
         {/* Groom Lineage */}
-        <div className="p-6 rounded-2xl bg-ivory-soft/60 border border-gold-hairline/25 shadow-soft-float transition-all hover:border-gold-hairline/50">
-          <h3 className="font-serif text-2xl sm:text-3xl text-ink-plum mb-2">
+        <div className="w-full p-6 rounded-2xl bg-ivory-soft/75 border border-gold-hairline/30 shadow-soft-float">
+          <h3 className="font-serif text-3xl sm:text-4xl text-ink-plum mb-1">
             Abbas
           </h3>
-          <p className="text-xs font-sans uppercase tracking-widest text-terracotta-muted mb-2 font-medium">
-            Son of
-          </p>
-          <p className="font-serif text-base sm:text-lg text-ink-plum/85">
-            Mrs. Tasneem <br />
-            &amp; Mr. Shabbar Mistry
+          <p className="font-serif italic text-sm sm:text-base text-ink-plum/80">
+            (S/o Mrs. Tasneem &amp; Mr. Shabbar Mistry)
           </p>
         </div>
 
