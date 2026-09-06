@@ -1,24 +1,21 @@
 import React from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 /**
- * MinimalFloralBackground — Multiphase Atmospheric Canvas (MotionSites.ai Architecture)
- * Seamlessly cross-fades between high-resolution bespoke generated watercolor environments
+ * MinimalFloralBackground — Seamless Multiphase Atmospheric Canvas (MotionSites.ai Architecture)
+ * Flawlessly cross-fades between high-resolution bespoke generated 9:16 watercolor environments
  * representing the narrative phases: Dawn Rose, Sunlit Poolside Garden, and Royal Midnight Starlight.
+ * 
+ * Specifically engineered for mobile viewports (100dvh) with zero clipping, zero white boxes,
+ * and zero jagged cutoffs.
  */
 export default function MinimalFloralBackground({ lightStage = 'dawn' }) {
-  const { scrollYProgress } = useScroll();
-
-  // Gentle organic parallax translation
-  const topGarlandY = useTransform(scrollYProgress, [0, 1], [0, -40]);
-  const bottomFloralY = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.04]);
-
   // Determine current active background image
   const getPhaseImage = () => {
     switch (lightStage) {
       case 'midday':
       case 'celebration':
+      case 'celebration-of-love':
         return '/images/bg_phase_garden.jpg';
       case 'reception':
       case 'verse':
@@ -31,90 +28,49 @@ export default function MinimalFloralBackground({ lightStage = 'dawn' }) {
   };
 
   const isDarkPhase = lightStage === 'reception' || lightStage === 'verse';
+  const activeSrc = getPhaseImage();
 
   return (
     <div 
       aria-hidden="true" 
-      className="fixed inset-0 pointer-events-none -z-10 overflow-hidden select-none transition-colors duration-1000"
+      className="fixed inset-0 w-full h-[100dvh] pointer-events-none -z-20 overflow-hidden select-none"
     >
       {/* 1. Multiphase Atmospheric Wallpaper Crossfade */}
-      <AnimatePresence mode="sync">
+      <AnimatePresence mode="popLayout">
         <motion.div 
-          key={getPhaseImage()}
+          key={activeSrc}
           initial={{ opacity: 0 }}
-          animate={{ opacity: isDarkPhase ? 0.95 : 0.85 }}
+          animate={{ opacity: isDarkPhase ? 0.96 : 0.88 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          style={{ scale: bgScale }}
-          className="absolute inset-0 bg-cover bg-center"
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0 w-full h-full"
         >
           <img 
-            src={getPhaseImage()} 
+            src={activeSrc} 
             alt="" 
-            className={`w-full h-full object-cover object-center transition-all duration-1000 ${
-              isDarkPhase ? 'brightness-105 contrast-105' : 'filter saturate-95 contrast-100'
+            className={`w-full h-full object-cover object-top sm:object-center transition-all duration-1000 ${
+              isDarkPhase ? 'brightness-105 contrast-105' : 'filter saturate-100 contrast-100'
             }`}
             loading="eager"
           />
         </motion.div>
       </AnimatePresence>
 
-      {/* 2. Top Arching Floral Garland */}
-      <motion.div 
-        style={{ y: topGarlandY }}
-        animate={{ 
-          rotate: [-0.3, 0.3, -0.3],
-          transition: { duration: 14, repeat: Infinity, ease: 'easeInOut' }
-        }}
-        className={`absolute -top-4 sm:-top-6 left-1/2 -translate-x-1/2 w-full max-w-2xl sm:max-w-3xl pointer-events-none transition-opacity duration-1000 ${
-          isDarkPhase ? 'opacity-35 mix-blend-screen' : 'opacity-85 mix-blend-multiply'
+      {/* 2. Delicate Luxury Ambient Vignette (ensures flawless card contrast on all mobile screens) */}
+      <div 
+        className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
+          isDarkPhase 
+            ? 'bg-gradient-to-b from-[#1E141C]/40 via-transparent to-[#160E15]/60' 
+            : 'bg-gradient-to-b from-[#FAF6F0]/30 via-transparent to-[#F4EDE1]/40'
         }`}
-      >
-        <img 
-          src="/images/floral_garland_trans.png" 
-          alt="" 
-          className="w-full h-auto object-contain mx-auto filter saturate-90 contrast-95"
-          loading="eager"
-        />
-      </motion.div>
+      />
 
-      {/* 3. Bottom Right Floral Corner Accent */}
-      <motion.div 
-        style={{ y: bottomFloralY }}
-        animate={{ 
-          rotate: [0.4, -0.4, 0.4],
-          transition: { duration: 16, repeat: Infinity, ease: 'easeInOut' }
-        }}
-        className={`absolute -bottom-8 -right-8 sm:-bottom-10 sm:-right-10 w-64 sm:w-80 pointer-events-none transition-opacity duration-1000 ${
-          isDarkPhase ? 'opacity-25 mix-blend-screen' : 'opacity-70 mix-blend-multiply'
-        }`}
-      >
-        <img 
-          src="/images/floral_corner_trans.png" 
-          alt="" 
-          className="w-full h-auto object-contain filter saturate-90 contrast-95"
-          loading="lazy"
-        />
-      </motion.div>
-
-      {/* 4. Bottom Left Floral Corner Accent (Mirrored) */}
-      <motion.div 
-        style={{ y: bottomFloralY }}
-        animate={{ 
-          rotate: [-0.4, 0.4, -0.4],
-          transition: { duration: 17, repeat: Infinity, ease: 'easeInOut' }
-        }}
-        className={`absolute -bottom-8 -left-8 sm:-bottom-10 sm:-left-10 w-64 sm:w-80 -scale-x-100 pointer-events-none transition-opacity duration-1000 ${
-          isDarkPhase ? 'opacity-25 mix-blend-screen' : 'opacity-60 mix-blend-multiply'
-        }`}
-      >
-        <img 
-          src="/images/floral_corner_trans.png" 
-          alt="" 
-          className="w-full h-auto object-contain filter saturate-85 contrast-95"
-          loading="lazy"
-        />
-      </motion.div>
+      {/* 3. Preload all phase wallpapers for instantaneous zero-latency transitions */}
+      <div className="hidden" aria-hidden="true">
+        <img src="/images/bg_phase_dawn.jpg" alt="" />
+        <img src="/images/bg_phase_garden.jpg" alt="" />
+        <img src="/images/bg_phase_midnight.jpg" alt="" />
+      </div>
     </div>
   );
 }

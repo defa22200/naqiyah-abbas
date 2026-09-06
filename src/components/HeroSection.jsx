@@ -33,7 +33,7 @@ export default function HeroSection({ onOpenKeepsake }) {
           {/* Subtle warm halo */}
           <div className="absolute inset-0 bg-gold-hairline/25 rounded-full blur-xl scale-75 animate-pulse"></div>
           <img 
-            src="/images/na_monogram.png" 
+            src="/images/na_monogram_luxury.png" 
             alt="Naqiyah & Abbas Monogram"
             className="w-full h-full object-contain filter drop-shadow-[0_8px_20px_rgba(201,166,107,0.35)] transition-transform duration-300"
           />
@@ -48,21 +48,21 @@ export default function HeroSection({ onOpenKeepsake }) {
         className="w-full max-w-lg mx-auto flex flex-col items-center justify-center"
       >
         {/* Bride Name: Naqiyah */}
-        <h1 className="font-calligraphy italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-warm-espresso font-normal select-none leading-[1.1] drop-shadow-sm">
+        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-warm-espresso font-normal select-none leading-[1.1] drop-shadow-sm">
           Naqiyah
         </h1>
 
         {/* Minimalist, exquisite calligraphic gold ampersand */}
         <div className="my-1 sm:my-2 flex items-center justify-center gap-3">
           <span className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent via-gold-hairline/60 to-gold-hairline"></span>
-          <span className="font-calligraphy italic text-3xl sm:text-4xl text-gold-burnished font-normal px-2">
+          <span className="font-calligraphy not-italic text-4xl sm:text-5xl text-gold-burnished font-normal px-2">
             &amp;
           </span>
           <span className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent via-gold-hairline/60 to-gold-hairline"></span>
         </div>
 
         {/* Groom Name: Abbas */}
-        <h1 className="font-calligraphy italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-warm-espresso font-normal select-none leading-[1.1] drop-shadow-sm">
+        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-warm-espresso font-normal select-none leading-[1.1] drop-shadow-sm">
           Abbas
         </h1>
       </motion.div>

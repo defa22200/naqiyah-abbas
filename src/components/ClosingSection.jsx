@@ -34,7 +34,7 @@ export default function ClosingSection() {
         </p>
         <div className="flex items-center justify-center gap-2 pt-2 text-gold-hairline">
           <span className="text-xs">✦</span>
-          <span className="font-calligraphy italic text-2xl text-gold-burnished px-1">Naqiyah &amp; Abbas</span>
+          <span className="font-calligraphy not-italic text-3xl text-gold-burnished px-1">Naqiyah &amp; Abbas</span>
           <span className="text-xs">✦</span>
         </div>
       </div>

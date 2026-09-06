@@ -99,7 +99,7 @@ export default function KeepsakeModal({ isOpen, onClose }) {
         {/* Monogram */}
         <div className="my-2 flex justify-center">
           <img 
-            src="/images/na_monogram.png" 
+            src="/images/na_monogram_luxury.png" 
             alt="Naqiyah & Abbas Monogram" 
             className="w-16 h-14 object-contain filter drop-shadow-sm"
           />
@@ -107,7 +107,7 @@ export default function KeepsakeModal({ isOpen, onClose }) {
 
         {/* Couple Names in Calligraphy Italic Script */}
         <div className="space-y-0.5 my-2">
-          <h2 className="font-calligraphy italic text-4xl sm:text-5xl text-warm-espresso font-normal leading-tight">
+          <h2 className="font-calligraphy not-italic text-5xl sm:text-6xl text-warm-espresso font-normal leading-tight">
             Naqiyah &amp; Abbas
           </h2>
           <p className="text-[10px] sm:text-xs font-sans tracking-widest uppercase text-warm-bronze font-medium">

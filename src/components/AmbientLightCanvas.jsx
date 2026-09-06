@@ -66,7 +66,7 @@ export default function AmbientLightCanvas({ lightStage }) {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none -z-20 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none -z-30 overflow-hidden">
       {/* 1. Dawn Ivory & Soft Blush */}
       <div 
         className="absolute inset-0 transition-opacity duration-1800 ease-out"

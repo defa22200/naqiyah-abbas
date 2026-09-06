@@ -49,7 +49,7 @@ export default function LineageSection() {
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           className="w-full p-6 sm:p-7 rounded-2xl bg-white/90 border border-gold-hairline/40 shadow-lg backdrop-blur-md"
         >
-          <h3 className="font-calligraphy italic text-4xl sm:text-5xl text-warm-espresso mb-1 font-normal">
+          <h3 className="font-calligraphy not-italic text-5xl sm:text-6xl text-warm-espresso mb-1 font-normal">
             Naqiyah
           </h3>
           <p className="font-serif italic text-sm sm:text-base text-warm-bronze/90">
@@ -60,7 +60,7 @@ export default function LineageSection() {
         {/* The 'weds' ligature verbatim from card */}
         <div className="my-1 flex items-center justify-center gap-3">
           <span className="h-px w-12 bg-gold-hairline/40"></span>
-          <span className="font-calligraphy italic text-3xl text-gold-burnished font-normal px-2">
+          <span className="font-calligraphy not-italic text-4xl text-gold-burnished font-normal px-2">
             weds
           </span>
           <span className="h-px w-12 bg-gold-hairline/40"></span>
@@ -74,7 +74,7 @@ export default function LineageSection() {
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           className="w-full p-6 sm:p-7 rounded-2xl bg-white/90 border border-gold-hairline/40 shadow-lg backdrop-blur-md"
         >
-          <h3 className="font-calligraphy italic text-4xl sm:text-5xl text-warm-espresso mb-1 font-normal">
+          <h3 className="font-calligraphy not-italic text-5xl sm:text-6xl text-warm-espresso mb-1 font-normal">
             Abbas
           </h3>
           <p className="font-serif italic text-sm sm:text-base text-warm-bronze/90">

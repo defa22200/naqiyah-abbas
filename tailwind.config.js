@@ -63,8 +63,8 @@ export default {
       fontFamily: {
         serif: ['Cormorant Garamond', 'Fraunces', 'serif'],
         display: ['Cormorant Garamond', 'serif'],
-        calligraphy: ['"Pinyon Script"', '"Alex Brush"', '"Great Vibes"', 'cursive'],
-        script: ['"Alex Brush"', '"Pinyon Script"', 'cursive'],
+        calligraphy: ['"Allura"', '"Alex Brush"', '"Great Vibes"', 'cursive'],
+        script: ['"Alex Brush"', '"Allura"', '"Great Vibes"', 'cursive'],
         body: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
         arabic: ['Amiri', 'Noto Naskh Arabic', 'serif'],
       },
