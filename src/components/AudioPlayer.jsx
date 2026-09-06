@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Volume2, VolumeX, Music, Maximize, Minimize } from 'lucide-react';
-import { enterFullscreen, toggleFullscreen, isFullscreenActive } from '../utils/fullscreen';
+import { toggleFullscreen, isFullscreenActive } from '../utils/fullscreen';
 
 export default function AudioPlayer({ autoPlayTrigger }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -31,13 +31,12 @@ export default function AudioPlayer({ autoPlayTrigger }) {
 
     audio.volume = 0.5;
 
-    const startAudioAndFullscreen = () => {
-      enterFullscreen();
+    const startAudioOnInteraction = () => {
       audio.play().then(() => {
         setIsPlaying(true);
       }).catch(() => {});
-      window.removeEventListener('click', startAudioAndFullscreen);
-      window.removeEventListener('touchstart', startAudioAndFullscreen);
+      window.removeEventListener('click', startAudioOnInteraction);
+      window.removeEventListener('touchstart', startAudioOnInteraction);
     };
 
     // Try playing immediately on mount
@@ -45,13 +44,13 @@ export default function AudioPlayer({ autoPlayTrigger }) {
       setIsPlaying(true);
     }).catch(() => {});
 
-    // First touch or click enters fullscreen and starts music
-    window.addEventListener('click', startAudioAndFullscreen, { once: true });
-    window.addEventListener('touchstart', startAudioAndFullscreen, { once: true });
+    // First touch or click starts music (never forces fullscreen)
+    window.addEventListener('click', startAudioOnInteraction, { once: true });
+    window.addEventListener('touchstart', startAudioOnInteraction, { once: true });
 
     return () => {
-      window.removeEventListener('click', startAudioAndFullscreen);
-      window.removeEventListener('touchstart', startAudioAndFullscreen);
+      window.removeEventListener('click', startAudioOnInteraction);
+      window.removeEventListener('touchstart', startAudioOnInteraction);
     };
   }, []);
 
