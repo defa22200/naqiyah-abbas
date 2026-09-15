@@ -90,8 +90,8 @@ export default function AudioPlayer({ autoPlayTrigger }) {
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
       >
-        <source src="/audio/sufi_oud_long.m4a" type="audio/mp4" />
-        <source src="/audio/sufi_oud_long.mp3" type="audio/mpeg" />
+        <source src="/audio/tere_bina_flute.m4a" type="audio/mp4" />
+        <source src="/audio/tere_bina_flute.mp3" type="audio/mpeg" />
       </audio>
 
       {/* Fullscreen Button */}
@@ -118,7 +118,7 @@ export default function AudioPlayer({ autoPlayTrigger }) {
         </span>
       </button>
 
-      {/* Luxury Music Control Button (Sufiyana Oud) */}
+      {/* Luxury Music Control Button (Tere Bina Flute Instrumental) */}
       <button
         onClick={toggleSound}
         className={`group relative flex items-center gap-2 py-2 px-3 sm:px-3.5 rounded-full border transition-all duration-300 backdrop-blur-md shadow-md active:scale-95 cursor-pointer ${
@@ -126,8 +126,8 @@ export default function AudioPlayer({ autoPlayTrigger }) {
             ? 'bg-warm-espresso/95 text-gold-bright border-gold-hairline shadow-gold-hairline/20 ring-1 ring-gold-hairline/40' 
             : 'bg-warm-cream/95 text-warm-espresso border-gold-hairline/50 hover:border-gold-hairline hover:bg-white'
         }`}
-        aria-label={isPlaying ? "Mute Sufiyana music" : "Play Sufiyana music"}
-        title={isPlaying ? "Mute Sufiyana music" : "Play Sufiyana music"}
+        aria-label={isPlaying ? "Mute music" : "Play music"}
+        title={isPlaying ? "Mute music" : "Play music"}
       >
         {isPlaying ? (
           <>
