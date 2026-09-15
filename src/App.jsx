@@ -24,8 +24,8 @@ export default function App() {
   const [selectedQrEvent, setSelectedQrEvent] = useState(null);
   const [musicTrigger, setMusicTrigger] = useState(false);
 
-  // Trigger background music exactly when seal is broken
-  const handleSealBreak = () => {
+  // Trigger background music exactly when intermediate card is shown
+  const handleCardShow = () => {
     setMusicTrigger(true);
   };
 
@@ -72,7 +72,7 @@ export default function App() {
       {!isCeremonyDone && (
         <EnvelopeCeremony 
           onComplete={handleCeremonyComplete} 
-          onSealBreak={handleSealBreak}
+          onCardShow={handleCardShow}
         />
       )}
 

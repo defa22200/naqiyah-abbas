@@ -49,11 +49,11 @@ function playCrackSound() {
  * - Full-proportioned royal card with 100% visible Bismillah, Dua, and Allura calligraphy names.
  * - Tap anywhere during animation to fast-forward into the invitation immediately.
  */
-export default function EnvelopeCeremony({ onComplete, onSealBreak }) {
+export default function EnvelopeCeremony({ onComplete, onCardShow }) {
   const [phase, setPhase] = useState('sealed');
   const [isBurstActive, setIsBurstActive] = useState(false);
 
-  // Lock body scroll during envelope ceremony
+  // Prevent background scrolling while ceremony overlay is active
   useEffect(() => {
     if (phase !== 'done') {
       document.body.style.overflow = 'hidden';
@@ -78,13 +78,11 @@ export default function EnvelopeCeremony({ onComplete, onSealBreak }) {
       try { navigator.vibrate([15, 25, 15]); } catch (err) {}
     }
 
-    // Start background music right at the point where seal is broken!
+    // Silently prime the audio element within the direct user gesture stack
+    // so mobile Safari/Chrome permanently unlock audio for the session
     try {
-      window.dispatchEvent(new CustomEvent('wedding:seal-broken'));
+      window.dispatchEvent(new CustomEvent('wedding:prime-audio'));
     } catch (err) {}
-    if (onSealBreak) {
-      onSealBreak();
-    }
 
     // Step 1: Cracking (0ms) - Wax fracture lines glow & gold burst particles erupt
     setPhase('cracking');
@@ -95,9 +93,16 @@ export default function EnvelopeCeremony({ onComplete, onSealBreak }) {
       setPhase('opening');
     }, 750);
 
-    // Step 3: Card emerges and rises majestically into full view (1650ms - 900ms after flap starts opening)
+    // Step 3: Card emerges and rises majestically into full view (1650ms)
+    // *** Background music begins right here when the intermediate card is shown ***
     const timerRise = setTimeout(() => {
       setPhase('rising');
+      try {
+        window.dispatchEvent(new CustomEvent('wedding:card-shown'));
+      } catch (err) {}
+      if (onCardShow) {
+        onCardShow();
+      }
     }, 1650);
 
     // Step 4: Card stays serenely displayed for comfortable reading (~4.85 seconds)
@@ -123,6 +128,12 @@ export default function EnvelopeCeremony({ onComplete, onSealBreak }) {
   // Instant fast-forward if user taps anywhere during presentation
   const handleFastForward = () => {
     enterFullscreen();
+    try {
+      window.dispatchEvent(new CustomEvent('wedding:card-shown'));
+    } catch (err) {}
+    if (onCardShow) {
+      onCardShow();
+    }
     if (phase === 'rising') {
       setPhase('revealing');
       setTimeout(() => {

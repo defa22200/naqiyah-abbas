@@ -57,12 +57,25 @@ export default function AudioPlayer({ autoPlayTrigger }) {
     }, stepTime);
   };
 
-  // Start playback strictly when wax seal is broken
+  // Prime audio on gesture and start playback strictly when intermediate card is shown
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    const handleSealBreak = () => {
+    // 1. Prime audio on seal tap (within user gesture stack so mobile Safari/Chrome permanently unlocks audio)
+    const handlePrimeAudio = () => {
+      audio.volume = 0;
+      const p = audio.play();
+      if (p && p.then) {
+        p.then(() => {
+          audio.pause();
+          audio.currentTime = 0;
+        }).catch(() => {});
+      }
+    };
+
+    // 2. Play music strictly when intermediate card is presented
+    const handleCardShown = () => {
       if (audio.paused) {
         audio.currentTime = 0;
         audio.volume = 0;
@@ -70,14 +83,16 @@ export default function AudioPlayer({ autoPlayTrigger }) {
           setIsPlaying(true);
           fadeAudioIn(audio, 0.5, 1800);
         }).catch((err) => {
-          console.warn('Audio playback waiting for gesture:', err);
+          console.warn('Audio playback error on card reveal:', err);
         });
       }
     };
 
-    window.addEventListener('wedding:seal-broken', handleSealBreak);
+    window.addEventListener('wedding:prime-audio', handlePrimeAudio);
+    window.addEventListener('wedding:card-shown', handleCardShown);
     return () => {
-      window.removeEventListener('wedding:seal-broken', handleSealBreak);
+      window.removeEventListener('wedding:prime-audio', handlePrimeAudio);
+      window.removeEventListener('wedding:card-shown', handleCardShown);
     };
   }, []);
 
