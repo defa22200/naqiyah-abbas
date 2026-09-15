@@ -110,7 +110,13 @@ export default function KeepsakeModal({ isOpen, onClose }) {
           <h2 className="font-calligraphy not-italic text-5xl sm:text-6xl text-ink-deep font-normal leading-tight">
             Naqiyah &amp; Abbas
           </h2>
-          <p className="text-[10px] sm:text-xs font-sans tracking-widest uppercase text-ink-deep/90 font-semibold leading-relaxed text-balance">
+          <p 
+            className="font-sans uppercase text-ink-deep/90 font-semibold whitespace-nowrap px-2"
+            style={{
+              fontSize: 'clamp(8px, 2.25vw, 11px)',
+              letterSpacing: 'clamp(0.06em, 0.3vw, 0.16em)',
+            }}
+          >
             Two families · Two hearts · One beautiful beginning
           </p>
         </div>

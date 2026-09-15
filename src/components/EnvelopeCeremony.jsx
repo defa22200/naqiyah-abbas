@@ -168,7 +168,7 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
       {/* 3. The 3D Physical Royal Envelope & Card Container (Zero-reflow fixed geometry) */}
       <div 
         style={{ perspective: 1400 }}
-        className="relative w-full max-w-[350px] sm:max-w-[420px] h-[330px] sm:h-[370px] flex items-center justify-center z-10"
+        className="relative w-full max-w-[360px] sm:max-w-[430px] h-[340px] sm:h-[380px] flex items-center justify-center z-10"
       >
         {/* ============================================================
             LAYER 1: The Royal Invitation Card
@@ -178,20 +178,20 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
         <div
           style={{
             transform: phase === 'rising'
-              ? 'translate3d(0, -6px, 35px) scale(1.02)'
+              ? 'translate3d(0, 8px, 35px) scale(1.0)'
               : phase === 'revealing'
-              ? 'translate3d(0, -18px, 50px) scale(1.05)'
+              ? 'translate3d(0, -16px, 50px) scale(1.04)'
               : phase === 'opening'
-              ? 'translate3d(0, 12px, 12px) scale(0.96)'
-              : 'translate3d(0, 22px, 0px) scale(0.92)',
+              ? 'translate3d(0, 20px, 12px) scale(0.96)'
+              : 'translate3d(0, 28px, 0px) scale(0.92)',
             opacity: phase === 'sealed' || phase === 'cracking' ? 0 : 1,
             transition: phase === 'rising'
               ? 'transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
               : 'transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease',
-            boxShadow: '0 25px 60px rgba(120, 85, 45, 0.28)',
+            boxShadow: '0 25px 55px rgba(120, 85, 45, 0.26)',
             zIndex: 35
           }}
-          className={`absolute w-full max-w-[340px] sm:max-w-[400px] rounded-3xl bg-gradient-to-b from-[#FFFDF9] via-[#FAF6EE] to-[#F5EEDF] border-2 border-[#CBB084]/90 p-5 sm:p-7 flex flex-col items-center justify-between text-center select-none overflow-hidden ${
+          className={`absolute w-[91%] max-w-[325px] sm:max-w-[385px] rounded-3xl bg-gradient-to-b from-[#FFFDF9] via-[#FAF6EE] to-[#F5EEDF] border-2 border-[#CBB084]/90 p-5 sm:p-7 flex flex-col items-center justify-between text-center select-none overflow-hidden ${
             phase === 'rising' ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none'
           }`}
         >
@@ -230,7 +230,7 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
               Naqiyah &amp; Abbas
             </h1>
 
-            <p className="font-serif italic text-xs sm:text-sm text-ink-deep font-bold mt-1 leading-relaxed text-balance px-1">
+            <p className="font-serif italic text-xs sm:text-sm text-ink-deep font-semibold mt-1 whitespace-nowrap px-1">
               Two families · Two hearts · One beautiful beginning
             </p>
           </div>
@@ -256,12 +256,14 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
         <div 
           onClick={phase === 'sealed' ? handleSealTap : undefined}
           style={{
-            filter: 'drop-shadow(0 20px 40px rgba(160, 130, 90, 0.25))',
-            transform: phase === 'rising' || phase === 'revealing'
-              ? 'translate3d(0, 45px, -30px) scale(0.92)'
+            filter: 'drop-shadow(0 18px 36px rgba(160, 130, 90, 0.22))',
+            transform: phase === 'rising'
+              ? 'translate3d(0, 22px, -15px) scale(0.98)'
+              : phase === 'revealing'
+              ? 'translate3d(0, 42px, -30px) scale(0.92)'
               : 'translate3d(0, 0px, 0px) scale(1)',
-            opacity: phase === 'rising' || phase === 'revealing' ? 0 : 1,
-            transition: 'transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.75s ease-out',
+            opacity: phase === 'revealing' ? 0 : 1,
+            transition: 'transform 0.95s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease-out',
             transformStyle: 'preserve-3d',
             zIndex: phase === 'rising' || phase === 'revealing' ? 10 : 25
           }}
@@ -271,12 +273,19 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
         >
           {/* 2A: Envelope Back Panel with Gold Damask Interior Lining */}
           <div className="absolute inset-0 rounded-2xl bg-[#EFE4D2] border border-[#CBB084]/60 overflow-hidden shadow-inner">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="opacity-35">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="opacity-40">
               <defs>
                 <pattern id="envelopeGoldDamask" width="36" height="36" patternUnits="userSpaceOnUse">
-                  <path d="M18 0 L36 18 L18 36 L0 18 Z" fill="none" stroke="#B89454" strokeWidth="0.75" />
-                  <circle cx="18" cy="18" r="4" fill="#D4B06A" opacity="0.6" />
-                  <path d="M9 9 L27 27 M27 9 L9 27" stroke="#D4B06A" strokeWidth="0.5" opacity="0.4" />
+                  <rect width="36" height="36" fill="#F8F3E9" />
+                  <path d="M 18,0 L 36,18 L 18,36 L 0,18 Z" fill="none" stroke="#D4B678" strokeWidth="0.6" opacity="0.65" />
+                  <path d="M 18,5 L 31,18 L 18,31 L 5,18 Z" fill="none" stroke="#C5A25D" strokeWidth="0.4" opacity="0.5" />
+                  <circle cx="18" cy="18" r="3" fill="#C5A25D" opacity="0.8" />
+                  <circle cx="18" cy="18" r="1.2" fill="#FCFAF6" />
+                  <path d="M 18,11 Q 18,18 25,18 Q 18,18 18,25 Q 18,18 11,18 Q 18,18 18,11 Z" fill="#DDBE80" opacity="0.6" />
+                  <circle cx="0" cy="0" r="1.8" fill="#C5A25D" opacity="0.45" />
+                  <circle cx="36" cy="0" r="1.8" fill="#C5A25D" opacity="0.45" />
+                  <circle cx="0" cy="36" r="1.8" fill="#C5A25D" opacity="0.45" />
+                  <circle cx="36" cy="36" r="1.8" fill="#C5A25D" opacity="0.45" />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#envelopeGoldDamask)" />
@@ -349,7 +358,7 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
                     <feGaussianBlur stdDeviation="3.5" />
                   </filter>
                 </defs>
-                <polygon points="0,0 460,0 230,148" fill="rgba(80, 50, 30, 0.3)" filter="url(#flapShadowFilter)" />
+                <path d="M 0,0 L 0,6 Q 0,16 16,24 L 212,135 Q 230,144 248,135 L 444,24 Q 460,16 460,6 L 460,0 Z" fill="rgba(80, 50, 30, 0.22)" filter="url(#flapShadowFilter)" />
               </svg>
             </div>
 
@@ -361,14 +370,14 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
             </div>
           </div>
 
-          {/* 2C: 3D Hinging Top Flap (Pure vector SVG, zero clip-path tearing, authentic 3D physical physics) */}
+          {/* 2C: 3D Hinging Top Flap (Realistic Euro-Flap Contour & Luxury Damask Liner) */}
           <div
             style={{
               transformOrigin: 'top center',
               transform: phase === 'sealed' || phase === 'cracking'
                 ? 'rotateX(0deg)'
-                : 'rotateX(-168deg)',
-              transition: 'transform 0.92s cubic-bezier(0.34, 1.25, 0.64, 1)',
+                : 'rotateX(-172deg)',
+              transition: 'transform 0.95s cubic-bezier(0.34, 1.2, 0.64, 1)',
               transformStyle: 'preserve-3d',
               zIndex: 28
             }}
@@ -383,7 +392,7 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden'
               }}
-              className="absolute inset-0 w-full h-full filter drop-shadow-[0_4px_8px_rgba(120,85,45,0.2)]"
+              className="absolute inset-0 w-full h-full filter drop-shadow-[0_4px_8px_rgba(120,85,45,0.18)]"
             >
               <svg viewBox="0 0 460 145" className="w-full h-full" preserveAspectRatio="none">
                 <defs>
@@ -393,20 +402,20 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
                     <stop offset="100%" stopColor="#EFE3CB" />
                   </linearGradient>
                 </defs>
-                {/* Flap Outer Body */}
-                <polygon 
-                  points="0,0 460,0 230,145" 
+                {/* Flap Outer Body with softened Euro-curve apex */}
+                <path 
+                  d="M 0,0 L 0,6 Q 0,16 16,24 L 212,135 Q 230,144 248,135 L 444,24 Q 460,16 460,6 L 460,0 Z" 
                   fill="url(#flapFrontGrad)" 
                   stroke="#CBB084" 
                   strokeWidth="1.2" 
                 />
                 {/* Debossed Gold Inner Inset Border */}
-                <polygon 
-                  points="14,4 446,4 230,136" 
+                <path 
+                  d="M 16,4 Q 16,14 26,20 L 214,130 Q 230,137 246,130 L 434,20 Q 444,14 444,4" 
                   fill="none" 
                   stroke="#E2C792" 
                   strokeWidth="0.8" 
-                  opacity="0.8" 
+                  opacity="0.85" 
                 />
               </svg>
             </div>
@@ -418,35 +427,42 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden'
               }}
-              className="absolute inset-0 w-full h-full filter drop-shadow-[0_2px_6px_rgba(120,85,45,0.15)]"
+              className="absolute inset-0 w-full h-full filter drop-shadow-[0_2px_6px_rgba(120,85,45,0.12)]"
             >
               <svg viewBox="0 0 460 145" className="w-full h-full" preserveAspectRatio="none">
                 <defs>
                   <linearGradient id="backFlapShade" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="rgba(0,0,0,0.18)" />
-                    <stop offset="45%" stopColor="transparent" />
-                    <stop offset="100%" stopColor="rgba(0,0,0,0.06)" />
+                    <stop offset="0%" stopColor="rgba(0,0,0,0.16)" />
+                    <stop offset="40%" stopColor="transparent" />
+                    <stop offset="100%" stopColor="rgba(0,0,0,0.05)" />
                   </linearGradient>
                 </defs>
-                {/* Back Flap Base with Gold Damask Interior Lining */}
-                <polygon 
-                  points="0,0 460,0 230,145" 
-                  fill="url(#envelopeGoldDamask)" 
+                {/* Outer Flap Paper Base */}
+                <path 
+                  d="M 0,0 L 0,6 Q 0,16 16,24 L 212,135 Q 230,144 248,135 L 444,24 Q 460,16 460,6 L 460,0 Z" 
+                  fill="#F5EDE1" 
                   stroke="#CBB084" 
                   strokeWidth="1.2" 
                 />
+                {/* Authentic Die-Cut Luxury Gold Liner with Exposed Paper Border */}
+                <path 
+                  d="M 12,3 L 12,8 Q 12,17 24,23 L 212,126 Q 230,134 248,126 L 436,23 Q 448,17 448,8 L 448,3 Z" 
+                  fill="url(#envelopeGoldDamask)" 
+                  stroke="#CBB084" 
+                  strokeWidth="0.8" 
+                />
                 {/* Ambient Shading Gradient */}
-                <polygon 
-                  points="0,0 460,0 230,145" 
+                <path 
+                  d="M 0,0 L 0,6 Q 0,16 16,24 L 212,135 Q 230,144 248,135 L 444,24 Q 460,16 460,6 L 460,0 Z" 
                   fill="url(#backFlapShade)" 
                 />
-                {/* Inner Inset Border on Lining */}
-                <polygon 
-                  points="14,4 446,4 230,136" 
+                {/* Inner Debossed Accent Line on Liner */}
+                <path 
+                  d="M 18,5 L 18,10 Q 18,17 28,23 L 213,122 Q 230,129 247,122 L 432,23 Q 442,17 442,10 L 442,5" 
                   fill="none" 
-                  stroke="#E2C792" 
-                  strokeWidth="0.6" 
-                  opacity="0.6" 
+                  stroke="#DFC48C" 
+                  strokeWidth="0.7" 
+                  opacity="0.9" 
                 />
               </svg>
             </div>
@@ -481,15 +497,29 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
                 <span className="absolute -inset-4 rounded-full border-2 border-amber-300/80 animate-ping pointer-events-none" />
               )}
 
-              {/* Outer Golden Aura Glow */}
-              <div className="absolute -inset-3 rounded-full bg-amber-400/30 blur-md group-hover:bg-amber-400/50 transition-colors pointer-events-none" />
+              {/* Natural Organic Wax Smudge Shadow (Pure circular radial gradient, 100% round on iPhone Safari) */}
+              <div 
+                className="absolute inset-0 rounded-full pointer-events-none"
+                style={{
+                  background: 'radial-gradient(circle at 50% 55%, rgba(85, 15, 22, 0.45) 0%, rgba(85, 15, 22, 0.22) 48%, rgba(85, 15, 22, 0.05) 70%, transparent 85%)',
+                  filter: 'blur(10px)',
+                  WebkitFilter: 'blur(10px)',
+                  transform: 'translateY(6px) scale(1.12)',
+                }}
+              />
+              <div 
+                className="absolute inset-1.5 rounded-full pointer-events-none"
+                style={{
+                  boxShadow: '0 8px 22px rgba(65, 10, 16, 0.38), 0 2px 6px rgba(45, 5, 10, 0.25)',
+                }}
+              />
 
               {/* Photorealistic Wax Seal with Letter-Core Centered Monogram */}
               <div className="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
                 <img
                   src="/images/seal_wax.png"
                   alt="Royal Wax Seal"
-                  className="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(115,20,28,0.5)]"
+                  className="w-full h-full object-contain"
                 />
 
                 {/* Crack Fracture Lines Overlay */}

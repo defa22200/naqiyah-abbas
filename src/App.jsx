@@ -19,7 +19,12 @@ import { initSmoothScroll, getLenis } from './lib/smoothScroll';
 
 export default function App() {
   const { stage, activeSection } = useScrollStage();
-  const [isCeremonyDone, setIsCeremonyDone] = useState(false);
+  const [isCeremonyDone, setIsCeremonyDone] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return new URLSearchParams(window.location.search).has('skipCeremony');
+    }
+    return false;
+  });
   const [isKeepsakeOpen, setIsKeepsakeOpen] = useState(false);
   const [selectedQrEvent, setSelectedQrEvent] = useState(null);
   const [musicTrigger, setMusicTrigger] = useState(false);
