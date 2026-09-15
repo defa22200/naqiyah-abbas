@@ -69,14 +69,13 @@ export default function AudioPlayer({ autoPlayTrigger }) {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // Play music immediately on seal break with a short attack fade
+    // Play music immediately on seal break, no fade — full volume from the first frame
     const handleCardShown = () => {
       if (audio.paused) {
         audio.currentTime = 0;
-        audio.volume = 0.15;
+        audio.volume = 0.5;
         audio.play().then(() => {
           setIsPlaying(true);
-          fadeAudioIn(audio, 0.5, 700);
         }).catch((err) => {
           console.warn('Audio playback error on card reveal:', err);
         });
@@ -94,10 +93,9 @@ export default function AudioPlayer({ autoPlayTrigger }) {
     const audio = audioRef.current;
     if (autoPlayTrigger && audio && audio.paused) {
       audio.currentTime = 0;
-      audio.volume = 0.15;
+      audio.volume = 0.5;
       audio.play().then(() => {
         setIsPlaying(true);
-        fadeAudioIn(audio, 0.5, 700);
       }).catch(() => {});
     }
   }, [autoPlayTrigger]);
