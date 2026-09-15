@@ -24,14 +24,13 @@ export default function AudioPlayer({ autoPlayTrigger }) {
     };
   }, []);
 
-  // Helper function for silky volume fade-in
-  const fadeAudioIn = (audio, targetVol = 0.5, duration = 1800) => {
+  // Helper function for silky volume fade-in (starts from current volume, no dip to zero)
+  const fadeAudioIn = (audio, targetVol = 0.5, duration = 700) => {
     if (!audio) return;
-    audio.volume = 0;
-    const steps = 30;
+    const steps = 20;
     const stepTime = duration / steps;
-    const stepIncrement = targetVol / steps;
-    let currentVol = 0;
+    const stepIncrement = Math.max(0, (targetVol - audio.volume) / steps);
+    let currentVol = audio.volume;
     const timer = setInterval(() => {
       currentVol = Math.min(targetVol, currentVol + stepIncrement);
       audio.volume = currentVol;
@@ -57,41 +56,27 @@ export default function AudioPlayer({ autoPlayTrigger }) {
     }, stepTime);
   };
 
-  // Prime audio on gesture and start playback strictly when intermediate card is shown
+  // Start playback the instant the seal is broken (inside tap gesture)
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // 1. Prime audio on seal tap (within user gesture stack so mobile Safari/Chrome permanently unlocks audio)
-    const handlePrimeAudio = () => {
-      audio.volume = 0;
-      const p = audio.play();
-      if (p && p.then) {
-        p.then(() => {
-          audio.pause();
-          audio.currentTime = 0;
-        }).catch(() => {});
-      }
-    };
-
-    // 2. Play music strictly when intermediate card is presented
+    // Play music immediately on seal break with a short attack fade
     const handleCardShown = () => {
       if (audio.paused) {
         audio.currentTime = 0;
-        audio.volume = 0;
+        audio.volume = 0.15;
         audio.play().then(() => {
           setIsPlaying(true);
-          fadeAudioIn(audio, 0.5, 1200);
+          fadeAudioIn(audio, 0.5, 700);
         }).catch((err) => {
           console.warn('Audio playback error on card reveal:', err);
         });
       }
     };
 
-    window.addEventListener('wedding:prime-audio', handlePrimeAudio);
     window.addEventListener('wedding:card-shown', handleCardShown);
     return () => {
-      window.removeEventListener('wedding:prime-audio', handlePrimeAudio);
       window.removeEventListener('wedding:card-shown', handleCardShown);
     };
   }, []);
@@ -101,10 +86,10 @@ export default function AudioPlayer({ autoPlayTrigger }) {
     const audio = audioRef.current;
     if (autoPlayTrigger && audio && audio.paused) {
       audio.currentTime = 0;
-      audio.volume = 0;
+      audio.volume = 0.15;
       audio.play().then(() => {
         setIsPlaying(true);
-        fadeAudioIn(audio, 0.5, 1800);
+        fadeAudioIn(audio, 0.5, 700);
       }).catch(() => {});
     }
   }, [autoPlayTrigger]);
