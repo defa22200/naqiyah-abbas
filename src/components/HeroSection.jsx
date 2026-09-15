@@ -78,7 +78,7 @@ export default function HeroSection({ onOpenKeepsake }) {
         transition={{ duration: 1.0, delay: 0.4, ease: 'easeOut' }}
         className="mt-6 sm:mt-7 flex flex-col items-center gap-1.5 text-center px-1 sm:px-4 max-w-lg mx-auto w-full"
       >
-        <p className="text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs font-sans tracking-[0.12em] min-[360px]:tracking-[0.16em] sm:tracking-[0.22em] uppercase text-ink-deep font-bold whitespace-nowrap">
+        <p className="text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs font-sans tracking-[0.12em] min-[360px]:tracking-[0.16em] sm:tracking-[0.22em] uppercase text-ink-deep font-bold sm:whitespace-nowrap">
           Two families · Two hearts · One beautiful beginning
         </p>
 

@@ -24,7 +24,7 @@ export default function App() {
   const [selectedQrEvent, setSelectedQrEvent] = useState(null);
   const [musicTrigger, setMusicTrigger] = useState(false);
 
-  // Trigger background music exactly when intermediate card is shown
+  // Trigger background music the instant the seal is broken (same tap gesture)
   const handleCardShow = () => {
     setMusicTrigger(true);
   };
@@ -86,8 +86,8 @@ export default function App() {
       {/* 4. Three.js Spatial 3D Rings & Parametric Spline Ribbon (z-0, lazy fade) */}
       <Spatial3DMotionCanvas stage={stage} isReady={isCeremonyDone} />
 
-      {/* 5. Main Single-Page Scrollytelling Narrative (z-10) */}
-      <main className="relative z-10 max-w-xl mx-auto px-4 sm:px-6 pt-6 sm:pt-12">
+      {/* 5. Main Single-Page Scrollytelling Narrative (z-10, sections own their padding) */}
+      <main className="relative z-10 max-w-xl mx-auto">
         {/* 1. Opening Sacred Invocation (Bismillah & Dua Mubarak) */}
         <InvocationSection />
 

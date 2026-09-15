@@ -9,7 +9,7 @@ export default function VerseSection() {
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: false, amount: 0.3 }}
       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-      className="py-20 sm:py-28 px-6 text-center max-w-2xl mx-auto relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl my-16 backdrop-blur-xl bg-[#120B10]/85 border-2 border-[#CBB084]/80 shadow-[0_25px_60px_rgba(0,0,0,0.6)] overflow-hidden text-warm-cream"
+      className="py-20 sm:py-28 px-6 text-center max-w-xl mx-auto relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl my-16 backdrop-blur-xl bg-[#120B10]/85 border-2 border-[#CBB084]/80 shadow-[0_25px_60px_rgba(0,0,0,0.6)] overflow-hidden text-warm-cream"
       aria-label="Sacred Quranic Verse"
     >
       {/* Delicate Golden Mihrab Arch Contour Overlay */}

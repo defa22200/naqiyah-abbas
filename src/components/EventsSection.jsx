@@ -63,7 +63,7 @@ export default function EventsSection({ activeStage, onOpenQr }) {
         viewport={{ once: false, amount: 0.25 }}
         className="relative pt-2"
       >
-        <div className="flex items-center justify-between mb-3 text-ink-deep text-xs font-sans font-bold px-1">
+        <div className="flex flex-col gap-1 min-[420px]:flex-row min-[420px]:items-center min-[420px]:justify-between mb-3 text-ink-deep text-xs font-sans font-bold px-1">
           <div className="flex items-center gap-2">
             <Moon className="w-3.5 h-3.5 text-ink-deep" />
             <span>Phase I · Twilight Gathering · Friday Evening</span>
@@ -94,7 +94,7 @@ export default function EventsSection({ activeStage, onOpenQr }) {
         viewport={{ once: false, amount: 0.25 }}
         className="relative"
       >
-        <div className="flex items-center justify-between mb-3 text-ink-deep text-xs font-sans font-bold px-1">
+        <div className="flex flex-col gap-1 min-[420px]:flex-row min-[420px]:items-center min-[420px]:justify-between mb-3 text-ink-deep text-xs font-sans font-bold px-1">
           <div className="flex items-center gap-2">
             <Sun className="w-3.5 h-3.5 text-ink-deep" />
             <span>Phase II · Sunlit Poolside · Saturday Afternoon</span>
@@ -125,7 +125,7 @@ export default function EventsSection({ activeStage, onOpenQr }) {
         viewport={{ once: false, amount: 0.25 }}
         className="relative"
       >
-        <div className="flex items-center justify-between mb-3 text-gold-bright text-xs font-sans font-medium px-1">
+        <div className="flex flex-col gap-1 min-[420px]:flex-row min-[420px]:items-center min-[420px]:justify-between mb-3 text-gold-bright text-xs font-sans font-medium px-1">
           <div className="flex items-center gap-2">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Phase III · Starlit Grandeur · Saturday Night</span>

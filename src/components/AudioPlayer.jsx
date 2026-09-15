@@ -81,7 +81,7 @@ export default function AudioPlayer({ autoPlayTrigger }) {
         audio.volume = 0;
         audio.play().then(() => {
           setIsPlaying(true);
-          fadeAudioIn(audio, 0.5, 1800);
+          fadeAudioIn(audio, 0.5, 1200);
         }).catch((err) => {
           console.warn('Audio playback error on card reveal:', err);
         });

@@ -78,15 +78,17 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
       try { navigator.vibrate([15, 25, 15]); } catch (err) {}
     }
 
-    // Silently prime the audio element within the direct user gesture stack
-    // so mobile Safari/Chrome permanently unlock audio for the session
-    try {
-      window.dispatchEvent(new CustomEvent('wedding:prime-audio'));
-    } catch (err) {}
-
     // Step 1: Cracking (0ms) - Wax fracture lines glow & gold burst particles erupt
+    // *** Seal broken = fullscreen already forced above + music starts here,
+    // inside the tap gesture so mobile autoplay never blocks ***
     setPhase('cracking');
     setIsBurstActive(true);
+    try {
+      window.dispatchEvent(new CustomEvent('wedding:card-shown'));
+    } catch (err) {}
+    if (onCardShow) {
+      onCardShow();
+    }
 
     // Step 2: Flap smoothly unhinges in 3D (750ms - allows crack & burst to be fully experienced)
     const timerFlap = setTimeout(() => {
@@ -94,15 +96,8 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
     }, 750);
 
     // Step 3: Card emerges and rises majestically into full view (1650ms)
-    // *** Background music begins right here when the intermediate card is shown ***
     const timerRise = setTimeout(() => {
       setPhase('rising');
-      try {
-        window.dispatchEvent(new CustomEvent('wedding:card-shown'));
-      } catch (err) {}
-      if (onCardShow) {
-        onCardShow();
-      }
     }, 1650);
 
     // Step 4: Card stays serenely displayed for comfortable reading (~4.85 seconds)
@@ -126,7 +121,9 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
   };
 
   // Instant fast-forward if user taps anywhere during presentation
+  // (sealed taps are handled by the seal button itself, which starts music)
   const handleFastForward = () => {
+    if (phase === 'sealed') return;
     enterFullscreen();
     try {
       window.dispatchEvent(new CustomEvent('wedding:card-shown'));
@@ -516,7 +513,7 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
             transform: phase === 'sealed' ? 'translateY(0)' : 'translateY(12px)',
             pointerEvents: phase === 'sealed' ? 'auto' : 'none'
           }}
-          className="absolute -bottom-24 inset-x-0 flex flex-col items-center text-center z-20"
+          className="absolute -bottom-20 sm:-bottom-24 inset-x-0 flex flex-col items-center text-center z-20"
         >
           <button
             onClick={handleSealTap}
