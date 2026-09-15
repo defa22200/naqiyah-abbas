@@ -56,6 +56,14 @@ export default function AudioPlayer({ autoPlayTrigger }) {
     }, stepTime);
   };
 
+  // Kick off the audio fetch the moment the player mounts so the file is
+  // buffered before the seal is ever tapped (avoids stall-then-late-start)
+  useEffect(() => {
+    try {
+      audioRef.current?.load();
+    } catch (err) {}
+  }, []);
+
   // Start playback the instant the seal is broken (inside tap gesture)
   useEffect(() => {
     const audio = audioRef.current;
