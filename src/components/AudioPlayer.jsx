@@ -90,8 +90,8 @@ export default function AudioPlayer({ autoPlayTrigger }) {
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
       >
-        <source src="/audio/tere_bina_flute.m4a" type="audio/mp4" />
-        <source src="/audio/tere_bina_flute.mp3" type="audio/mpeg" />
+        <source src="/audio/invitation_bgm.m4a" type="audio/mp4" />
+        <source src="/audio/invitation_bgm.mp3" type="audio/mpeg" />
       </audio>
 
       {/* Fullscreen Button */}
