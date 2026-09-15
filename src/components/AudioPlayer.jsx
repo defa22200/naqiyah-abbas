@@ -64,40 +64,45 @@ export default function AudioPlayer({ autoPlayTrigger }) {
     } catch (err) {}
   }, []);
 
+  // Bulletproof start: never throw on unloaded metadata, never lose the
+  // tap-gesture unlock, retry once on the next tap if autoplay blocks us.
+  // No fade — full volume from the first frame.
+  const startMusicNow = () => {
+    const audio = audioRef.current;
+    if (!audio || !audio.paused) return;
+    audio.volume = 0.5;
+    try {
+      if (audio.readyState > 0) audio.currentTime = 0;
+    } catch (err) {}
+    const p = audio.play();
+    if (p && p.then) {
+      p.then(() => {
+        setIsPlaying(true);
+        try {
+          if (audio.currentTime > 0.5) audio.currentTime = 0;
+        } catch (err) {}
+      }).catch(() => {
+        const retry = () => {
+          audio.play().then(() => {
+            setIsPlaying(true);
+          }).catch(() => {});
+        };
+        window.addEventListener('pointerdown', retry, { once: true });
+      });
+    }
+  };
+
   // Start playback the instant the seal is broken (inside tap gesture)
   useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    // Play music immediately on seal break, no fade — full volume from the first frame
-    const handleCardShown = () => {
-      if (audio.paused) {
-        audio.currentTime = 0;
-        audio.volume = 0.5;
-        audio.play().then(() => {
-          setIsPlaying(true);
-        }).catch((err) => {
-          console.warn('Audio playback error on card reveal:', err);
-        });
-      }
-    };
-
-    window.addEventListener('wedding:card-shown', handleCardShown);
+    window.addEventListener('wedding:card-shown', startMusicNow);
     return () => {
-      window.removeEventListener('wedding:card-shown', handleCardShown);
+      window.removeEventListener('wedding:card-shown', startMusicNow);
     };
   }, []);
 
   // External trigger fallback (e.g. from App props)
   useEffect(() => {
-    const audio = audioRef.current;
-    if (autoPlayTrigger && audio && audio.paused) {
-      audio.currentTime = 0;
-      audio.volume = 0.5;
-      audio.play().then(() => {
-        setIsPlaying(true);
-      }).catch(() => {});
-    }
+    if (autoPlayTrigger) startMusicNow();
   }, [autoPlayTrigger]);
 
   const toggleSound = (e) => {
