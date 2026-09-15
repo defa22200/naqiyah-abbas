@@ -319,6 +319,24 @@ export default function EnvelopeCeremony({ onComplete }) {
               <line x1="440" y1="284" x2="235" y2="149" stroke="#E2C792" strokeWidth="0.8" opacity="0.85" />
             </svg>
 
+            {/* Dynamic Flap Contact Shadow on Front Pocket */}
+            <div
+              style={{
+                transition: 'opacity 0.6s ease',
+                opacity: phase === 'sealed' || phase === 'cracking' ? 1 : 0
+              }}
+              className="absolute inset-0 pointer-events-none z-22 overflow-hidden rounded-2xl"
+            >
+              <svg viewBox="0 0 460 290" className="w-full h-full" preserveAspectRatio="none">
+                <defs>
+                  <filter id="flapShadowFilter" x="-10%" y="-10%" width="120%" height="120%">
+                    <feGaussianBlur stdDeviation="3.5" />
+                  </filter>
+                </defs>
+                <polygon points="0,0 460,0 230,148" fill="rgba(80, 50, 30, 0.3)" filter="url(#flapShadowFilter)" />
+              </svg>
+            </div>
+
             {/* Subdued Elegant Watermark on Envelope Front Pocket */}
             <div className="absolute bottom-3 inset-x-0 flex flex-col items-center justify-center opacity-70 pointer-events-none">
               <span className="font-serif italic text-[10px] sm:text-xs text-warm-bronze tracking-wider">
@@ -327,42 +345,94 @@ export default function EnvelopeCeremony({ onComplete }) {
             </div>
           </div>
 
-          {/* 2C: 3D Hinging Top Flap (Triangular Closure — Meets at EXACT CENTER 50%, 50%) */}
+          {/* 2C: 3D Hinging Top Flap (Pure vector SVG, zero clip-path tearing, authentic 3D physical physics) */}
           <div
             style={{
               transformOrigin: 'top center',
               transform: phase === 'sealed' || phase === 'cracking'
                 ? 'rotateX(0deg)'
-                : 'rotateX(-170deg)',
-              transition: 'transform 0.85s cubic-bezier(0.2, 0.8, 0.25, 1)',
+                : 'rotateX(-168deg)',
+              transition: 'transform 0.92s cubic-bezier(0.34, 1.25, 0.64, 1)',
               transformStyle: 'preserve-3d',
-              zIndex: 25
+              zIndex: 28
             }}
             className="absolute top-0 left-0 right-0 h-1/2 pointer-events-none"
           >
-            {/* Front of Flap (Visible when Sealed — Tip lands at EXACT CENTER) */}
+            {/* Top Hinge Crease Line */}
+            <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#CBB084]/80 to-transparent pointer-events-none z-30" />
+
+            {/* Front of Flap (Facing forward when sealed) */}
             <div 
-              style={{ backfaceVisibility: 'hidden' }}
-              className="absolute inset-0 w-full h-full [clip-path:polygon(0_0,100%_0,50%_100%)] bg-gradient-to-b from-[#FAF4E8] to-[#F1E4CE] shadow-md"
+              style={{ 
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden'
+              }}
+              className="absolute inset-0 w-full h-full filter drop-shadow-[0_4px_8px_rgba(120,85,45,0.2)]"
             >
               <svg viewBox="0 0 460 145" className="w-full h-full" preserveAspectRatio="none">
-                <polygon points="0,0 460,0 230,145" fill="none" stroke="#CBB084" strokeWidth="1.2" />
-                <polygon points="12,4 448,4 230,135" fill="none" stroke="#E2C792" strokeWidth="0.8" opacity="0.75" />
+                <defs>
+                  <linearGradient id="flapFrontGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#FAF4E8" />
+                    <stop offset="60%" stopColor="#F5EBD8" />
+                    <stop offset="100%" stopColor="#EFE3CB" />
+                  </linearGradient>
+                </defs>
+                {/* Flap Outer Body */}
+                <polygon 
+                  points="0,0 460,0 230,145" 
+                  fill="url(#flapFrontGrad)" 
+                  stroke="#CBB084" 
+                  strokeWidth="1.2" 
+                />
+                {/* Debossed Gold Inner Inset Border */}
+                <polygon 
+                  points="14,4 446,4 230,136" 
+                  fill="none" 
+                  stroke="#E2C792" 
+                  strokeWidth="0.8" 
+                  opacity="0.8" 
+                />
               </svg>
             </div>
 
-            {/* Back of Flap (Revealed when Open — Gold Damask Lining) */}
+            {/* Back of Flap (Revealed when open — Symmetrical rotateY preserves downward tip) */}
             <div 
               style={{ 
-                transform: 'rotateX(180deg)',
-                backfaceVisibility: 'hidden' 
+                transform: 'rotateY(180deg)',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden'
               }}
-              className="absolute inset-0 w-full h-full [clip-path:polygon(0_0,100%_0,50%_100%)] bg-[#EFE4D2] overflow-hidden shadow-md"
+              className="absolute inset-0 w-full h-full filter drop-shadow-[0_2px_6px_rgba(120,85,45,0.15)]"
             >
-              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="opacity-40">
-                <rect width="100%" height="100%" fill="url(#envelopeGoldDamask)" />
+              <svg viewBox="0 0 460 145" className="w-full h-full" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="backFlapShade" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="rgba(0,0,0,0.18)" />
+                    <stop offset="45%" stopColor="transparent" />
+                    <stop offset="100%" stopColor="rgba(0,0,0,0.06)" />
+                  </linearGradient>
+                </defs>
+                {/* Back Flap Base with Gold Damask Interior Lining */}
+                <polygon 
+                  points="0,0 460,0 230,145" 
+                  fill="url(#envelopeGoldDamask)" 
+                  stroke="#CBB084" 
+                  strokeWidth="1.2" 
+                />
+                {/* Ambient Shading Gradient */}
+                <polygon 
+                  points="0,0 460,0 230,145" 
+                  fill="url(#backFlapShade)" 
+                />
+                {/* Inner Inset Border on Lining */}
+                <polygon 
+                  points="14,4 446,4 230,136" 
+                  fill="none" 
+                  stroke="#E2C792" 
+                  strokeWidth="0.6" 
+                  opacity="0.6" 
+                />
               </svg>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
 
