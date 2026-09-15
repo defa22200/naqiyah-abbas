@@ -78,30 +78,31 @@ export default function EnvelopeCeremony({ onComplete }) {
       try { navigator.vibrate([15, 25, 15]); } catch (err) {}
     }
 
-    // Step 1: Cracking (0ms)
+    // Step 1: Cracking (0ms) - Wax fracture lines glow & gold burst particles erupt
     setPhase('cracking');
     setIsBurstActive(true);
 
-    // Step 2: Flap smoothly opens (380ms)
+    // Step 2: Flap smoothly unhinges in 3D (750ms - allows crack & burst to be fully experienced)
     const timerFlap = setTimeout(() => {
       setPhase('opening');
-    }, 380);
+    }, 750);
 
-    // Step 3: Card elevates majestically to center, envelope dissolves away (780ms)
+    // Step 3: Card emerges and rises majestically into full view (1650ms - 900ms after flap starts opening)
     const timerRise = setTimeout(() => {
       setPhase('rising');
-    }, 780);
+    }, 1650);
 
-    // Step 4: Seamless luminous transition begins (2100ms)
+    // Step 4: Card stays serenely displayed for comfortable reading (~4.85 seconds)
+    // Seamless luminous transition begins (6500ms)
     const timerReveal = setTimeout(() => {
       setPhase('revealing');
-    }, 2100);
+    }, 6500);
 
-    // Step 5: Complete and smoothly hand off to main invitation (2950ms)
+    // Step 5: Smoothly hand off to main invitation narrative (7400ms)
     const timerDone = setTimeout(() => {
       setPhase('done');
       if (onComplete) onComplete();
-    }, 2950);
+    }, 7400);
 
     return () => {
       clearTimeout(timerFlap);
@@ -114,7 +115,7 @@ export default function EnvelopeCeremony({ onComplete }) {
   // Instant fast-forward if user taps anywhere during presentation
   const handleFastForward = () => {
     enterFullscreen();
-    if (phase === 'rising' || phase === 'opening') {
+    if (phase === 'rising') {
       setPhase('revealing');
       setTimeout(() => {
         setPhase('done');
@@ -166,13 +167,12 @@ export default function EnvelopeCeremony({ onComplete }) {
           <div
             style={{
               transform: phase === 'rising' || phase === 'revealing'
-                ? 'translate3d(0, -8px, 30px) scale(1.02)'
+                ? 'translate3d(0, -12px, 30px) scale(1.02)'
                 : phase === 'opening'
-                ? 'translate3d(0, 0px, 15px) scale(0.98)'
-                : 'translate3d(0, 0px, 0px) scale(0.95)',
+                ? 'translate3d(0, 10px, 15px) scale(0.96)'
+                : 'translate3d(0, 18px, 0px) scale(0.92)',
               opacity: phase === 'sealed' || phase === 'cracking' ? 0 : 1,
-              transition: 'transform 0.95s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease',
-              
+              transition: 'transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease',
               boxShadow: '0 25px 60px rgba(120, 85, 45, 0.28)',
               zIndex: 35
             }}
@@ -241,7 +241,7 @@ export default function EnvelopeCeremony({ onComplete }) {
           <div 
             onClick={phase === 'sealed' ? handleSealTap : undefined}
             className={`transition-all duration-700 [transform-style:preserve-3d] ${
-              phase === 'sealed' || phase === 'cracking'
+              phase === 'sealed' || phase === 'cracking' || phase === 'opening'
                 ? 'relative w-full h-[240px] sm:h-[280px] cursor-pointer translate-y-0 opacity-100'
                 : 'absolute inset-0 translate-y-10 opacity-0 pointer-events-none'
             }`}
@@ -330,8 +330,7 @@ export default function EnvelopeCeremony({ onComplete }) {
                 transform: phase === 'sealed' || phase === 'cracking'
                   ? 'rotateX(0deg)'
                   : 'rotateX(-140deg)',
-                transition: 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease',
-                opacity: phase === 'opening' ? 0.8 : 1,
+                transition: 'transform 0.85s cubic-bezier(0.2, 0.8, 0.25, 1)',
                 transformStyle: 'preserve-3d',
                 zIndex: 25
               }}
