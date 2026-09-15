@@ -49,7 +49,7 @@ function playCrackSound() {
  * - Full-proportioned royal card with 100% visible Bismillah, Dua, and Allura calligraphy names.
  * - Tap anywhere during animation to fast-forward into the invitation immediately.
  */
-export default function EnvelopeCeremony({ onComplete }) {
+export default function EnvelopeCeremony({ onComplete, onSealBreak }) {
   const [phase, setPhase] = useState('sealed');
   const [isBurstActive, setIsBurstActive] = useState(false);
 
@@ -76,6 +76,14 @@ export default function EnvelopeCeremony({ onComplete }) {
     playCrackSound();
     if (navigator.vibrate) {
       try { navigator.vibrate([15, 25, 15]); } catch (err) {}
+    }
+
+    // Start background music right at the point where seal is broken!
+    try {
+      window.dispatchEvent(new CustomEvent('wedding:seal-broken'));
+    } catch (err) {}
+    if (onSealBreak) {
+      onSealBreak();
     }
 
     // Step 1: Cracking (0ms) - Wax fracture lines glow & gold burst particles erupt

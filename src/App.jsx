@@ -24,10 +24,14 @@ export default function App() {
   const [selectedQrEvent, setSelectedQrEvent] = useState(null);
   const [musicTrigger, setMusicTrigger] = useState(false);
 
+  // Trigger background music exactly when seal is broken
+  const handleSealBreak = () => {
+    setMusicTrigger(true);
+  };
+
   // Handle ceremony completion
   const handleCeremonyComplete = () => {
     setIsCeremonyDone(true);
-    setMusicTrigger(true);
     initSmoothScroll();
   };
 
@@ -66,7 +70,10 @@ export default function App() {
       
       {/* 1. Act 0: 3D Royal Wax Seal Envelope Ceremony (z-[60]) */}
       {!isCeremonyDone && (
-        <EnvelopeCeremony onComplete={handleCeremonyComplete} />
+        <EnvelopeCeremony 
+          onComplete={handleCeremonyComplete} 
+          onSealBreak={handleSealBreak}
+        />
       )}
 
       {/* 2. Seamless 6-Phase Multiphase Background Engine (z-[-30]) */}

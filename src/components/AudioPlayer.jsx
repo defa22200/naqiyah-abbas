@@ -24,56 +24,90 @@ export default function AudioPlayer({ autoPlayTrigger }) {
     };
   }, []);
 
-  // Attempt autoplay immediately, and fallback to first document interaction
+  // Helper function for silky volume fade-in
+  const fadeAudioIn = (audio, targetVol = 0.5, duration = 1800) => {
+    if (!audio) return;
+    audio.volume = 0;
+    const steps = 30;
+    const stepTime = duration / steps;
+    const stepIncrement = targetVol / steps;
+    let currentVol = 0;
+    const timer = setInterval(() => {
+      currentVol = Math.min(targetVol, currentVol + stepIncrement);
+      audio.volume = currentVol;
+      if (currentVol >= targetVol) clearInterval(timer);
+    }, stepTime);
+  };
+
+  // Helper function for smooth volume fade-out
+  const fadeAudioOut = (audio, onComplete, duration = 250) => {
+    if (!audio) return;
+    const startVol = audio.volume;
+    const steps = 15;
+    const stepTime = duration / steps;
+    const stepDecrement = startVol / steps;
+    let currentVol = startVol;
+    const timer = setInterval(() => {
+      currentVol = Math.max(0, currentVol - stepDecrement);
+      audio.volume = currentVol;
+      if (currentVol <= 0) {
+        clearInterval(timer);
+        if (onComplete) onComplete();
+      }
+    }, stepTime);
+  };
+
+  // Start playback strictly when wax seal is broken
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    audio.volume = 0.5;
-
-    const startAudioOnInteraction = () => {
-      enterFullscreen();
-      audio.play().then(() => {
-        setIsPlaying(true);
-      }).catch(() => {});
-      window.removeEventListener('click', startAudioOnInteraction);
-      window.removeEventListener('touchstart', startAudioOnInteraction);
+    const handleSealBreak = () => {
+      if (audio.paused) {
+        audio.currentTime = 0;
+        audio.volume = 0;
+        audio.play().then(() => {
+          setIsPlaying(true);
+          fadeAudioIn(audio, 0.5, 1800);
+        }).catch((err) => {
+          console.warn('Audio playback waiting for gesture:', err);
+        });
+      }
     };
 
-    // Try playing immediately on mount
-    audio.play().then(() => {
-      setIsPlaying(true);
-    }).catch(() => {});
-
-    // First touch or click starts music (never forces fullscreen)
-    window.addEventListener('click', startAudioOnInteraction, { once: true });
-    window.addEventListener('touchstart', startAudioOnInteraction, { once: true });
-
+    window.addEventListener('wedding:seal-broken', handleSealBreak);
     return () => {
-      window.removeEventListener('click', startAudioOnInteraction);
-      window.removeEventListener('touchstart', startAudioOnInteraction);
+      window.removeEventListener('wedding:seal-broken', handleSealBreak);
     };
   }, []);
 
-  // When external trigger (e.g. envelope opened) fires
+  // External trigger fallback (e.g. from App props)
   useEffect(() => {
-    if (autoPlayTrigger && audioRef.current && !isPlaying) {
-      audioRef.current.play().then(() => {
+    const audio = audioRef.current;
+    if (autoPlayTrigger && audio && audio.paused) {
+      audio.currentTime = 0;
+      audio.volume = 0;
+      audio.play().then(() => {
         setIsPlaying(true);
+        fadeAudioIn(audio, 0.5, 1800);
       }).catch(() => {});
     }
   }, [autoPlayTrigger]);
 
   const toggleSound = (e) => {
     e.stopPropagation();
-    if (!audioRef.current) return;
+    const audio = audioRef.current;
+    if (!audio) return;
 
     if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
+      fadeAudioOut(audio, () => {
+        audio.pause();
+        setIsPlaying(false);
+      }, 200);
     } else {
-      audioRef.current.play().then(() => {
+      audio.play().then(() => {
         setIsPlaying(true);
+        fadeAudioIn(audio, 0.5, 1200);
       }).catch(() => {});
     }
   };
