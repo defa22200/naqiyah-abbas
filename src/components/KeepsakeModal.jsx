@@ -110,7 +110,7 @@ export default function KeepsakeModal({ isOpen, onClose }) {
           <h2 className="font-calligraphy not-italic text-5xl sm:text-6xl text-ink-deep font-normal leading-tight">
             Naqiyah &amp; Abbas
           </h2>
-          <p className="text-[10px] sm:text-xs font-sans tracking-widest uppercase text-ink-deep/90 font-semibold">
+          <p className="text-[10px] sm:text-xs font-sans tracking-widest uppercase text-ink-deep/90 font-semibold leading-relaxed text-balance">
             Two families · Two hearts · One beautiful beginning
           </p>
         </div>
