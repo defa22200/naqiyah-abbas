@@ -17,8 +17,8 @@ export default function GoldBurstCanvas({ active = false, onComplete }) {
     let animationFrameId;
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const width = (canvas.width = canvas.offsetWidth * dpr);
-    const height = (canvas.height = canvas.offsetHeight * dpr);
+    const width = (canvas.width = (canvas.offsetWidth || 340) * dpr);
+    const height = (canvas.height = (canvas.offsetHeight || 340) * dpr);
     const cx = width / 2;
     const cy = height / 2;
 
