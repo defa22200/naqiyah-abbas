@@ -110,7 +110,7 @@ export default function ClosingSection() {
             <span className="h-px w-8 bg-[#CBB084]/40" />
           </div>
 
-          <p className="font-serif italic text-xs sm:text-sm text-warm-cream/95 tracking-wide whitespace-nowrap">
+          <p className="font-serif italic text-[10px] min-[390px]:text-[11px] sm:text-xs text-warm-cream/95 tracking-tight whitespace-nowrap">
             Two families · Two hearts · One beautiful beginning
           </p>
         </div>

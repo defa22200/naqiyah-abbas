@@ -230,7 +230,7 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
               Naqiyah &amp; Abbas
             </h1>
 
-            <p className="font-serif italic text-xs sm:text-sm text-ink-deep font-semibold mt-1 whitespace-nowrap px-1">
+            <p className="font-serif italic text-[10px] min-[390px]:text-[11px] sm:text-xs text-ink-deep font-semibold mt-1 whitespace-nowrap tracking-tight px-1">
               Two families · Two hearts · One beautiful beginning
             </p>
           </div>

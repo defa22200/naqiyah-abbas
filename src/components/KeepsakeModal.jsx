@@ -71,7 +71,7 @@ export default function KeepsakeModal({ isOpen, onClose }) {
           transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
           transition: 'transform 0.15s ease-out'
         }}
-        className="relative w-full max-w-sm rounded-3xl bg-white text-ink-deep p-7 sm:p-8 shadow-2xl border-2 border-gold-hairline/60 overflow-hidden text-center [transform-style:preserve-3d]"
+        className="relative w-full max-w-sm rounded-3xl bg-white text-ink-deep p-5 sm:p-8 shadow-2xl border-2 border-gold-hairline/60 overflow-hidden text-center [transform-style:preserve-3d]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Fine gold corner filigree accents */}
@@ -110,13 +110,7 @@ export default function KeepsakeModal({ isOpen, onClose }) {
           <h2 className="font-calligraphy not-italic text-5xl sm:text-6xl text-ink-deep font-normal leading-tight">
             Naqiyah &amp; Abbas
           </h2>
-          <p 
-            className="font-sans uppercase text-ink-deep/90 font-semibold whitespace-nowrap px-2"
-            style={{
-              fontSize: 'clamp(8px, 2.25vw, 11px)',
-              letterSpacing: 'clamp(0.06em, 0.3vw, 0.16em)',
-            }}
-          >
+          <p className="font-sans uppercase text-ink-deep/90 font-semibold whitespace-nowrap text-[8.5px] min-[390px]:text-[9px] tracking-[0.04em]">
             Two families · Two hearts · One beautiful beginning
           </p>
         </div>
