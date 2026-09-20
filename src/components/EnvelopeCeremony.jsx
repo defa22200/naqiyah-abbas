@@ -226,7 +226,7 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
               <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#CBB084]" />
             </div>
 
-            <h1 className="font-calligraphy not-italic text-4xl sm:text-5xl md:text-6xl text-ink-deep tracking-normal font-normal drop-shadow-sm leading-tight px-2">
+            <h1 className="font-calligraphy not-italic text-4xl sm:text-5xl md:text-6xl text-ink-deep tracking-normal font-normal drop-shadow-sm leading-[1.25] py-1.5 px-2 whitespace-nowrap overflow-visible">
               Naqiyah &amp; Abbas
             </h1>
 
@@ -242,7 +242,7 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
               <span className="text-[#9A7228] text-xs">✦</span>
               <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#CBB084]" />
             </div>
-            <p className="font-sans text-xs sm:text-sm tracking-[0.22em] uppercase text-ink-deep font-bold">
+            <p className="font-sans text-xs sm:text-sm tracking-[0.22em] uppercase text-ink-deep font-bold whitespace-nowrap">
               18 – 19 December 2026 · Nagpur
             </p>
           </div>
@@ -554,7 +554,7 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
             <span className="text-gold-bright text-xs">✦</span>
           </button>
 
-          <span className="text-xs font-sans tracking-[0.22em] uppercase text-ink-deep font-bold mt-3">
+          <span className="text-xs font-sans tracking-[0.22em] uppercase text-ink-deep font-bold mt-3 whitespace-nowrap">
             18 – 19 December 2026 · Nagpur
           </span>
         </div>

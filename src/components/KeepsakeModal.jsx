@@ -107,7 +107,7 @@ export default function KeepsakeModal({ isOpen, onClose }) {
 
         {/* Couple Names in Calligraphy Italic Script */}
         <div className="space-y-0.5 my-2">
-          <h2 className="font-calligraphy not-italic text-5xl sm:text-6xl text-ink-deep font-normal leading-tight">
+          <h2 className="font-calligraphy not-italic text-5xl sm:text-6xl text-ink-deep font-normal leading-[1.22] py-1.5 px-2 whitespace-nowrap overflow-visible">
             Naqiyah &amp; Abbas
           </h2>
           <p className="font-sans uppercase text-ink-deep/90 font-semibold whitespace-nowrap text-[8.5px] min-[390px]:text-[9px] tracking-[0.04em]">
@@ -124,13 +124,13 @@ export default function KeepsakeModal({ isOpen, onClose }) {
 
         {/* Date & Location Highlight */}
         <div className="py-1 space-y-1">
-          <p className="font-serif text-xl text-ink-deep font-bold">
+          <p className="font-serif text-xl text-ink-deep font-bold whitespace-nowrap">
             18 &amp; 19 December 2026
           </p>
-          <p className="font-sans text-[10px] sm:text-xs tracking-widest text-ink-deep/90 uppercase font-semibold">
+          <p className="font-sans text-[10px] sm:text-xs tracking-widest text-ink-deep/90 uppercase font-semibold whitespace-nowrap">
             10 &amp; 11 Shehre Rajabul Asab 1448H
           </p>
-          <p className="font-sans text-xs font-bold text-ink-deep">
+          <p className="font-sans text-xs font-bold text-ink-deep whitespace-nowrap">
             Nagpur, Maharashtra
           </p>
         </div>

@@ -46,8 +46,8 @@ export default function InvocationSection() {
       {/* Verbatim Invocation Text */}
       <p className="font-serif italic text-sm sm:text-base text-ink-deep leading-relaxed px-2 tracking-wide font-semibold">
         By the Grace of Allah and Vasila-e-Panjatan-e-paak <span className="text-xs font-sans not-italic text-ink-deep font-bold">(A.S.)</span> and dua mubarak of <br />
-        <span className="font-bold text-ink-deep">Dr. Syedna Mohammed Burhanuddin <span className="text-[10px] font-sans not-italic text-ink-deep font-bold">(R.A.)</span></span> &amp; <br />
-        <span className="font-bold text-ink-deep">Dr. Syedna Aali Qadr Mufaddal Saifuddin <span className="text-[10px] font-sans not-italic text-ink-deep font-bold">(T.U.S.)</span></span>
+        <span className="font-bold text-ink-deep whitespace-nowrap">Dr. Syedna Mohammed Burhanuddin <span className="text-[10px] font-sans not-italic text-ink-deep font-bold">(R.A.)</span></span> &amp; <br />
+        <span className="font-bold text-ink-deep whitespace-nowrap">Dr. Syedna Aali Qadr Mufaddal Saifuddin <span className="text-[10px] font-sans not-italic text-ink-deep font-bold">(T.U.S.)</span></span>
       </p>
     </header>
   );

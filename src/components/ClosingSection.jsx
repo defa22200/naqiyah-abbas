@@ -51,9 +51,9 @@ export default function ClosingSection() {
         </span>
         
         <div className="space-y-1.5 font-serif text-[15px] sm:text-base md:text-lg text-warm-cream font-medium leading-snug">
-          <p>Mr. Aziz Shamim &amp; Mrs. Zainab Shamim</p>
-          <p>Dr. Farheen &amp; Dr. Shabbir Hassan</p>
-          <p>Sarrah</p>
+          <p className="whitespace-nowrap">Mr. Aziz Shamim &amp; Mrs. Zainab Shamim</p>
+          <p className="whitespace-nowrap">Dr. Farheen &amp; Dr. Shabbir Hassan</p>
+          <p className="whitespace-nowrap">Sarrah</p>
         </div>
 
         <div className="pt-3 mt-3 border-t border-[#CBB084]/30">
@@ -70,7 +70,7 @@ export default function ClosingSection() {
         </p>
         <div className="flex items-center justify-center gap-2 pt-2 text-[#D4AF37]">
           <span className="text-xs">✦</span>
-          <span className="font-calligraphy not-italic text-3xl sm:text-4xl text-gold-bright px-1 drop-shadow-[0_2px_4px_rgba(201,166,107,0.4)]">Naqiyah &amp; Abbas</span>
+          <span className="font-calligraphy not-italic text-3xl sm:text-4xl text-gold-bright px-2 py-1 leading-normal overflow-visible inline-block whitespace-nowrap drop-shadow-[0_2px_4px_rgba(201,166,107,0.4)]">Naqiyah &amp; Abbas</span>
           <span className="text-xs">✦</span>
         </div>
       </div>
@@ -100,7 +100,7 @@ export default function ClosingSection() {
       {/* 4. Footer / Logistics Touchpoint (Enclosed in Luxury Black & Gold Card for 100% Clarity) */}
       <footer className="pt-8 pb-4">
         <div className="p-6 rounded-3xl bg-[#120B10]/90 border border-[#CBB084]/60 shadow-[0_15px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl space-y-2.5 text-center max-w-md mx-auto">
-          <p className="font-serif text-sm sm:text-base font-semibold text-gold-bright tracking-wide drop-shadow-sm">
+          <p className="font-serif text-sm sm:text-base font-semibold text-gold-bright tracking-wide drop-shadow-sm whitespace-nowrap">
             18 – 19 December 2026 · Nagpur, Maharashtra
           </p>
 

@@ -24,7 +24,7 @@ export default function LineageSection() {
           <strong className="font-normal text-ink-deep text-2xl sm:text-3xl block mb-1 font-serif">
             Mrs. Zainub
           </strong>
-          <span className="text-xs sm:text-sm font-sans tracking-wide text-ink-deep/90 block mb-3 font-medium">
+          <span className="text-xs sm:text-sm font-sans tracking-wide text-ink-deep/90 block mb-3 font-medium whitespace-nowrap">
             w/o Late Asgar Ali Shamim
           </span>
           requests the pleasure of your gracious presence at the wedding celebrations of her beloved granddaughter
@@ -49,10 +49,10 @@ export default function LineageSection() {
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           className="w-full p-6 sm:p-7 rounded-2xl bg-white/95 border border-[#CBB084]/50 shadow-lg backdrop-blur-md"
         >
-          <h3 className="font-calligraphy not-italic text-5xl sm:text-6xl text-ink-deep mb-1 font-normal">
+          <h3 className="font-calligraphy not-italic text-5xl sm:text-6xl text-ink-deep mb-1 font-normal leading-[1.2] py-1 px-3 overflow-visible inline-block">
             Naqiyah
           </h3>
-          <p className="font-serif italic text-sm sm:text-base text-ink-deep font-semibold">
+          <p className="font-serif italic text-sm sm:text-base text-ink-deep font-semibold whitespace-nowrap">
             (D/o Mrs. Ashrafunnisa &amp; Mr. Moiz Shamim)
           </p>
         </motion.div>
@@ -74,10 +74,10 @@ export default function LineageSection() {
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           className="w-full p-6 sm:p-7 rounded-2xl bg-white/95 border border-[#CBB084]/50 shadow-lg backdrop-blur-md"
         >
-          <h3 className="font-calligraphy not-italic text-5xl sm:text-6xl text-ink-deep mb-1 font-normal">
+          <h3 className="font-calligraphy not-italic text-5xl sm:text-6xl text-ink-deep mb-1 font-normal leading-[1.2] py-1 px-3 overflow-visible inline-block">
             Abbas
           </h3>
-          <p className="font-serif italic text-sm sm:text-base text-ink-deep font-semibold">
+          <p className="font-serif italic text-sm sm:text-base text-ink-deep font-semibold whitespace-nowrap">
             (S/o Mrs. Tasneem &amp; Mr. Shabbar Mistry)
           </p>
         </motion.div>

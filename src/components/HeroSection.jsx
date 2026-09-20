@@ -52,7 +52,7 @@ export default function HeroSection({ onOpenKeepsake }) {
         className="w-full max-w-lg mx-auto flex flex-col items-center justify-center"
       >
         {/* Bride Name: Naqiyah */}
-        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-ink-deep font-normal select-none leading-[1.1] drop-shadow-sm transition-all duration-700 hover:text-gold-burnished">
+        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-ink-deep font-normal select-none leading-[1.22] sm:leading-[1.18] overflow-visible inline-block px-4 pt-1 pb-4 drop-shadow-sm transition-all duration-700 hover:text-gold-burnished">
           Naqiyah
         </h1>
 
@@ -66,7 +66,7 @@ export default function HeroSection({ onOpenKeepsake }) {
         </div>
 
         {/* Groom Name: Abbas */}
-        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-ink-deep font-normal select-none leading-[1.1] drop-shadow-sm transition-all duration-700 hover:text-gold-burnished">
+        <h1 className="font-calligraphy not-italic text-6xl sm:text-8xl md:text-9xl tracking-normal text-ink-deep font-normal select-none leading-[1.22] sm:leading-[1.18] overflow-visible inline-block px-4 pt-1 pb-4 drop-shadow-sm transition-all duration-700 hover:text-gold-burnished">
           Abbas
         </h1>
       </motion.div>
@@ -94,15 +94,15 @@ export default function HeroSection({ onOpenKeepsake }) {
           <span className="h-px w-8 bg-[#CBB084]"></span>
         </div>
 
-        <p className="text-xs sm:text-sm font-sans tracking-[0.25em] uppercase text-ink-deep font-bold">
+        <p className="text-xs sm:text-sm font-sans tracking-[0.25em] uppercase text-ink-deep font-bold whitespace-nowrap">
           Wedding Celebrations
         </p>
 
-        <p className="font-serif text-2xl sm:text-3xl text-ink-deep font-semibold tracking-wide">
+        <p className="font-serif text-2xl sm:text-3xl text-ink-deep font-semibold tracking-wide whitespace-nowrap">
           18 – 19 December 2026
         </p>
 
-        <p className="font-sans text-[10.5px] sm:text-xs tracking-[0.18em] uppercase text-ink-deep font-medium">
+        <p className="font-sans text-[10.5px] sm:text-xs tracking-[0.18em] uppercase text-ink-deep font-medium whitespace-nowrap">
           10 – 11 Shehre Rajabul Asab 1448 · Nagpur
         </p>
       </motion.div>
