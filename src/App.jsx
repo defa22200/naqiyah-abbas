@@ -14,6 +14,7 @@ import FlowerRainfall from './components/FlowerRainfall';
 import Spatial3DMotionCanvas from './components/Spatial3DMotionCanvas';
 import KeepsakeModal from './components/KeepsakeModal';
 import QrCodeModal from './components/QrCodeModal';
+import DevicePrompt from './components/DevicePrompt';
 import { useScrollStage } from './hooks/useScrollStage';
 import { initSmoothScroll, getLenis } from './lib/smoothScroll';
 
@@ -138,6 +139,9 @@ export default function App() {
         event={selectedQrEvent} 
         onClose={() => setSelectedQrEvent(null)} 
       />
+
+      {/* Tablet & Desktop Mobile Experience Prompt */}
+      <DevicePrompt />
     </div>
   );
 }
