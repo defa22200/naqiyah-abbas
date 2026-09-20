@@ -220,7 +220,7 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
           <div className="my-4 py-1 relative z-10 space-y-1.5">
             <div className="flex items-center justify-center gap-2 mb-1">
               <span className="h-px w-8 bg-gradient-to-r from-transparent to-[#CBB084]" />
-              <span className="text-[9.5px] sm:text-[11px] font-sans tracking-[0.28em] uppercase text-ink-deep font-bold">
+              <span className="text-[9.5px] sm:text-[11px] font-serif tracking-[0.28em] uppercase text-ink-deep font-semibold">
                 Wedding Invitation
               </span>
               <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#CBB084]" />
@@ -235,15 +235,18 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
             </p>
           </div>
 
-          {/* Bottom: Dates and Venue City */}
-          <div className="pb-1 space-y-2 relative z-10">
-            <div className="flex items-center justify-center gap-2">
+          {/* Bottom: Dates and Venue City in aesthetic serif */}
+          <div className="pb-1 space-y-1 relative z-10">
+            <div className="flex items-center justify-center gap-2 mb-1">
               <span className="h-px w-10 bg-gradient-to-r from-transparent to-[#CBB084]" />
               <span className="text-[#9A7228] text-xs">✦</span>
               <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#CBB084]" />
             </div>
-            <p className="font-sans text-xs sm:text-sm tracking-[0.22em] uppercase text-ink-deep font-bold whitespace-nowrap">
-              18 – 19 December 2026 · Nagpur
+            <p className="font-serif text-base sm:text-lg text-ink-deep font-semibold tracking-wide whitespace-nowrap">
+              18 – 19 December 2026
+            </p>
+            <p className="font-serif italic text-xs sm:text-sm text-[#9A7228] font-medium tracking-wide whitespace-nowrap">
+              Nagpur, Maharashtra
             </p>
           </div>
         </div>
@@ -554,7 +557,7 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
             <span className="text-gold-bright text-xs">✦</span>
           </button>
 
-          <span className="text-xs font-sans tracking-[0.22em] uppercase text-ink-deep font-bold mt-3 whitespace-nowrap">
+          <span className="text-xs font-serif tracking-[0.22em] uppercase text-ink-deep font-semibold mt-3 whitespace-nowrap">
             18 – 19 December 2026 · Nagpur
           </span>
         </div>
