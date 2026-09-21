@@ -93,7 +93,7 @@ export default function VenueCard({ venue }) {
             href={mapUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="h-11 flex items-center justify-center gap-2 px-3 rounded-xl bg-gradient-to-r from-[#2A1822] to-[#3B1F2F] text-gold-bright text-xs sm:text-sm font-medium tracking-wide shadow-md border border-[#CBB084]/60 hover:from-[#351F2C] hover:to-[#462539] active:scale-95 transition-all"
+            className="h-11 flex items-center justify-center gap-1.5 sm:gap-2 px-2 min-[360px]:px-3 rounded-xl bg-gradient-to-r from-[#2A1822] to-[#3B1F2F] text-gold-bright text-[11px] min-[360px]:text-xs sm:text-sm font-medium tracking-wide shadow-md border border-[#CBB084]/60 hover:from-[#351F2C] hover:to-[#462539] active:scale-95 transition-all whitespace-nowrap"
           >
             <Navigation className="w-4 h-4 text-gold-bright" />
             <span>Open in Maps</span>
@@ -101,7 +101,7 @@ export default function VenueCard({ venue }) {
 
           <button
             onClick={handleCopy}
-            className={`h-11 px-3 rounded-xl border text-xs sm:text-sm font-medium flex items-center justify-center gap-1.5 transition-colors active:scale-95 cursor-pointer ${
+            className={`h-11 px-2 min-[360px]:px-3 rounded-xl border text-[11px] min-[360px]:text-xs sm:text-sm font-medium flex items-center justify-center gap-1.5 transition-colors active:scale-95 cursor-pointer whitespace-nowrap ${
               copied
                 ? 'border-emerald-500/60 bg-emerald-900/30 text-emerald-300 font-semibold'
                 : 'border-[#CBB084]/50 text-gold-bright hover:bg-[#2A1822]'

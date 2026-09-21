@@ -48,14 +48,14 @@ export default function HeaderNav({ activeSection }) {
           <span>Quick Itinerary</span>
         </button>
       ) : (
-        <div className="flex items-center gap-1.5 p-1.5 bg-ink-plum/90 text-ivory rounded-full shadow-2xl backdrop-blur-md border border-gold-hairline/40 max-w-[95vw]">
+        <div className="flex items-center gap-1 min-[360px]:gap-1.5 p-1 min-[360px]:p-1.5 bg-ink-plum/90 text-ivory rounded-full shadow-2xl backdrop-blur-md border border-gold-hairline/40 max-w-[96vw] overflow-x-auto no-scrollbar">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`px-3 py-1.5 rounded-full text-xs transition-all duration-300 whitespace-nowrap flex items-center gap-1 ${
+                className={`px-2 min-[370px]:px-3 py-1.5 rounded-full text-[11px] min-[370px]:text-xs transition-all duration-300 whitespace-nowrap flex items-center gap-1 shrink-0 ${
                   isActive
                     ? 'bg-gold-hairline text-ink-plum font-semibold shadow-sm'
                     : 'text-ivory/80 hover:text-ivory hover:bg-white/10'

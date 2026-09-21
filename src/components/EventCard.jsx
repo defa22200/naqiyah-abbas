@@ -80,7 +80,7 @@ export default function EventCard({ event, theme, onOpenQr }) {
       </div>
 
       {/* Event Title */}
-      <h3 className={`font-serif text-3xl sm:text-4xl tracking-tight mb-3 relative z-10 font-normal ${
+      <h3 className={`font-serif text-2xl min-[360px]:text-3xl sm:text-4xl tracking-tight mb-3 relative z-10 font-normal ${
         theme === 'reception' ? 'text-warm-cream' : 'text-ink-deep'
       }`}>
         {event.id === 'nikah' && 'The Nikah Ceremony'}
@@ -90,7 +90,7 @@ export default function EventCard({ event, theme, onOpenQr }) {
 
       {/* Dates Block */}
       <div className="mb-6 space-y-1 relative z-10">
-        <p className={`font-serif text-xl sm:text-2xl font-bold ${
+        <p className={`font-serif text-lg min-[360px]:text-xl sm:text-2xl font-bold ${
           theme === 'reception' ? 'text-gold-pale' : 'text-ink-deep'
         }`}>
           {event.gregorian}

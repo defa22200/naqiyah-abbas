@@ -191,7 +191,7 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
             boxShadow: '0 25px 55px rgba(120, 85, 45, 0.26)',
             zIndex: 35
           }}
-          className={`absolute w-[91%] max-w-[325px] sm:max-w-[385px] rounded-3xl bg-gradient-to-b from-[#FFFDF9] via-[#FAF6EE] to-[#F5EEDF] border-2 border-[#CBB084]/90 p-5 sm:p-7 flex flex-col items-center justify-between text-center select-none overflow-hidden ${
+          className={`absolute w-[91%] max-w-[325px] sm:max-w-[385px] rounded-3xl bg-gradient-to-b from-[#FFFDF9] via-[#FAF6EE] to-[#F5EEDF] border-2 border-[#CBB084]/90 px-4 py-5 sm:p-7 flex flex-col items-center justify-between text-center select-none overflow-hidden ${
             phase === 'rising' ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none'
           }`}
         >
@@ -226,11 +226,11 @@ export default function EnvelopeCeremony({ onComplete, onCardShow }) {
               <span className="h-px w-8 bg-gradient-to-l from-transparent to-[#CBB084]" />
             </div>
 
-            <h1 className="font-calligraphy not-italic text-4xl sm:text-5xl md:text-6xl text-ink-deep tracking-normal font-normal drop-shadow-sm leading-[1.25] py-1.5 px-2 whitespace-nowrap overflow-visible">
+            <h1 className="font-calligraphy not-italic text-3xl min-[360px]:text-4xl sm:text-5xl md:text-6xl text-ink-deep tracking-normal font-normal drop-shadow-sm leading-[1.25] py-1.5 px-2 whitespace-nowrap overflow-visible">
               Naqiyah &amp; Abbas
             </h1>
 
-            <p className="font-serif italic text-[10px] min-[390px]:text-[11px] sm:text-xs text-ink-deep font-semibold mt-1 whitespace-nowrap tracking-tight px-1">
+            <p className="font-serif italic text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs text-ink-deep font-semibold mt-1 whitespace-nowrap tracking-tight px-1">
               Two families · Two hearts · One beautiful beginning
             </p>
           </div>

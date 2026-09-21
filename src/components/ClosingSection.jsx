@@ -99,8 +99,8 @@ export default function ClosingSection() {
 
       {/* 4. Footer / Logistics Touchpoint (Enclosed in Luxury Black & Gold Card for 100% Clarity) */}
       <footer className="pt-8 pb-4">
-        <div className="p-6 rounded-3xl bg-[#120B10]/90 border border-[#CBB084]/60 shadow-[0_15px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl space-y-2.5 text-center max-w-md mx-auto">
-          <p className="font-serif text-sm sm:text-base font-semibold text-gold-bright tracking-wide drop-shadow-sm whitespace-nowrap">
+        <div className="px-3.5 py-5 sm:p-6 rounded-3xl bg-[#120B10]/90 border border-[#CBB084]/60 shadow-[0_15px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl space-y-2.5 text-center max-w-md mx-auto">
+          <p className="font-serif text-xs min-[360px]:text-sm sm:text-base font-semibold text-gold-bright tracking-wide drop-shadow-sm whitespace-nowrap">
             18 – 19 December 2026 · Nagpur, Maharashtra
           </p>
 
@@ -110,7 +110,7 @@ export default function ClosingSection() {
             <span className="h-px w-8 bg-[#CBB084]/40" />
           </div>
 
-          <p className="font-serif italic text-[10px] min-[390px]:text-[11px] sm:text-xs text-warm-cream/95 tracking-tight whitespace-nowrap">
+          <p className="font-serif italic text-[9.5px] min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-xs text-warm-cream/95 tracking-tight whitespace-nowrap">
             Two families · Two hearts · One beautiful beginning
           </p>
         </div>
