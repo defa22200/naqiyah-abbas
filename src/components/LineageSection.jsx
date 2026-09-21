@@ -14,7 +14,7 @@ export default function LineageSection() {
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-12 relative p-6 sm:p-8 rounded-3xl bg-white/85 border border-gold-hairline/40 shadow-xl backdrop-blur-md"
+        className="mb-12 relative px-4 py-6 sm:px-8 sm:py-8 rounded-3xl bg-white/85 border border-gold-hairline/40 shadow-xl backdrop-blur-md text-center"
       >
         <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-ink-deep font-bold block mb-3">
           Cordial Invitation
@@ -24,7 +24,7 @@ export default function LineageSection() {
           <strong className="font-normal text-ink-deep text-2xl sm:text-3xl block mb-1 font-serif">
             Mrs. Zainub
           </strong>
-          <span className="text-xs sm:text-sm font-sans tracking-wide text-ink-deep/90 block mb-3 font-medium whitespace-nowrap">
+          <span className="text-[11.5px] min-[360px]:text-xs sm:text-sm font-sans tracking-wide text-ink-deep/90 block mb-3 font-medium whitespace-nowrap">
             w/o Late Asgar Ali Shamim
           </span>
           requests the pleasure of your gracious presence at the wedding celebrations of her beloved granddaughter
@@ -47,12 +47,12 @@ export default function LineageSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full p-6 sm:p-7 rounded-2xl bg-white/95 border border-[#CBB084]/50 shadow-lg backdrop-blur-md"
+          className="w-full px-4 py-6 sm:px-7 sm:py-7 rounded-2xl bg-white/95 border border-[#CBB084]/50 shadow-lg backdrop-blur-md text-center"
         >
           <h3 className="font-calligraphy not-italic text-5xl sm:text-6xl text-ink-deep mb-1 font-normal leading-[1.2] py-1 px-3 overflow-visible inline-block">
             Naqiyah
           </h3>
-          <p className="font-serif italic text-sm sm:text-base text-ink-deep font-semibold whitespace-nowrap">
+          <p className="font-serif italic text-xs min-[360px]:text-sm sm:text-base text-ink-deep font-semibold whitespace-nowrap">
             (D/o Mrs. Ashrafunnisa &amp; Mr. Moiz Shamim)
           </p>
         </motion.div>
@@ -72,12 +72,12 @@ export default function LineageSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full p-6 sm:p-7 rounded-2xl bg-white/95 border border-[#CBB084]/50 shadow-lg backdrop-blur-md"
+          className="w-full px-4 py-6 sm:px-7 sm:py-7 rounded-2xl bg-white/95 border border-[#CBB084]/50 shadow-lg backdrop-blur-md text-center"
         >
           <h3 className="font-calligraphy not-italic text-5xl sm:text-6xl text-ink-deep mb-1 font-normal leading-[1.2] py-1 px-3 overflow-visible inline-block">
             Abbas
           </h3>
-          <p className="font-serif italic text-sm sm:text-base text-ink-deep font-semibold whitespace-nowrap">
+          <p className="font-serif italic text-xs min-[360px]:text-sm sm:text-base text-ink-deep font-semibold whitespace-nowrap">
             (S/o Mrs. Tasneem &amp; Mr. Shabbar Mistry)
           </p>
         </motion.div>

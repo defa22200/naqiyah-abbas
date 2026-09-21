@@ -93,7 +93,7 @@ export default function App() {
       <Spatial3DMotionCanvas stage={stage} isReady={isCeremonyDone} />
 
       {/* 5. Main Single-Page Scrollytelling Narrative (z-10, sections own their padding) */}
-      <main className="relative z-10 max-w-xl mx-auto">
+      <main className="relative z-10 max-w-xl mx-auto pb-40 sm:pb-48">
         {/* 1. Opening Sacred Invocation (Bismillah & Dua Mubarak) */}
         <InvocationSection />
 

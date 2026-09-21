@@ -61,7 +61,7 @@ export default function VenueCard({ venue }) {
       </div>
 
       {/* Details & Action Content */}
-      <div className="p-6 sm:p-7">
+      <div className="px-4 py-6 sm:px-7 sm:py-7">
         <div className="flex items-start justify-between gap-4 mb-4">
           <div>
             <span className="text-[10px] font-sans tracking-[0.2em] uppercase text-gold-bright font-semibold block mb-1">

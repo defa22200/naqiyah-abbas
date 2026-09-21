@@ -48,7 +48,7 @@ export default function EventCard({ event, theme, onOpenQr }) {
         transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
         transition: 'transform 0.3s ease-out, box-shadow 0.4s ease'
       }}
-      className={`relative rounded-3xl p-7 sm:p-9 backdrop-blur-sm border shadow-xl overflow-hidden ${
+      className={`relative rounded-3xl px-4 py-6 sm:px-8 sm:py-8 backdrop-blur-sm border shadow-xl overflow-hidden ${
         theme === 'reception'
           ? 'bg-[#221A15]/95 text-warm-cream border-gold-hairline/50 shadow-reception-glow'
           : theme === 'celebration'

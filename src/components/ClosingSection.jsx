@@ -45,32 +45,32 @@ export default function ClosingSection() {
       aria-label="Family Compliments and Closing Blessing"
     >
       {/* 1. With Best Compliments From Card (Black & Gold luxury) */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-[#120B10]/85 border border-[#CBB084]/60 shadow-[0_20px_50px_rgba(0,0,0,0.5)] text-warm-cream space-y-3 backdrop-blur-xl">
-        <span className="text-[10px] sm:text-xs font-sans tracking-[0.25em] uppercase text-gold-bright font-semibold block mb-2">
+      <div className="px-4 py-6 sm:px-8 sm:py-8 rounded-3xl bg-[#120B10]/85 border border-[#CBB084]/60 shadow-[0_20px_50px_rgba(0,0,0,0.5)] text-warm-cream space-y-3 backdrop-blur-xl text-center">
+        <span className="text-[10px] sm:text-xs font-serif tracking-[0.26em] uppercase text-gold-bright font-semibold block mb-2">
           With Best Compliments From
         </span>
         
-        <div className="space-y-1.5 font-serif text-[15px] sm:text-base md:text-lg text-warm-cream font-medium leading-snug">
+        <div className="space-y-2 font-serif text-[13.5px] min-[390px]:text-[15px] sm:text-base text-warm-cream font-medium leading-snug">
           <p className="whitespace-nowrap">Mr. Aziz Shamim &amp; Mrs. Zainab Shamim</p>
           <p className="whitespace-nowrap">Dr. Farheen &amp; Dr. Shabbir Hassan</p>
           <p className="whitespace-nowrap">Sarrah</p>
         </div>
 
         <div className="pt-3 mt-3 border-t border-[#CBB084]/30">
-          <p className="font-sans text-[11px] sm:text-xs tracking-widest text-gold-bright uppercase font-medium">
+          <p className="font-serif text-[10px] min-[380px]:text-[11px] sm:text-xs tracking-[0.14em] sm:tracking-[0.2em] text-gold-bright uppercase font-semibold whitespace-nowrap text-center block px-1">
             Together with all relatives &amp; friends
           </p>
         </div>
       </div>
 
       {/* 2. Verbatim Closing Blessing (Black & Gold luxury) */}
-      <div className="p-8 sm:p-10 rounded-3xl bg-[#120B10]/85 border border-[#CBB084]/60 shadow-[0_20px_50px_rgba(0,0,0,0.5)] space-y-4 text-warm-cream backdrop-blur-xl">
-        <p className="font-serif italic text-xl sm:text-2xl leading-relaxed text-warm-cream">
+      <div className="px-5 py-7 sm:px-9 sm:py-9 rounded-3xl bg-[#120B10]/85 border border-[#CBB084]/60 shadow-[0_20px_50px_rgba(0,0,0,0.5)] space-y-4 text-warm-cream backdrop-blur-xl text-center">
+        <p className="font-serif italic text-lg sm:text-2xl leading-relaxed text-warm-cream [text-wrap:balance] max-w-md mx-auto">
           &ldquo;Your presence will make our celebration complete; your blessings will make our journey more beautiful.&rdquo;
         </p>
         <div className="flex items-center justify-center gap-2 pt-2 text-[#D4AF37]">
           <span className="text-xs">✦</span>
-          <span className="font-calligraphy not-italic text-3xl sm:text-4xl text-gold-bright px-2 py-1 leading-normal overflow-visible inline-block whitespace-nowrap drop-shadow-[0_2px_4px_rgba(201,166,107,0.4)]">Naqiyah &amp; Abbas</span>
+          <span className="font-calligraphy not-italic text-3xl sm:text-4xl text-gold-bright px-3 py-1 leading-normal overflow-visible inline-block whitespace-nowrap drop-shadow-[0_2px_4px_rgba(201,166,107,0.4)]">Naqiyah &amp; Abbas</span>
           <span className="text-xs">✦</span>
         </div>
       </div>
